@@ -29,11 +29,14 @@ which point they switch to Claude automatically (`src/articulate/llm.py`).
 |---|---|
 | `db/schema.sql`, `docs/DATA_MODEL.md` | SQLite schema and its rationale |
 | `content/` | All game content as JSON (contract: `docs/CONTENT_FORMAT.md`) |
-| `content/items/l1..l5.json` | Item banks for the five levels |
-| `src/articulate/` | Loader/validator, graders, mastery model, LLM layer, FastAPI app |
+| `content/items/l1..l8.json` | Item banks: eight levels from line-item sorting to the Enron/WorldCom vault |
+| `content/items/hindsight.json` | Forecast-the-past calibration cases (Brier-scored) |
+| `content/items/daily*.json` | Daily Filing: 15 authored + 365 generated from SEC bulk data |
+| `src/articulate/` | Loader/validator, graders, mastery model, LLM layer, XBRL normalize, FastAPI app |
 | `web/` | Static frontend |
-| `scripts/` | `build_db.py`, `export_excel.py`, `gen_synthetic.py`, `check_facts.py` |
+| `scripts/` | `build_db.py`, `build_bulk.py`, `gen_daily.py`, `gen_synthetic.py`, `gen_restatement.py`, `check_facts.py`, `export_excel.py` |
+| `data/` (git-ignored) | SEC bulk zip + `edgar_bulk.db` (regenerable: `build_bulk.py`, ~3 min) |
 | `docs/STORY.md`, `docs/PEDAGOGY.md` | Narrative frame and learning-science grounding |
 | `docs/EDGAR_NOTES.md` | What was pulled from EDGAR and how it was mapped |
-| `docs/NEXT_PASS.md` | Open questions, data sources to add, deliberate simplifications |
-| `tests/` | Schema, grader, mastery, LLM-mock, API, and content-contract tests |
+| `docs/NEXT_PASS.md` | What's done and what's still open |
+| `tests/` | Schema, grader, mastery, LLM-mock, normalize (with bulk golden test), API, content-contract tests |

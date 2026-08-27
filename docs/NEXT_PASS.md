@@ -1,39 +1,47 @@
 # Next pass: open items
 
-Updated 2026-08-27 after the depth expansion (L6/L7, 16-filer roster, live
-Claude judge/CFO/classifier).
+Updated 2026-08-27 (second pass) after completing the prior list: SEC bulk
+pipeline, generated dailies, Hindsight calibration mode, and the L8 Vault.
 
-## Done since the first pass
+## Done
 
-- Live LLM: `.env` key wired; rubric judge, CFO character, and the
-  question→issue classifier all run on Claude (`claude-opus-4-8`) with the
-  offline mock as fallback. Mock-graded attempts remain tagged `llm_mock`.
-- Real-data roster: 16 filers / 54 company-years, 141 identity checks green.
-  Daily Filing rotates one filer per calendar day.
-- Depth: L6 (Band F — intercorporate, pensions, FX methods, IFRS vs GAAP,
-  banks) and L7 (Sable Peak restatement autopsy, Beneish/accruals screens,
-  non-GAAP reading, post-restatement call, capstone thesis).
-- Grader evaluation formally de-scoped by Michael (low-risk use case).
+- **SEC bulk pipeline**: `data/companyfacts.zip` (1.3GB, regenerable) →
+  `src/articulate/normalize.py` (codified candidate-tag table, derivations,
+  as-filed selection, quality scoring/quarantine per spec §8.2) →
+  `scripts/build_bulk.py` → `data/edgar_bulk.db` (13,948 companies, 111k
+  company-years, 31k admitted, 2.5M facts). Golden test cross-checks bulk
+  output against the hand-curated pulls.
+- **Generated Daily Filing**: `scripts/gen_daily.py` builds a 420-company
+  pool with SIC classifications and pool percentiles → 365 deterministic
+  items; rotation now spans 380 puzzles (>1 year).
+- **Hindsight mode** (spec §5.7): probability grader with Brier scoring,
+  15 verified historical cases (Lehman → Hertz, plus survivors that teach
+  base rates), calibration curve.
+- **L8 The Vault**: Enron FY2000 and WorldCom FY2001 boss cases with
+  verbatim-verified excerpts from the actual filings; Note Hunt item type.
+- Solve juice: cascading settle animation + balance tone on a tied sudoku.
 
-## Data sources still worth adding
+## Still open (roughly in value order)
 
-1. **SEC bulk data** (`companyfacts.zip`, DERA quarterly sets) — unlimited
-   Daily rotation, Lineup percentiles via frames, Tag Archaeology. Needs the
-   candidate-tag mapping table + quarantine machinery (spec §8.2); biggest
-   remaining engineering item.
-2. **Filing HTML** (Items 7/8/9A parsed into sections) — Note Hunt, MD&A
-   reading, and real forensics bosses (Enron FY2000, WorldCom, etc., which
-   must cite the actual public record).
-3. **8-K item feeds + AAERs** — Hindsight mode (calibration/Brier scoring)
-   resolution labels.
+1. **Filing-HTML section parser** for arbitrary filers — Note Hunt beyond
+   the two hand-built boss cases, MD&A reading items, Comparative Reading
+   (IFRS 20-F vs 10-K). The Vault items quote hand-extracted text; a parser
+   would make this generative.
+2. **DERA Financial Statement Data Sets** — company extension tags (the gap
+   the bulk companyfacts feed can't close: KR's SG&A, DAL's air traffic
+   liability) and Tag Archaeology as an item type.
+3. **Hindsight expansion from bulk**: 8-K item feeds (4.01/4.02/1.03) could
+   label thousands of company-years in `edgar_bulk.db` for generated
+   forecasting items; currently all 15 cases are hand-curated.
+4. **Mastery**: still EMA + SM-2-flavored scheduling rather than
+   Glicko-2/FSRS (interfaces shaped for the swap; fine for solo play).
+5. **Remaining spec modes**: Model Studio (grid three-statement builder),
+   Filing Season runs, Ratio Forge recipe-crafting UI, mock-exam vignettes.
+6. Multi-profile/auth if this ever leaves localhost.
 
-## Remaining simplifications
+## Operational notes
 
-- Mastery is still EMA + SM-2-ish scheduling (interfaces shaped for
-  Glicko-2/FSRS swap; see docs/DATA_MODEL.md).
-- No flow-board animation on sudoku solve; cells flash only.
-- Single-player, no auth; handle in localStorage.
-- Facts are latest-filed only for real companies (as-restated exists only
-  for Sable Peak's synthetic restatement).
-- Modes not yet built (spec roadmap): Model Studio, Filing Season runs,
-  Hindsight, Ratio Forge recipe-crafting UI, mock-exam vignette mode.
+- `data/` is git-ignored and regenerable: re-download companyfacts.zip, then
+  `build_bulk.py` (~3 min) and `gen_daily.py`. Disk footprint ~3GB.
+- Rebuilding content tables preserves player state; only schema CHECK
+  changes force a fresh DB.
