@@ -163,8 +163,10 @@ function calibrationCurve(cal) {
   };
   svg.append(mk("line", { x1: sx(0), y1: sy(0), x2: sx(1), y2: sy(1),
     stroke: "#2a3245", "stroke-dasharray": "4 3" }));
-  svg.append(mk("text", { x: sx(0.5), y: H - 6, fill: "#7d8799", "font-size": 9,
-    "text-anchor": "middle" })).lastChild.textContent = "what you predicted";
+  const xlab = mk("text", { x: sx(0.5), y: H - 6, fill: "#7d8799", "font-size": 9,
+    "text-anchor": "middle" });
+  xlab.textContent = "what you predicted";
+  svg.append(xlab);
   const ylab = mk("text", { x: 8, y: sy(0.5), fill: "#7d8799", "font-size": 9,
     transform: `rotate(-90 8 ${sy(0.5)})`, "text-anchor": "middle" });
   ylab.textContent = "what happened";
