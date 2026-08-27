@@ -193,6 +193,7 @@ function renderItem() {
     if (submitted === null) return;
     submit.disabled = true;
     hintBtn.disabled = true;
+    if (item.grader === "llm_rubric") submit.textContent = "Marion is reading it…";
     try {
       const out = await post("/api/attempt",
         { player, item_id: item.id, submitted, hints_used: hintsUsed });
