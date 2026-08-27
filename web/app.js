@@ -104,6 +104,80 @@ async function home() {
     card.onclick = openDaily;
     $main.append(card);
   }
+  if (state.hindsight_items > 0) {
+    const card = el("button", "level-card");
+    const row = el("div", "row");
+    row.append(el("span", "band", "HINDSIGHT"));
+    card.append(row);
+    card.append(el("div", "title", "Forecast the past"));
+    card.append(el("div", "tag",
+      "Real filings, shown as of their filing date. Give a probability; history grades you."));
+    card.onclick = openHindsight;
+    $main.append(card);
+  }
+}
+
+/* ----------------------------------------------------------- hindsight -- */
+
+async function openHindsight() {
+  const [data, cal] = await Promise.all([
+    api(`/api/hindsight?player=${encodeURIComponent(player)}`),
+    api(`/api/calibration?player=${encodeURIComponent(player)}`),
+  ]);
+  levelCache = {
+    level: { id: null, title: "Hindsight", tagline: "Calibration, not clairvoyance.",
+             narrative_intro: "", narrative_outro: "" },
+    items: data.items,
+    progress: data.progress,
+  };
+  itemResults = {};
+  itemIdx = data.items.findIndex(it => !data.progress[it.id]);
+  if (itemIdx === -1) itemIdx = 0;
+  $main.replaceChildren();
+  const crumb = el("div", "crumb", "← back to the desk");
+  crumb.onclick = home;
+  $main.append(crumb);
+  $main.append(el("h1", null, "Hindsight"));
+  $main.append(el("div", "tagline",
+    "Marion: \"Anyone can say a filing looks bad. The job is knowing how often bad-looking filings actually blow up.\""));
+  if (cal.n > 0) $main.append(calibrationCurve(cal));
+  const begin = el("button", "btn", cal.n > 0 ? "Keep forecasting" : "Start forecasting");
+  begin.onclick = () => renderItem();
+  $main.append(begin);
+}
+
+function calibrationCurve(cal) {
+  const wrap = el("div", "item-panel");
+  wrap.append(el("div", "item-meta",
+    `calibration over ${cal.n} forecast${cal.n === 1 ? "" : "s"} · mean Brier ${cal.mean_brier}`));
+  const W = 340, H = 160, pad = 28;
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.setAttribute("width", W);
+  const sx = p => pad + p * (W - 2 * pad);
+  const sy = p => H - pad - p * (H - 2 * pad);
+  const mk = (tag, attrs) => {
+    const node = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+    return node;
+  };
+  svg.append(mk("line", { x1: sx(0), y1: sy(0), x2: sx(1), y2: sy(1),
+    stroke: "#2a3245", "stroke-dasharray": "4 3" }));
+  svg.append(mk("text", { x: sx(0.5), y: H - 6, fill: "#7d8799", "font-size": 9,
+    "text-anchor": "middle" })).lastChild.textContent = "what you predicted";
+  const ylab = mk("text", { x: 8, y: sy(0.5), fill: "#7d8799", "font-size": 9,
+    transform: `rotate(-90 8 ${sy(0.5)})`, "text-anchor": "middle" });
+  ylab.textContent = "what happened";
+  svg.append(ylab);
+  for (const b of cal.buckets) {
+    if (b.n === 0) continue;
+    svg.append(mk("circle", { cx: sx(b.predicted), cy: sy(b.actual),
+      r: 3 + Math.min(b.n, 6), fill: "#4cc38a", "fill-opacity": 0.75 }));
+  }
+  wrap.append(svg);
+  wrap.append(el("div", "meter-label",
+    "dots on the dashed line = perfectly calibrated; above it you under-call, below it you cry wolf"));
+  return wrap;
 }
 
 /* --------------------------------------------------------------- level -- */
@@ -171,6 +245,7 @@ function renderItem() {
   else if (item.grader === "numeric") collect = renderNumeric(panel, item);
   else if (item.grader === "grid") collect = renderGrid(panel, item);
   else if (item.grader === "mapping") collect = renderMapping(panel, item);
+  else if (item.grader === "probability") collect = renderProbability(panel, item);
   else collect = renderFreeText(panel, item);
 
   const controls = el("div", "controls");
@@ -313,6 +388,24 @@ function renderMapping(panel, item) {
   };
 }
 
+function renderProbability(panel, item) {
+  if (item.payload.as_of) {
+    panel.insertBefore(el("div", "item-meta", `as of filing date ${item.payload.as_of} — nothing after this date is known`),
+      panel.querySelector(".prompt"));
+  }
+  const wrap = el("div", "prob-wrap");
+  const slider = el("input");
+  slider.type = "range";
+  slider.min = "1"; slider.max = "99"; slider.value = "50";
+  const label = el("div", "prob-label", "50%");
+  slider.oninput = () => { label.textContent = `${slider.value}%`; };
+  wrap.append(slider, label);
+  panel.append(wrap);
+  panel.append(el("div", "meter-label",
+    "Brier-scored: your best move is your honest probability. Beat the base rate to score the point."));
+  return () => ({ p: parseInt(slider.value, 10) / 100 });
+}
+
 function renderFreeText(panel, item) {
   const ta = el("textarea");
   ta.placeholder = item.payload.response_guidance || "your answer";
@@ -321,6 +414,25 @@ function renderFreeText(panel, item) {
 }
 
 /* feedback */
+
+function balanceTone(cells) {
+  // spec §6 "feedback and juice": a low balance tone when the statements tie
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [[220, 0], [330, 0.12], [440, 0.24]].forEach(([freq, at]) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.frequency.value = freq;
+      osc.type = "sine";
+      gain.gain.setValueAtTime(0.0001, ctx.currentTime + at);
+      gain.gain.exponentialRampToValueAtTime(0.12, ctx.currentTime + at + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + at + 0.5);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(ctx.currentTime + at);
+      osc.stop(ctx.currentTime + at + 0.55);
+    });
+  } catch { /* no audio, no problem */ }
+}
 
 function fmt(n) {
   return Number(n).toLocaleString("en-US", { maximumFractionDigits: 2 });
@@ -344,13 +456,19 @@ function showFeedback(panel, item, submitted, out) {
     fb.append(el("div", "explanation", `The number: ${fmt(f.value)}`));
   }
   if (item.grader === "grid" && panel._gridInputs) {
-    for (const [key, verdict] of Object.entries(f.cells)) {
+    const slots = Object.entries(f.cells);
+    slots.forEach(([key, verdict], i) => {
       const slot = panel._gridInputs[key];
-      if (!slot) continue;
+      if (!slot) return;
       slot.input.disabled = true;
-      slot.cell.classList.add(verdict.correct ? "right" : "wrong");
-      if (!verdict.correct) slot.input.value = `${slot.input.value} → ${fmt(verdict.expected)}`;
-    }
+      if (r.correct) {
+        setTimeout(() => slot.cell.classList.add("right", "solved"), 120 * i);
+      } else {
+        slot.cell.classList.add(verdict.correct ? "right" : "wrong");
+        if (!verdict.correct) slot.input.value = `${slot.input.value} → ${fmt(verdict.expected)}`;
+      }
+    });
+    if (r.correct) balanceTone(slots.length);
     fb.append(el("div", "explanation", `${fmt(r.score)} of ${fmt(r.max_score)} cells tie.`));
   }
   if (item.grader === "mapping") {
@@ -360,6 +478,15 @@ function showFeedback(panel, item, submitted, out) {
         (verdict.tell ? ` — ${verdict.tell}` : ""));
       fb.append(line);
     }
+  }
+  if (item.grader === "probability") {
+    const happened = f.outcome ? "IT HAPPENED" : "IT DIDN'T HAPPEN";
+    fb.querySelector(".verdict").textContent =
+      (r.correct ? "BEAT THE BASE RATE — " : "LOST TO THE BASE RATE — ") + happened;
+    if (f.company) fb.append(el("div", "explanation", `The company: ${f.company}.`));
+    fb.append(el("div", "explanation", f.resolution + (f.source ? ` [${f.source}]` : "")));
+    fb.append(el("div", "context",
+      `your Brier ${f.brier}  vs  base-rate (${(f.base_rate * 100).toFixed(0)}%) Brier ${f.base_brier} — lower is better`));
   }
   if (item.grader === "llm_rubric") {
     const list = el("ul", "rubric-list");

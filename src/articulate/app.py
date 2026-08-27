@@ -60,8 +60,11 @@ def state(player: str):
         llm_mode = "live" if _llm.source == "llm" else "mock"
         daily = conn.execute(
             "SELECT COUNT(*) FROM items WHERE mode='daily'").fetchone()[0]
+        hindsight_count = conn.execute(
+            "SELECT COUNT(*) FROM items WHERE mode='hindsight'").fetchone()[0]
         return {"player_id": pid, "handle": player, "levels": levels,
-                "daily_items": daily, "llm": llm_mode}
+                "daily_items": daily, "hindsight_items": hindsight_count,
+                "llm": llm_mode}
     finally:
         conn.close()
 
@@ -105,6 +108,58 @@ def daily(player: str):
             return {"items": []}
         today = rows[date.today().toordinal() % len(rows)]
         return {"items": [public_item(today, conn)], "date": date.today().isoformat()}
+    finally:
+        conn.close()
+
+
+@app.get("/api/hindsight")
+def hindsight(player: str):
+    conn = db()
+    try:
+        pid = get_player(conn, player)
+        rows = conn.execute(
+            "SELECT * FROM items WHERE mode='hindsight' ORDER BY ordinal").fetchall()
+        attempts = conn.execute(
+            """SELECT item_id, MAX(correct) AS best FROM attempts
+               WHERE player_id=? AND item_id IN
+               (SELECT id FROM items WHERE mode='hindsight') GROUP BY item_id""",
+            (pid,)).fetchall()
+        return {"items": [public_item(r, conn) for r in rows],
+                "progress": {a["item_id"]: bool(a["best"]) for a in attempts}}
+    finally:
+        conn.close()
+
+
+@app.get("/api/calibration")
+def calibration(player: str):
+    """Bucketed calibration curve over the player's probability forecasts."""
+    conn = db()
+    try:
+        pid = get_player(conn, player)
+        rows = conn.execute(
+            """SELECT a.submitted, a.feedback FROM attempts a
+               JOIN items i ON i.id = a.item_id
+               WHERE a.player_id=? AND i.grader='probability'""", (pid,)).fetchall()
+        buckets = [{"lo": i / 5, "hi": (i + 1) / 5, "n": 0, "p_sum": 0.0, "hits": 0}
+                   for i in range(5)]
+        brier_sum = 0.0
+        for row in rows:
+            p = json.loads(row["submitted"]).get("p")
+            outcome = json.loads(row["feedback"]).get("outcome")
+            if p is None or outcome is None:
+                continue
+            b = buckets[min(int(p * 5), 4)]
+            b["n"] += 1
+            b["p_sum"] += p
+            b["hits"] += 1 if outcome else 0
+            brier_sum += (p - (1.0 if outcome else 0.0)) ** 2
+        n = sum(b["n"] for b in buckets)
+        return {"n": n,
+                "mean_brier": round(brier_sum / n, 4) if n else None,
+                "buckets": [{"lo": b["lo"], "hi": b["hi"], "n": b["n"],
+                             "predicted": round(b["p_sum"] / b["n"], 3) if b["n"] else None,
+                             "actual": round(b["hits"] / b["n"], 3) if b["n"] else None}
+                            for b in buckets]}
     finally:
         conn.close()
 
