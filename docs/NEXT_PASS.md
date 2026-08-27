@@ -1,49 +1,39 @@
-# Next pass: open questions and data sources
+# Next pass: open items
 
-## Data sources that would improve gameplay (need your call)
+Updated 2026-08-27 after the depth expansion (L6/L7, 16-filer roster, live
+Claude judge/CFO/classifier).
 
-1. **SEC bulk data** (`companyfacts.zip`, quarterly Financial Statement Data
-   Sets). Free/public. The current pull is per-company via the companyfacts
-   API for six filers. Bulk unlocks Lineup peer percentiles (frames), Tag
-   Archaeology (custom tags live only in the DERA sets), and unlimited Daily
-   Filing rotation. Needs ~2-10 GB local disk and a normalize layer with a
-   golden-test harness (spec §8.2) — the single biggest engineering item.
-2. **Filing HTML** (10-K Items 7/8/9A). Needed for Note Hunt, MD&A reading,
-   and boss forensics cases (Enron/WorldCom write-ups must cite the actual
-   text). Public; needs a section parser.
-3. **8-K item feeds + AAERs** for Hindsight resolution labels (Items 4.01,
-   4.02, 1.03) and real forensics labels. Public via EDGAR full-text search.
-4. **CFA curriculum outlines** (already public PDFs) to refine the concept →
-   module mapping beyond my draft tags.
-5. **Anthropic API keys** — set `ANTHROPIC_API_KEY` and the judge + CFO switch
-   from the offline mock to Claude (`claude-opus-4-8`) automatically; no code
-   change. Worth deciding: pin a cheaper model for the judge? Spec §10 says
-   pin model versions and keep a human-labeled golden set for the grader —
-   the `evals/` harness does not exist yet.
-6. **Claude for Excel connector** — the workbook in `excel/` is built for it
-   (coach prompt + hidden key sheet). Nothing server-side needed; just open
-   the workbook with the connector enabled and paste the coach prompt.
+## Done since the first pass
 
-## Deliberate simplifications in this pass (all flagged in code/docs)
+- Live LLM: `.env` key wired; rubric judge, CFO character, and the
+  question→issue classifier all run on Claude (`claude-opus-4-8`) with the
+  offline mock as fallback. Mock-graded attempts remain tagged `llm_mock`.
+- Real-data roster: 16 filers / 54 company-years, 141 identity checks green.
+  Daily Filing rotates one filer per calendar day.
+- Depth: L6 (Band F — intercorporate, pensions, FX methods, IFRS vs GAAP,
+  banks) and L7 (Sable Peak restatement autopsy, Beneish/accruals screens,
+  non-GAAP reading, post-restatement call, capstone thesis).
+- Grader evaluation formally de-scoped by Michael (low-risk use case).
 
-- **Mastery**: per-concept EMA instead of Glicko-2; SM-2-ish scheduling
-  instead of FSRS. Interfaces shaped for the swap (docs/DATA_MODEL.md §4-5).
-- **LLM grading offline**: the mock judge is keyword overlap and is recorded
-  as `grader_source='llm_mock'` so those attempts can be re-graded when keys
-  arrive.
-- **Question→issue classifier** (earnings call) is the same keyword matcher
-  for both mock and live modes, per spec §5.6 (deterministic scoring); it
-  needs recorded fixtures and a real classifier next.
-- **Single player table, no auth** — handle typed in the browser.
-- **No flow-board animation** on sudoku solve (spec §5.2 feedback juice) —
-  cells flash green/red only.
-- **EDGAR facts are latest-filed only**; the schema supports as-filed vs
-  as-restated (`facts.basis`) but the pull doesn't populate history yet.
+## Data sources still worth adding
 
-## Known risks carried forward
+1. **SEC bulk data** (`companyfacts.zip`, DERA quarterly sets) — unlimited
+   Daily rotation, Lineup percentiles via frames, Tag Archaeology. Needs the
+   candidate-tag mapping table + quarantine machinery (spec §8.2); biggest
+   remaining engineering item.
+2. **Filing HTML** (Items 7/8/9A parsed into sections) — Note Hunt, MD&A
+   reading, and real forensics bosses (Enron FY2000, WorldCom, etc., which
+   must cite the actual public record).
+3. **8-K item feeds + AAERs** — Hindsight mode (calibration/Brier scoring)
+   resolution labels.
 
-- XBRL normalization debt (spec §10 warning) — the six-company hand-mapped
-  pull works, but scaling to arbitrary tickers needs the candidate-tag table +
-  quarantine machinery.
-- LLM judge drift — needs the eval set + agreement gate before real grading
-  counts toward mastery.
+## Remaining simplifications
+
+- Mastery is still EMA + SM-2-ish scheduling (interfaces shaped for
+  Glicko-2/FSRS swap; see docs/DATA_MODEL.md).
+- No flow-board animation on sudoku solve; cells flash only.
+- Single-player, no auth; handle in localStorage.
+- Facts are latest-filed only for real companies (as-restated exists only
+  for Sable Peak's synthetic restatement).
+- Modes not yet built (spec roadmap): Model Studio, Filing Season runs,
+  Hindsight, Ratio Forge recipe-crafting UI, mock-exam vignette mode.
