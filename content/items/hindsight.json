@@ -1,0 +1,407 @@
+[
+  {
+    "id": "hindsight_lehman_fy2007",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 10,
+    "concept_ids": ["solvency_ratios", "bank_statements", "red_flag_synthesis"],
+    "difficulty": 5,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company files for bankruptcy (Chapter 11 or Chapter 7) within 24 months of this filing date?",
+      "context": "10-K for the fiscal year ended November 30, 2007, filed January 29, 2008. Figures hand-transcribed from the filing (pre-XBRL).\n- Net revenues: $19,257M, a record, up from $17,583M; fourth consecutive record year.\n- Net income: $4,192M, also a record (prior years: $4,007M, $3,260M).\n- Total revenues $59,003M less interest expense $39,746M: most gross revenue is recycled into funding costs.\n- Total assets: $691,063M, up 37% in one year (from $503,545M; $410,063M two years ago).\n- Total stockholders' equity: $22,490M. Assets are roughly 30.7x equity.\n- Long-term borrowings: $123,150M, up from $81,178M; the balance of the footings is funded short-term (repo, commercial paper, payables).\n- The firm carries large inventories of mortgages and mortgage-backed securities; residential mortgage originations were a major business through mid-2007.\n- Credit ratings: single-A range, stable at filing.",
+      "as_of": "2008-01-29",
+      "company_label": "a top-five global investment bank"
+    },
+    "answer_key": {
+      "outcome": true,
+      "base_rate": 0.02,
+      "resolution": "Lehman Brothers Holdings filed for Chapter 11 on September 15, 2008 — about 7.5 months after this 10-K was filed, well inside the 24-month window. The record FY2007 earnings were real under GAAP, but the balance sheet was 30.7x levered and funded overnight against assets (mortgages, CMBS) whose value was already falling. Base-rate note: roughly 1-3% of listed companies enter bankruptcy within any 24-month window, but a 30x-levered wholesale-funded balance sheet in a deteriorating asset class sits far above that class rate.",
+      "source": "8-K Item 1.03 filed 2008-09-19, accession 0001104659-08-059632 (CIK 806085). As-of figures from the FY2007 10-K, accession 0001104659-08-005476.",
+      "company": "Lehman Brothers Holdings Inc."
+    },
+    "hints": [
+      {"concept_id": "solvency_ratios", "text": "Divide total assets by total equity, then ask what happens to that structure if asset values fall three percent."}
+    ],
+    "explanation": "The income statement said record year; the balance sheet said one bad quarter from the end. At 30.7x leverage, a 3.3% decline in asset values wipes out equity entirely, and most of the funding rolled overnight. The lesson is that for a leveraged financial, earnings are noise and the liability structure is signal. You were not asked whether management was smart or the franchise valuable — only whether a 30x-levered mortgage-heavy book funded short could survive two years of a housing bust. A forecast well above the 2% class base rate was warranted; certainty was not, since Bear Stearns was rescued rather than liquidated only weeks after this filing."
+  },
+  {
+    "id": "hindsight_tesla_fy2018",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 20,
+    "concept_ids": ["cfo_ni_gap", "solvency_ratios", "trend_analysis"],
+    "difficulty": 4,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company files for bankruptcy or discloses substantial doubt about its ability to continue as a going concern within 24 months of this filing date?",
+      "context": "10-K for fiscal year 2018, filed February 19, 2019. Figures as reported in that filing.\n- Revenue: $21,461M, up from $11,759M the prior year.\n- Net loss: $976M (prior year: $1,961M loss). But the two most recent quarters were profitable: +$312M and +$139M.\n- Operating cash flow: +$2,098M, versus roughly negative $61M the prior year and negative $124M the year before.\n- Capital expenditures: $2,101M — CFO now covers capex.\n- Cash and equivalents: $3,686M.\n- Debt: $9,404M long-term plus $2,568M current, including $920M of 0.25% convertible notes due March 1, 2019 — ten days after this filing.\n- Interest expense: $663M.\n- Stockholders' equity: $4,923M on total assets of $29,740M.\n- The press and short sellers spent much of the year debating the company's survival.",
+      "as_of": "2019-02-19",
+      "company_label": "a fast-growing electric-vehicle maker"
+    },
+    "answer_key": {
+      "outcome": false,
+      "base_rate": 0.02,
+      "resolution": "No bankruptcy, no going-concern disclosure. Tesla paid the $920M converts at maturity in March 2019, raised roughly $2.7B of new equity and converts in May 2019, and was solidly profitable by late 2020. EDGAR shows no 8-K Item 1.03 and no Item 4.02 in the window ending February 19, 2021. Base-rate note: about 1-3% of listed firms enter bankruptcy within two years; the loud survival debate was not itself financial evidence.",
+      "source": "Absence of 8-K Items 1.03/4.02 for CIK 1318605 between 2019-02-19 and 2021-02-19 (EDGAR submissions index). As-of figures from the FY2018 10-K, accession 0001564590-19-003165.",
+      "company": "Tesla, Inc."
+    },
+    "hints": [
+      {"concept_id": "cfo_ni_gap", "text": "The headline is a $976M loss. What direction is operating cash flow moving, and does it cover capex yet?"}
+    ],
+    "explanation": "The narrative said death watch; the cash flow statement said inflection. Operating cash flow swung from negative to +$2.1B and now covered capex, the two most recent quarters were GAAP-profitable, and cash on hand covered the near-term converts four times over. Companies with positive and improving operating cash flow rarely file within two years — that combination sits below the already-low base rate, not above it. The discipline being trained: separate how loudly a company is argued about from what its cash generation says. A calibrated answer here was low single digits, not the 30-50% the headlines implied."
+  },
+  {
+    "id": "hindsight_ge_fy2017",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 30,
+    "concept_ids": ["impairments", "note_navigation", "red_flag_synthesis"],
+    "difficulty": 4,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company records a material goodwill impairment (more than 5% of its goodwill balance) in the next fiscal year, FY2018?",
+      "context": "10-K for fiscal year 2017, filed February 23, 2018. Figures as reported in that filing.\n- Revenues: $122,092M (prior years: $123,693M, $117,386M).\n- Net loss attributable to the company: $5,786M, after a fourth-quarter insurance-reserve charge: $8.9B pre-tax ($6.2B after-tax) to rebuild long-term-care insurance reserves, plus a commitment to contribute roughly $15B of capital to the run-off insurance unit over seven years.\n- Goodwill: $83,968M — up from $70,438M and $65,526M in the two prior years, swollen by a large 2015 power-equipment acquisition.\n- Total stockholders' equity: $64,263M. Goodwill alone is 131% of equity.\n- Total assets: $377,945M.\n- Cash from operating activities (continuing): $11,394M.\n- The Power segment — where much of the recent goodwill sits — saw orders and profit fall sharply during 2017; the company cut its dividend in November 2017.",
+      "as_of": "2018-02-23",
+      "company_label": "a century-old industrial conglomerate"
+    },
+    "answer_key": {
+      "outcome": true,
+      "base_rate": 0.07,
+      "resolution": "In FY2018 GE recorded $22,136M of goodwill impairment, substantially all of it against the Power segment — about 26% of the goodwill balance, announced October 1, 2018 alongside a CEO change and recorded in Q3 2018. Base-rate note: a material next-year goodwill impairment runs roughly 5-10% for large filers in general, but a reporting unit whose profits collapse the same year its goodwill balloons is exactly the setup impairment testing eventually catches.",
+      "source": "GE FY2018 10-K, accession 0000040545-19-000014 (us-gaap:GoodwillImpairmentLoss, FY2018: $22,136M). As-of figures from the FY2017 10-K, accession 0000040545-18-000014.",
+      "company": "General Electric Company"
+    },
+    "hints": [
+      {"concept_id": "impairments", "text": "Where did the goodwill come from, and what happened during the year to the cash flows of the unit carrying it?"}
+    ],
+    "explanation": "Goodwill is a promise about future cash flows of the acquired business. Here the promise ($84B, mostly attached to Power) and the reality (Power orders and profits collapsing) had visibly diverged inside the same 10-K, and goodwill already exceeded total equity. When a reporting unit deteriorates while its carrying value grows, the annual impairment test becomes a countdown, not a formality. The insurance charge was a separate reminder that this management team had a pattern of reserves and carrying values catching up with reality late. You should have been far above the 7% class rate here — 40-60% was defensible."
+  },
+  {
+    "id": "hindsight_sears_fy2016",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 40,
+    "concept_ids": ["liquidity_ratios", "cfo_ni_gap", "red_flag_synthesis"],
+    "difficulty": 3,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company files for bankruptcy within 24 months of this filing date?",
+      "context": "10-K for the fiscal year ended January 28, 2017, filed March 21, 2017. Figures as reported in that filing.\n- Revenues: $22,138M, down from $25,146M and $31,198M in the two prior years.\n- Net loss: $2,221M (prior year: $1,129M loss). Operating loss: $1,978M.\n- Operating cash flow: negative $1,381M — the third consecutive negative year (prior: −$2,167M, −$1,387M).\n- Cash: $286M against total assets of $9,362M.\n- Total stockholders' equity: negative $3,824M.\n- Long-term debt: $4,163M, up from $2,179M a year earlier; much of the new borrowing comes from entities affiliated with the controlling shareholder.\n- The company has been selling brands and real estate to fund operations.\n- The filing itself states: \"Our historical operating results indicate substantial doubt exists related to the Company's ability to continue as a going concern,\" followed by management's plans that it believes mitigate that doubt.",
+      "as_of": "2017-03-21",
+      "company_label": "a national department-store chain"
+    },
+    "answer_key": {
+      "outcome": true,
+      "base_rate": 0.02,
+      "resolution": "Sears Holdings filed for Chapter 11 on October 15, 2018 — about 19 months after this filing, inside the 24-month window. It kept going that long only by selling assets (including the Craftsman brand) and borrowing from its controlling shareholder's affiliates. Base-rate note: the 1-3% two-year class rate is for listed firms generally; a filer with negative equity, three years of negative operating cash flow, and its own going-concern language is in a subset where failure within a few years is closer to a coin flip or worse.",
+      "source": "8-K Item 1.03 filed 2018-10-15, accession 0001193125-18-298778 (CIK 1310067). As-of figures and going-concern language from the FY2016 10-K, accession 0001310067-17-000005.",
+      "company": "Sears Holdings Corporation"
+    },
+    "hints": [
+      {"concept_id": "liquidity_ratios", "text": "When a retailer funds operating losses by selling its own assets and borrowing from its chairman, ask how many assets are left."}
+    ],
+    "explanation": "This is the calibration anchor at the other end from the survivors: sometimes the honest answer is a high number. Negative equity, a third straight year of cash burn, shrinking revenue, and — rarest of all — the company's own auditor-adjacent admission of substantial doubt. Going-concern language appears in well under 5% of large-company 10-Ks, and among those that also have negative equity and no core business improving, two-year survival is the exception. The only argument for restraint was the controlling shareholder's willingness to keep lending, which bought time but not solvency. A forecast in the 50-70% range was calibrated; 2% would have been base-rate worship."
+  },
+  {
+    "id": "hindsight_netflix_fy2011",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 50,
+    "concept_ids": ["accruals_quality", "capitalize_vs_expense", "note_navigation"],
+    "difficulty": 4,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company files an 8-K Item 4.02 (non-reliance on previously issued financial statements) or restates its financial statements within 24 months of this filing date?",
+      "context": "10-K for fiscal year 2011, filed February 10, 2012. Figures as reported in that filing.\n- Revenue: $3,205M, up from $2,163M.\n- Net income: $226M, but the fourth quarter contributed only $35M (down from $62M in Q3) after a botched price increase and an abandoned plan to split off the legacy DVD business cost it hundreds of thousands of domestic subscribers in one quarter.\n- Operating cash flow: $318M.\n- Cash and equivalents: $508M; stockholders' equity: $643M.\n- Debt: $200M of 8.50% senior notes plus $200M of zero-coupon convertible notes, both raised in late 2011 after the stock fell roughly 75% from its high.\n- Streaming content obligations: $3,907M of committed payments (about $798M due within one year), most of it not on the balance sheet; total contractual obligations $4,751M — more than seven times equity.\n- Short sellers publicly argue the company amortizes its streaming content too slowly, overstating earnings; content amortization is a management estimate.",
+      "as_of": "2012-02-10",
+      "company_label": "a subscription video service pivoting from discs to streaming"
+    },
+    "answer_key": {
+      "outcome": false,
+      "base_rate": 0.03,
+      "resolution": "No restatement and no Item 4.02 ever came. EDGAR shows no 8-K Item 4.02 for Netflix between February 2012 and February 2014 (nor since related to this period). The content-amortization estimates that short sellers attacked were aggressive-looking but defensible judgments, disclosed in the accounting-policy and commitments notes, and the SEC never required a revision of them. Base-rate note: only about 2-4% of filers issue a 4.02 non-reliance within two years, and disagreeing with a disclosed estimate is not an accounting error.",
+      "source": "Absence of 8-K Item 4.02 for CIK 1065280, 2012-02-10 through 2014-02-10 (EDGAR submissions index). As-of figures from the FY2011 10-K, accession 0001193125-12-053009.",
+      "company": "Netflix, Inc."
+    },
+    "hints": [
+      {"concept_id": "accruals_quality", "text": "A restatement requires an error under GAAP. Is slow content amortization an error, or a disclosed estimate you happen to dislike?"}
+    ],
+    "explanation": "The trap is conflating an aggressive estimate with a misstatement. Content amortization pace was fully disclosed, consistently applied, and a matter of judgment — the kind of thing analysts argue about and restatements almost never touch. Restatements come from errors and control failures: misapplied standards, fabricated entries, arithmetic that fails. Nothing in this filing pointed there; the company's problems (subscriber backlash, off-balance-sheet content commitments) were business risks in plain sight, not concealed ones. When the bear case is 'I disagree with a disclosed estimate,' stay near the 3% base rate. The off-balance-sheet commitments were the real reading lesson — and they argued for equity risk, not restatement risk."
+  },
+  {
+    "id": "hindsight_hertz_fy2013",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 60,
+    "concept_ids": ["depreciation_estimates", "accruals_quality", "restatement_reading"],
+    "difficulty": 5,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company files an 8-K Item 4.02 (non-reliance on previously issued financial statements) within 24 months of this filing date?",
+      "context": "10-K for fiscal year 2013, filed March 19, 2014. Figures as reported in that filing.\n- Revenues: $10,772M, up from $9,025M, reflecting a full year of its largest-ever acquisition (a rival rental brand closed in late 2012).\n- Net income attributable to common: $346M (prior years: $239M, $164M) — thin margins on a big revenue base.\n- Total assets: $24,588M; total stockholders' equity: $2,859M.\n- Total debt: $16,309M, most of it secured fleet financing.\n- Goodwill $1,348M plus other intangibles $3,928M, largely from the recent acquisition.\n- Operating cash flow (continuing): $3,590M — large by construction, because the fleet's depreciation is the dominant expense and fleet purchases sit in investing.\n- Earnings hinge on management's estimates of vehicle residual values: depreciation rates on hundreds of thousands of cars are adjusted as used-car price expectations change.\n- The company is simultaneously integrating the acquisition, relocating its headquarters, and preparing to spin off its equipment-rental division.",
+      "as_of": "2014-03-19",
+      "company_label": "a global car-rental operator fresh off a major acquisition"
+    },
+    "answer_key": {
+      "outcome": true,
+      "base_rate": 0.03,
+      "resolution": "On June 6, 2014 — under three months after this filing — Hertz filed an 8-K Item 4.02 disclosing errors and non-reliance on its FY2011 financial statements, and on November 14, 2014 a further Item 4.02 extended non-reliance to FY2011-2013. The restated figures (covering depreciation lives, allowances, and other estimate-driven accounts) were not filed until July 16, 2015, in a combined 10-K. The SEC later brought a settled action over the misstatements. Base-rate note: 4.02s hit only 2-4% of filers over two years; estimate-heavy accounting plus organizational upheaval raises that, but this outcome was genuinely hard to see from the face of the statements.",
+      "source": "8-K Item 4.02 filed 2014-06-06, accession 0001104659-14-044345; 8-K Item 4.02 filed 2014-11-14, accession 0001104659-14-080651; restated 10-K filed 2015-07-16, accession 0001364479-15-000013 (CIK 1364479). As-of figures from the FY2013 10-K, accession 0001364479-14-000006.",
+      "company": "Hertz Global Holdings, Inc."
+    },
+    "hints": [
+      {"concept_id": "depreciation_estimates", "text": "Which single line item runs through management judgment here, and how thin is the net income it lands on?"}
+    ],
+    "explanation": "The honest as-of read: nothing screamed. That is the point of this case. The exposure was structural — net income of $346M sitting on top of a multi-billion-dollar depreciation expense governed by residual-value estimates, meaning a one-percent tweak to fleet depreciation could move earnings double digits. Add an unabsorbed mega-acquisition, a headquarters move that gutted the accounting staff, and a spin-off in flight, and you have the classic preconditions for control failure. Those conditions justified nudging above the 3% base rate — to perhaps 8-12% — not to 50%. Hindsight items score calibration, and this one punishes both the player who saw nothing and the one who claims they saw everything."
+  },
+  {
+    "id": "hindsight_pge_fy2017",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 70,
+    "concept_ids": ["note_navigation", "solvency_ratios", "red_flag_synthesis"],
+    "difficulty": 5,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company files for bankruptcy within 24 months of this filing date?",
+      "context": "10-K for fiscal year 2017, filed February 9, 2018. Figures as reported in that filing.\n- Revenues: $17,135M (prior years: $17,666M, $16,833M) — the stable top line of a regulated monopoly.\n- Income available for common shareholders: $1,646M. Operating income: $2,956M.\n- Operating cash flow: $5,977M. Total assets: $68,012M; stockholders' equity: $19,220M; long-term debt: $17,753M. Cash: $449M.\n- Investment-grade credit ratings at filing.\n- The contingencies discussion is dominated by the October 2017 Northern California wildfires: the company's equipment is under investigation as a possible ignition source for multiple fires.\n- The filing warns that under the state's inverse-condemnation doctrine it can be held liable for wildfire property damage even without negligence, and that such liability \"could be substantial\" and have a material adverse effect; potential losses are not yet estimable.\n- In December 2017 the board suspended the common dividend, citing wildfire exposure — a regulated utility hoarding cash.",
+      "as_of": "2018-02-09",
+      "company_label": "a West Coast regulated electric and gas utility"
+    },
+    "answer_key": {
+      "outcome": true,
+      "base_rate": 0.02,
+      "resolution": "PG&E filed for Chapter 11 on January 29, 2019 — less than a year after this filing. The 2017 fire liabilities were still unresolved when the November 2018 Camp Fire, ignited by PG&E equipment, became the deadliest fire in California history and pushed estimated liabilities beyond $30B. The bankruptcy was a liability event, not an operating one: the utility kept earning regulated returns throughout. Base-rate note: utilities file at far below the 1-3% general rate — which is exactly why the unbounded, non-estimable contingency plus a suspended dividend deserved most of the weight here.",
+      "source": "8-K Item 1.03 filed 2019-01-29, accession 0001193125-19-019657; preceding 8-K of 2019-01-14 (accession 0000950157-19-000032) giving the required 15-day notice (CIK 1004980). As-of figures from the FY2017 10-K, accession 0001004980-18-000003.",
+      "company": "PG&E Corporation"
+    },
+    "hints": [
+      {"concept_id": "note_navigation", "text": "The income statement is the calmest page in this filing. Read the contingencies note and the dividend decision together."}
+    ],
+    "explanation": "Every conventional metric said sleep well: monopoly revenues, $6B of operating cash flow, investment-grade paper. The danger lived entirely in the notes — an unquantifiable legal doctrine that converts acts of nature into corporate liabilities, attached to a service territory that burns annually. The board telegraphed its own probability estimate by suspending the dividend; boards of healthy utilities do not do that. This is the boring-company-that-blew-up case: the statements measured the past, the contingency note described the exposure, and the exposure was unbounded. A calibrated answer was meaningfully above the class base rate — 10-25% — while still acknowledging that the catastrophic second fire was not foreseeable as a certainty."
+  },
+  {
+    "id": "hindsight_salesforce_fy2019",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 80,
+    "concept_ids": ["impairments", "industry_patterns", "sbc"],
+    "difficulty": 3,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company records a material goodwill impairment (more than 5% of its goodwill balance) in the next fiscal year?",
+      "context": "10-K for the fiscal year ended January 31, 2019, filed March 8, 2019. Figures as reported in that filing.\n- Revenue: $13,282M, with the multi-year growth rate running in the mid-20s percent.\n- GAAP operating income: just $535M — a 4% margin — versus net income of $1,110M.\n- Stock-based compensation: $1,283M, nearly 10% of revenue and more than double GAAP operating income.\n- Operating cash flow: $3,398M.\n- Goodwill: $12,851M, up from $7,314M in one year after a roughly $6.5B acquisition of an integration-software firm — the largest of a long series of acquisitions.\n- Other intangibles: $1,923M. Total assets: $30,737M; stockholders' equity: $15,605M.\n- Goodwill is 82% of equity and 42% of total assets, and the company signals it will keep acquiring.",
+      "as_of": "2019-03-08",
+      "company_label": "a serial-acquirer enterprise software company"
+    },
+    "answer_key": {
+      "outcome": false,
+      "base_rate": 0.07,
+      "resolution": "No impairment. Salesforce's fiscal 2020 10-K reports zero goodwill impairment (us-gaap:GoodwillImpairmentLoss of $0 for the year ended January 31, 2020), as it has for every year of its reporting history through the period. Acquired units kept growing inside a business whose fair value vastly exceeded carrying value. Base-rate note: material next-year impairments run 5-10% of large filers, and the rate for companies whose acquired businesses are growing at 20%+ is far lower — goodwill size alone is not the trigger; deterioration is.",
+      "source": "Salesforce FY2020 10-K, accession 0001108524-20-000014 (us-gaap:GoodwillImpairmentLoss = 0 for FY ended 2020-01-31). As-of figures from the FY2019 10-K, accession 0001108524-19-000009.",
+      "company": "Salesforce (salesforce.com, inc.)"
+    },
+    "hints": [
+      {"concept_id": "impairments", "text": "Impairment tests compare carrying value to the unit's fair value. What direction are the acquired units' revenues moving?"}
+    ],
+    "explanation": "Big goodwill is not the same as doomed goodwill. The impairment test asks whether the reporting unit's fair value has fallen below carrying value, and units growing revenue at 25% inside a richly valued software business pass that test with room to spare. Contrast this with the conglomerate case in this set: same oversized goodwill-to-equity ratio, opposite trajectory of the underlying units. The honest signals to weigh were the thin GAAP margin and the SBC load — real earnings-quality questions, but questions about valuation and dilution, not about impairment. Stay at or below the 7% class rate when the acquired businesses are compounding."
+  },
+  {
+    "id": "hindsight_valeant_fy2014",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 90,
+    "concept_ids": ["accruals_quality", "nongaap_gap", "red_flag_synthesis"],
+    "difficulty": 4,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company files an 8-K Item 4.02 (non-reliance on previously issued financial statements) within 24 months of this filing date?",
+      "context": "10-K for fiscal year 2014, filed February 25, 2015. Figures as reported in that filing.\n- Revenue: $8,264M, up 43% from $5,770M, and up 137% over two years — growth assembled almost entirely from acquisitions.\n- Net income attributable: $914M — the first profitable year after losses of $866M and $116M.\n- Research and development expense: $246M — 3.0% of revenue, versus a 15-20% norm for large pharmaceutical peers; the stated strategy is to buy products rather than discover them.\n- Goodwill $9,346M plus other intangibles $11,256M: 78% of total assets ($26,353M).\n- Long-term debt: $15,255M against stockholders' equity of $5,312M.\n- Operating cash flow: $2,295M, comfortably above net income.\n- Reported results lean heavily on non-GAAP \"cash EPS\" that adds back amortization of the acquired intangibles and restructuring charges from each deal.\n- Dozens of acquisitions in five years make organic growth nearly impossible to verify from the outside.",
+      "as_of": "2015-02-25",
+      "company_label": "an acquisition-driven specialty pharmaceuticals company"
+    },
+    "answer_key": {
+      "outcome": true,
+      "base_rate": 0.03,
+      "resolution": "On March 21, 2016 — 13 months after this filing — Valeant filed an 8-K Item 4.02: the FY2014 10-K and Q1 2015 10-Q should no longer be relied upon, after a board committee found roughly $58M of revenue tied to the Philidor specialty pharmacy had been recognized too early. The restated figures came in the delayed FY2015 10-K filed April 29, 2016. The revenue error was small; the collapse of confidence, board investigation, and executive departures were not. Base-rate note: 2-4% of filers issue a 4.02 within two years; a roll-up whose organic economics cannot be verified from outside deserves a multiple of that.",
+      "source": "8-K Item 4.02 filed 2016-03-21, accession 0001193125-16-511157; restated FY2015 10-K filed 2016-04-29, accession 0000885590-16-000101 (CIK 885590). As-of figures from the FY2014 10-K, accession 0000885590-15-000015.",
+      "company": "Valeant Pharmaceuticals International, Inc. (now Bausch Health)"
+    },
+    "hints": [
+      {"concept_id": "nongaap_gap", "text": "When every acquisition's costs are added back to 'cash EPS', what would deteriorating organic economics even look like in the reported numbers?"}
+    ],
+    "explanation": "The as-of tell was unverifiability, not any single number. Serial acquisition plus aggressive non-GAAP presentation means the reported trajectory is a construct: each deal resets the baseline, amortization of the purchased products is defined away, and organic growth becomes whatever management says it is. R&D at 3% of revenue told you the products had to come from somewhere, forever, on 3x levered equity. None of that proves a misstatement — most roll-ups never restate — which is why the calibrated answer was elevated but modest: 8-15%, several times the base rate. The specific failure point (an undisclosed captive pharmacy) was invisible in this filing; the fragility that made some failure likely was on every page."
+  },
+  {
+    "id": "hindsight_chk_fy2015",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 100,
+    "concept_ids": ["solvency_ratios", "liquidity_ratios", "trend_analysis"],
+    "difficulty": 4,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company files for bankruptcy within 36 months of this filing date (i.e., by late February 2019)?",
+      "context": "10-K for fiscal year 2015, filed February 25, 2016, during a collapse in natural-gas and oil prices. Figures as reported in that filing.\n- Total revenues: $12,764M, down from $23,125M.\n- Net loss available to common: $14,856M, driven by an $18,238M impairment of oil and natural gas properties as low prices slashed reserve values.\n- Total assets: $17,357M, down from $40,751M a year earlier — the impairment vaporized more than half the balance sheet.\n- Total equity: $2,397M, down from $18,205M.\n- Senior notes, net: $9,706M; roughly $878M of debt matures or can be put to the company in 2018.\n- Cash: $825M; net working capital deficit of about $1,205M.\n- Operating cash flow: $1,234M, down from $4,634M.\n- The common dividend has been eliminated. Weeks before this filing, management publicly denied market rumors that it had hired counsel to prepare a bankruptcy, after the stock fell by a third in a day.",
+      "as_of": "2016-02-25",
+      "company_label": "a heavily indebted natural-gas producer"
+    },
+    "answer_key": {
+      "outcome": false,
+      "base_rate": 0.03,
+      "resolution": "Within the 36-month window ending February 25, 2019: no bankruptcy. Chesapeake spent 2016-2018 doing distressed debt exchanges, asset sales, and maturity extensions, and commodity prices recovered enough to keep it servicing debt. The Chapter 11 eventually came on June 28, 2020 — more than 52 months after this filing, outside the stated window. Base-rate note: roughly 2-4% of listed firms file within three years; a distressed producer in a price crash is far above that, but 'distressed' and 'files within the window' are different events.",
+      "source": "8-K Item 1.03 filed 2020-06-29, accession 0001104659-20-077745 (petition date 2020-06-28, outside the window); no Item 1.03 for CIK 895126 between 2016-02-25 and 2019-02-25 (EDGAR submissions index). As-of figures from the FY2015 10-K, accession 0000895126-16-000395.",
+      "company": "Chesapeake Energy Corporation"
+    },
+    "hints": [
+      {"concept_id": "solvency_ratios", "text": "Check the maturity schedule against the window in the question. How much debt actually comes due before the deadline?"}
+    ],
+    "explanation": "Read the window as carefully as the balance sheet. The company was genuinely distressed — equity nearly wiped out, cash flow collapsing — but bankruptcy is triggered by maturities and liquidity, not by ugliness. Only about $878M came due through 2018 against $825M of cash plus $1.2B of operating cash flow per year, and levered energy companies have a deep toolkit (exchanges, asset sales, lien capacity) for buying time. The market's one-day panic was pricing the eventual outcome, not the dated one you were asked about. A calibrated answer was elevated — 20-35% — but the player who said 80% because the stock chart was terrifying loses to the one who counted the maturities. It filed eventually; 'eventually' was not the question."
+  },
+  {
+    "id": "hindsight_khc_fy2017",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 110,
+    "concept_ids": ["impairments", "cfo_ni_gap", "trend_analysis"],
+    "difficulty": 4,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company records a material goodwill impairment (more than 5% of its goodwill balance) in the next fiscal year, FY2018?",
+      "context": "10-K for the fiscal year ended December 30, 2017, filed February 16, 2018. Figures as reported in that filing.\n- Net sales: $26,232M, down from $26,487M — flat-to-declining for a packaged-food giant formed by a 2015 mega-merger.\n- Operating income: $6,773M — a 26% margin, the industry's highest, achieved through aggressive zero-based cost cutting.\n- Net income: $10,999M, but that includes a one-time benefit of roughly $7B from U.S. tax reform remeasuring deferred tax liabilities.\n- Operating cash flow: $527M, down from $2,649M — a striking gap beneath $11B of net income.\n- Goodwill: $44,824M. Indefinite-lived and other intangibles (mostly legacy brand names): $59,449M. Together: 87% of total assets ($120,232M).\n- Stockholders' equity: $66,034M; long-term debt: $28,333M.\n- The carrying values assume the legacy brands can at least hold their sales while marketing and R&D spending is cut.",
+      "as_of": "2018-02-16",
+      "company_label": "a packaged-food giant built by a cost-cutting mega-merger"
+    },
+    "answer_key": {
+      "outcome": true,
+      "base_rate": 0.07,
+      "resolution": "On February 21, 2019 Kraft Heinz announced roughly $15.4B of fourth-quarter impairments; the FY2018 10-K records $7,008M of goodwill impairment (about 16% of the balance) plus $8,925M of indefinite-lived intangible impairments, mainly against the Kraft and Oscar Mayer brands and the U.S. refrigerated unit. The same announcement disclosed an SEC subpoena into procurement accounting, which ended in a settled SEC action (announced September 3, 2021, with a $62M penalty). Base-rate note: 5-10% of large filers take a material impairment in a given year; brand carrying values premised on cost-cutting while sales shrink sit well above that.",
+      "source": "Kraft Heinz FY2018 10-K, accession 0001637459-19-000049 (us-gaap:GoodwillImpairmentLoss FY2018: $7,008M; indefinite-lived intangible impairment: $8,925M); the FY2018 10-K itself was delayed to June 7, 2019 by the procurement investigation. As-of figures from the FY2017 10-K, accession 0001637459-18-000015.",
+      "company": "The Kraft Heinz Company"
+    },
+    "hints": [
+      {"concept_id": "impairments", "text": "The brand intangibles are carried at values that assume stable sales. What are sales actually doing while the marketing budget is cut?"}
+    ],
+    "explanation": "The balance sheet said the brands were worth $104B; the income statement said their sales were shrinking; the strategy said the company was harvesting them for margin. Those three statements cannot all stay true — either sales stabilize or the carrying values come down. The 26% operating margin was the bear signal wearing a bull costume: cost cuts that starve brand support make today's margin and tomorrow's impairment out of the same decision. The collapsing operating cash flow ($527M under $11B of net income, even granting the non-cash tax gain) was the corroborating tell that reported profitability and cash generation had parted ways. Well above the 7% base rate was right: 25-40% was a defensible answer."
+  },
+  {
+    "id": "hindsight_frontier_fy2018",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 120,
+    "concept_ids": ["coverage_ratios", "solvency_ratios", "impairments"],
+    "difficulty": 3,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company files for bankruptcy within 24 months of this filing date?",
+      "context": "10-K for fiscal year 2018, filed March 1, 2019. Figures as reported in that filing.\n- Revenue: $8,611M, down from $9,128M and $8,896M; it declined in every quarter of the year ($2,199M → $2,162M → $2,126M → $2,124M) as broadband and video customers left.\n- Net loss: $643M (prior year: $1,804M loss).\n- Operating income: $827M. Interest expense: $1,536M — interest costs the business almost twice what its operations earn.\n- Long-term debt: $16,358M against stockholders' equity of $1,600M (down from $2,274M).\n- Goodwill: $6,383M, after impairments of $2,748M in 2017 and $641M in 2018 — a third of the goodwill from a large 2016 acquisition of rural phone lines is already gone.\n- Operating cash flow: $1,812M; cash: $354M.\n- The dividend was eliminated during 2018; the customer base the debt was raised to buy is shrinking every quarter.",
+      "as_of": "2019-03-01",
+      "company_label": "a rural wireline telecom rolled up with borrowed money"
+    },
+    "answer_key": {
+      "outcome": true,
+      "base_rate": 0.02,
+      "resolution": "Frontier filed for Chapter 11 on April 14, 2020 — about 13.5 months after this filing — to restructure more than $10B of its debt. The mechanics were exactly as the coverage ratio implied: a melting revenue base could not both service $1.5B of annual interest and fund the network investment needed to stop the melting. Base-rate note: the 1-3% two-year class rate applies to healthy filers; sub-1x EBIT interest coverage with negative-trending revenue and serial impairments of the acquired asset base defines the high-risk subset.",
+      "source": "8-K Item 1.03 filed 2020-04-15, accession 0001140361-20-008876 (petition date 2020-04-14, CIK 20520). As-of figures from the FY2018 10-K, accession 0000020520-19-000005.",
+      "company": "Frontier Communications Corporation"
+    },
+    "hints": [
+      {"concept_id": "coverage_ratios", "text": "Compare operating income to interest expense, then ask which direction the numerator is trending."}
+    ],
+    "explanation": "One ratio carried this case: operating income of $827M against interest of $1,536M — 0.54x coverage — with the numerator shrinking every single quarter. The serial goodwill impairments were the accounting system's own confession that the acquired subscriber base was worth less than what was borrowed to buy it. Positive operating cash flow ($1.8B) is the number that fools people here; it looks like solvency until you notice it cannot cover interest plus the capex a network business cannot skip. When coverage is below 1x and the trend is down, bankruptcy stops being a tail event and becomes the base case — 30-50% was a calibrated answer."
+  },
+  {
+    "id": "hindsight_amd_fy2015",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 130,
+    "concept_ids": ["solvency_ratios", "industry_patterns", "trend_analysis"],
+    "difficulty": 4,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company files for bankruptcy within 36 months of this filing date?",
+      "context": "10-K for the fiscal year ended December 26, 2015, filed February 18, 2016. Figures as reported in that filing.\n- Revenue: $3,991M, down 28% from $5,506M ($5,299M two years ago), as its larger rival dominates the core processor market.\n- Net loss: $660M (prior years: −$403M, −$83M) — losses in each of the last four quarters.\n- Gross margin: 27% ($1,080M gross profit) — thin for a chip designer.\n- Operating loss: $481M.\n- Operating cash flow: negative $226M, the third consecutive negative year (−$98M, −$148M).\n- Cash: $785M. Long-term debt: $2,025M, with major maturities in 2019-2020 but little due before then.\n- Stockholders' equity: negative $412M (down from +$187M).\n- The company has outsourced its factories, cut costs repeatedly, and is betting on a new processor architecture and semi-custom game-console chips it says will ship in 2016-2017.",
+      "as_of": "2016-02-18",
+      "company_label": "a perennial number-two semiconductor designer"
+    },
+    "answer_key": {
+      "outcome": false,
+      "base_rate": 0.03,
+      "resolution": "No bankruptcy. EDGAR shows no 8-K Item 1.03 for AMD in the window ending February 18, 2019. The Zen architecture launched in 2017 as Ryzen and EPYC, revenue returned to growth, and by the end of the window AMD had refinanced its debt and its stock had risen several-fold. Base-rate note: about 2-4% of listed firms file within three years; AMD's losses argued for more, but its liquidity runway (cash roughly covering cumulative burn, no meaningful maturities inside the window) and fab-light cost structure argued the timing risk was past the window.",
+      "source": "Absence of 8-K Item 1.03 for CIK 2488, 2016-02-18 through 2019-02-18 (EDGAR submissions index). As-of figures from the FY2015 10-K, accession 0000002488-16-000111.",
+      "company": "Advanced Micro Devices, Inc."
+    },
+    "hints": [
+      {"concept_id": "solvency_ratios", "text": "Negative equity is a stock measure. Bankruptcy timing runs on flows: cash, burn rate, and the maturity wall."}
+    ],
+    "explanation": "Negative equity frightens; maturities kill. AMD's book equity was below zero — an accounting residue of accumulated losses — but $785M of cash against roughly $200M of annual burn gave it about three years of runway, and the debt wall sat in 2019-2020, at the far edge of the window. Asset-light chip designers can also shrink costs faster than asset-heavy manufacturers. That made this a solvency question about timing, and the timing favored survival even if the turnaround bet failed. The calibrated answer was elevated but restrained — 10-20% — and the case pairs deliberately with the telecom in this set, where the same class of question had coverage below 1x and no product-cycle option value. Ugly is not the same as due."
+  },
+  {
+    "id": "hindsight_ua_fy2016",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 140,
+    "concept_ids": ["receivables_drift", "channel_stuffing", "red_flag_synthesis"],
+    "difficulty": 5,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that, within five years of this filing date, the SEC brings an enforcement action against this company concerning its disclosures about how it achieved its revenue results in this period?",
+      "context": "10-K for fiscal year 2016, filed February 23, 2017. Figures as reported in that filing.\n- Net revenues: $4,825M, up 22% from $3,963M — but growth decelerated sharply in the fourth quarter, ending a long public streak of 20%-plus growth quarters that management had repeatedly emphasized.\n- Net income: $257M (prior year: $233M). Operating income: $417M versus $409M — margin compressed from 10.3% to 8.7%.\n- Accounts receivable: $623M, up 44% from $434M — receivables growing twice as fast as revenue.\n- Inventory: $917M, up 17% from $783M.\n- Operating cash flow: $304M (prior year: negative $44M).\n- Total assets: $3,644M; stockholders' equity: $2,031M.\n- The growth narrative is the stock's entire valuation case, and management guides to it explicitly.",
+      "as_of": "2017-02-23",
+      "company_label": "a high-growth athletic apparel brand"
+    },
+    "answer_key": {
+      "outcome": true,
+      "base_rate": 0.03,
+      "resolution": "On May 3, 2021 — about 4.2 years after this filing — Under Armour announced a settled SEC action over its disclosures concerning \"pull forward\" sales from the third quarter of 2015 through the fourth quarter of 2016: the SEC's order found it had accelerated roughly $408M of orders into earlier quarters to meet revenue expectations without disclosing that practice, and the company paid a $9.0M civil penalty, neither admitting nor denying the findings. There was no restatement and no fraud finding against the company; the case was about undisclosed practices behind the growth streak. Base-rate note: SEC enforcement over a given filer's revenue disclosures runs low single digits over five years; a receivables-revenue divergence during a publicly defended growth streak is the classic elevated-risk pattern.",
+      "source": "Under Armour 8-K Item 8.01 filed 2021-05-03, accession 0001336917-21-000021, announcing the settled SEC action and $9.0M penalty regarding pull-forward sales Q3 2015-Q4 2016. As-of figures from the FY2016 10-K, accession 0001336917-17-000017.",
+      "company": "Under Armour, Inc."
+    },
+    "hints": [
+      {"concept_id": "receivables_drift", "text": "Revenue grew 22%. What grew 44%, and what does that gap usually mean about when the revenue was booked?"}
+    ],
+    "explanation": "Receivables up 44% against revenue up 22% means, mechanically, that an outsized share of the year's sales were booked near quarter-ends and remained uncollected — precisely the footprint that order acceleration leaves. Add the motive: a management team publicly defending a 20%-plus growth streak that was visibly dying in Q4. What the SEC ultimately established was narrower than fraud — undisclosed pull-forwards that made the streak look organic — and note that the accounting itself was not restated; the sales were real, just borrowed from the future without telling anyone. The reading lesson is that receivables drift plus a narrative under pressure elevates disclosure risk specifically, and the honest forecast was several times the base rate but still modest: 10-20%."
+  },
+  {
+    "id": "hindsight_hertz_fy2019",
+    "mode": "hindsight",
+    "item_type": "hindsight_forecast",
+    "level_id": null,
+    "ordinal": 150,
+    "concept_ids": ["solvency_ratios", "note_navigation", "red_flag_synthesis"],
+    "difficulty": 4,
+    "grader": "probability",
+    "payload": {
+      "prompt": "Probability that this company files for bankruptcy within 24 months of this filing date?",
+      "context": "10-K for fiscal year 2019, filed February 25, 2020. Figures as reported in that filing.\n- Revenues: $9,779M — a record year, up from $9,504M and $8,803M.\n- Net loss: $58M, the smallest in years (prior: −$225M; +$327M in 2017) — the turnaround narrative is that the company has stabilized.\n- Operating cash flow: $2,900M, up from $2,556M.\n- Cash: $865M. Total assets: $24,627M; stockholders' equity: $1,769M.\n- Total debt: $17,089M — $13,368M of vehicle debt plus $3,721M of non-vehicle debt.\n- The vehicle debt is securitized: the fleet itself is the collateral, and the structures require the company to top up collateral if used-vehicle values fall, on roughly a monthly mark.\n- Equity is about 7% of assets; the business rents cars at airports, so revenue is tied directly to travel volumes.",
+      "as_of": "2020-02-25",
+      "company_label": "a global airport car-rental company"
+    },
+    "answer_key": {
+      "outcome": true,
+      "base_rate": 0.02,
+      "resolution": "Hertz filed for Chapter 11 on May 22, 2020 — less than three months after this filing, among the fastest 10-K-to-bankruptcy sequences on record for a company of its size. COVID-19 collapsed airport travel in March-April 2020, used-car values fell, and the securitized vehicle-debt structures demanded collateral top-ups Hertz could not fund after lessor negotiations failed. Base-rate note: the 1-3% class rate was arguably the right neighborhood on the filing date — the pandemic's severity was not yet knowable on February 25, 2020 — which is what makes this a calibration case rather than a red-flag case.",
+      "source": "8-K Items 1.01/1.03 filed 2020-05-26, accession 0001104659-20-065674 (petition date 2020-05-22, CIK 1657853). As-of figures from the FY2019 10-K, accession 0001657853-20-000007.",
+      "company": "Hertz Global Holdings, Inc."
+    },
+    "hints": [
+      {"concept_id": "note_navigation", "text": "Record revenue is the headline. The debt note tells you what happens to the securitized fleet financing if used-car prices drop."}
+    ],
+    "explanation": "This is the humbling case: the outcome was true, and yet a low forecast was close to the right forecast. On the filing date the visible facts were record revenue, improving losses, and $2.9B of operating cash flow; the pandemic collapse of air travel was weeks away and not in any filing. What you could see — and should have priced — was fragility rather than distress: 10x leverage on 7% equity, revenue chained to a single demand source (airport traffic), and vehicle debt whose collateral marks turn a used-car price decline into an immediate cash call. Fragile structures deserve a forecast above the base rate even when nothing is currently wrong, because they convert any shock into insolvency. Something like 4-8% was calibrated; both 2% and 40% were errors of different kinds. Under a Brier score, being 'wrong' with an honest 6% on a case like this is how you win over a hundred forecasts."
+  }
+]
