@@ -20,7 +20,7 @@ ITEM_TYPES = {
     "daily_filing",
 }
 GRADERS = {"choice", "numeric", "grid", "mapping", "llm_rubric"}
-LEVEL_IDS = ["L1", "L2", "L3", "L4", "L5"]
+LEVEL_IDS = ["L1", "L2", "L3", "L4", "L5", "L6", "L7"]
 
 # Spec Appendix A, plus catch-all lines authors may need to make totals tie.
 CANONICAL_ITEMS = {

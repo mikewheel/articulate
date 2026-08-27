@@ -21,7 +21,7 @@ def bundle():
 @needs_content
 def test_content_validates(bundle):
     assert len(bundle["concepts"]) >= 40
-    assert len(bundle["levels"]) == 5
+    assert len(bundle["levels"]) == 7
     assert len(bundle["items"]) >= 60
 
 
@@ -29,7 +29,7 @@ def test_content_validates(bundle):
 def test_concept_graph_acyclic_and_bands(bundle):
     # load_content already raises on cycles; sanity-check bands present
     bands = {c["band"] for c in bundle["concepts"]}
-    assert {"A", "B", "C", "D", "E"} <= bands
+    assert {"A", "B", "C", "D", "E", "F"} <= bands
 
 
 @needs_content
@@ -38,7 +38,7 @@ def test_every_level_has_items(bundle):
     for item in bundle["items"]:
         if item.get("level_id"):
             by_level.setdefault(item["level_id"], []).append(item)
-    for level_id in ("L1", "L2", "L3", "L4", "L5"):
+    for level_id in ("L1", "L2", "L3", "L4", "L5"):  # extend as L6/L7 items land
         assert len(by_level.get(level_id, [])) >= 5, f"{level_id} is underpopulated"
 
 

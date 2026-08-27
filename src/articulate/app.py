@@ -94,12 +94,17 @@ def level(level_id: str, player: str):
 
 @app.get("/api/daily")
 def daily(player: str):
+    """One anonymized filer per day, the same for everyone (spec §5.10)."""
+    from datetime import date
     conn = db()
     try:
         get_player(conn, player)
         rows = conn.execute(
             "SELECT * FROM items WHERE mode='daily' ORDER BY ordinal").fetchall()
-        return {"items": [public_item(r, conn) for r in rows]}
+        if not rows:
+            return {"items": []}
+        today = rows[date.today().toordinal() % len(rows)]
+        return {"items": [public_item(today, conn)], "date": date.today().isoformat()}
     finally:
         conn.close()
 

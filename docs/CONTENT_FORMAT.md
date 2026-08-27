@@ -61,6 +61,8 @@ scope are not):
 | L3 | C | Policies: revenue recognition, LIFO reserve, capitalization, depreciation estimates, deferred taxes, leases | translate + numeric adjustments + journal |
 | L4 | D | Ratios on real companies, common-size, DuPont, industry gestalt | forge + lineup (real EDGAR data) |
 | L5 | E | Forensics: one synthetic manipulation case + earnings-call interrogation | forensic case + earnings_call |
+| L6 | F | CFA L2 dialects: intercorporate investments (equity method/consolidation/NCI), pensions, FX translation vs remeasurement, IFRS vs US GAAP, bank statements | translate + numeric adjustments + choice/journal |
+| L7 | E | The reckoning: Sable Peak restates. Restatement autopsy, forensic screens (Beneish, accruals), non-GAAP reconciliation, capstone thesis | numeric + choice + llm_rubric + earnings_call |
 
 `daily.json` holds Daily Filing items (real, anonymized), outside the level sequence.
 

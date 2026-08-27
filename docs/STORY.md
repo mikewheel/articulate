@@ -34,7 +34,7 @@ get it: first the alphabet, then the grammar, then the judgement.
   sheet for a peer group and learn that a number means nothing until it stands
   next to another number — and that a grocer, an airline, and a software
   company are recognizable from their silhouettes alone.
-- **Week Five — The Sable File (L5).** A holding, Sable Industrial Group,
+- **Week Five — The Sable File (L5).** A holding, Sable Peak Beverages,
   reports a quarter that Marion describes as "fine, which is the problem."
   Revenue up, receivables up faster, cash flat. You work the file, name the
   technique, cite the evidence, and get five questions with the CFO. This is
