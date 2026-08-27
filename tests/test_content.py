@@ -38,7 +38,7 @@ def test_every_level_has_items(bundle):
     for item in bundle["items"]:
         if item.get("level_id"):
             by_level.setdefault(item["level_id"], []).append(item)
-    for level_id in ("L1", "L2", "L3", "L4", "L5", "L6", "L7"):
+    for level_id in ("L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8"):
         assert len(by_level.get(level_id, [])) >= 5, f"{level_id} is underpopulated"
 
 
