@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 
@@ -5,6 +6,10 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
+
+# Tests never call the network: blank the key BEFORE importing articulate
+# (whose .env loader uses setdefault) so llm.get_client() returns the mock.
+os.environ["ANTHROPIC_API_KEY"] = ""
 
 from articulate.db import connect, init_schema  # noqa: E402
 
