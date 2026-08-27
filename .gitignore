@@ -1,3 +1,5 @@
+.env
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -216,3 +218,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Articulate local artifacts
+articulate.db
+
+# SEC bulk data (regenerable, ~3GB)
+data/

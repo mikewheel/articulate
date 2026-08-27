@@ -1,0 +1,106 @@
+[
+  {
+    "id": "sable_call",
+    "company_id": "sable_peak",
+    "cfo_name": "Dana Whitlock",
+    "cfo_persona": "A polished, numbers-fluent CFO who never states a falsehood but answers the question she wishes had been asked: she pivots to growth headlines, reframes DSO as 'investment in distributor partnerships,' and only concedes specifics when a question pins her to a particular number, term, or Q4 arrangement.",
+    "fact_sheet": {
+      "revenue_fy2024": 900.0,
+      "revenue_fy2025": 1152.0,
+      "revenue_growth_fy2025_pct": 28.0,
+      "net_income_fy2024": 24.0,
+      "net_income_fy2025": 32.4,
+      "net_income_growth_fy2025_pct": 35.0,
+      "cfo_fy2024": 39.0,
+      "cfo_fy2025": 38.4,
+      "receivables_fy2024": 111.0,
+      "receivables_fy2025": 200.0,
+      "dso_fy2024_days": 45.0,
+      "dso_fy2025_days": 63.4,
+      "allowance_doubtful_fy2024": 5.5,
+      "allowance_doubtful_fy2025": 4.4,
+      "inventory_fy2024": 75.0,
+      "inventory_fy2025": 47.0,
+      "payables_fy2024": 56.0,
+      "payables_fy2025": 93.0,
+      "revolver_drawn_fy2025": 20.0,
+      "dividends_paid_fy2025": 10.0,
+      "gross_margin_fy2025_pct": 24.0,
+      "op_note": "The op_* entries below are invented operational color for the scenario, not derived from the financial statements.",
+      "op_new_distributor_agreements_q4": 2,
+      "op_q4_program": "A 'Winter Launch' incentive program offered top distributors extended 90-day payment terms (vs. the standard 30) plus limited return rights on orders placed in Q4.",
+      "op_capacity": "A third distribution center in the Southeast opened in October 2025, cited by management as enabling the record Q4 shipment volumes."
+    },
+    "hidden_issues": [
+      {
+        "id": "channel_stuffing",
+        "summary": "Q4 revenue was pulled forward by stuffing the distributor channel: the 'Winter Launch' program offered 90-day payment terms (vs. standard 30) and limited return rights, inducing distributors to take far more product than end-market demand supports. This drove receivables from $111M to $200M (DSO 45 -> 63 days), drained inventory from $75M to $47M, and borrows revenue from FY2026 — the channel is full and collections are uncertain.",
+        "reveal_threshold": "Surfaced by a question that specifically probes Q4 terms or shipment mechanics: extended payment terms / dating, return or price-protection rights, sell-in versus sell-through or distributor inventory levels, the share of Q4 revenue shipped under promotional terms, or why receivables/DSO grew far faster than revenue. Generic questions about 'growth' or 'working capital trends' get deflected to the new distributor agreements and the Southeast distribution center."
+      },
+      {
+        "id": "reserve_release",
+        "summary": "The allowance for doubtful accounts was cut from $5.5M to $4.4M (-20%) in the same year receivables grew 80% and shifted toward distributors on extended terms — coverage fell from ~5.0% of receivables to ~2.2%. The reduction lowered bad-debt expense and released reserves into earnings, contributing a meaningful slice of the FY2025 net income beat despite rising credit risk.",
+        "reveal_threshold": "Surfaced by a question that targets the allowance or credit assumptions directly: why the allowance declined while receivables soared, the coverage ratio (allowance as a % of receivables), bad-debt expense assumptions for the new 90-day-term receivables, or aging of the year-end receivables book. Questions that only mention receivables growth without touching the reserve get an answer about 'excellent historical collections experience'."
+      }
+    ],
+    "max_questions": 5
+  },
+  {
+    "id": "sable_call_2",
+    "company_id": "sable_peak",
+    "cfo_name": "Dana Whitlock",
+    "cfo_persona": "Chastened but lawyered-up: she reads prepared language, apologizes in the passive voice ('errors were identified'), and stays strictly inside the 8-K's four corners. She will confirm any figure that appears in the restated filings when asked precisely, but attributes decisions to 'the organization', invokes 'the ongoing independent review' to avoid naming who approved what or when she knew, and volunteers nothing about FY2026.",
+    "fact_sheet": {
+      "revenue_fy2025_filed": 1152.0,
+      "revenue_fy2025_restated": 1072.0,
+      "revenue_reversed": 80.0,
+      "revenue_fy2024": 900.0,
+      "revenue_growth_fy2025_restated_pct": 19.1,
+      "net_income_fy2025_filed": 32.4,
+      "net_income_fy2025_restated": 16.5,
+      "net_income_fy2024": 24.0,
+      "cfo_fy2025_unchanged_by_restatement": 38.4,
+      "cfo_fy2024": 39.0,
+      "receivables_net_fy2025_filed": 200.0,
+      "receivables_net_fy2025_restated": 118.0,
+      "receivables_net_fy2024": 111.0,
+      "allowance_fy2025_filed": 4.4,
+      "allowance_fy2025_restated": 6.4,
+      "bad_debt_expense_from_allowance_rebuild": 2.0,
+      "inventory_fy2025_filed": 47.0,
+      "inventory_fy2025_restated": 107.8,
+      "in_channel_inventory_at_cost": 60.8,
+      "cogs_reversed": 60.8,
+      "income_tax_fy2025_filed": 10.8,
+      "income_tax_fy2025_restated": 5.5,
+      "income_tax_receivable_restated": 5.3,
+      "dso_fy2025_filed_days": 63.4,
+      "dso_fy2025_restated_days": 40.2,
+      "cash_fy2025": 48.4,
+      "total_debt_fy2025": 190.0,
+      "revolver_drawn_fy2025": 20.0,
+      "dividends_paid_fy2025": 10.0,
+      "adjusted_ebitda_fy2025_press_release": 78.5,
+      "adjusted_ebitda_addback_distributor_programs": 18.0,
+      "adjusted_ebitda_addback_restatement_costs": 6.5,
+      "op_note": "The op_* entries below are invented operational color for the scenario, not derived from the financial statements.",
+      "op_material_weakness": "The 8-K discloses a material weakness in internal control over financial reporting related to the review and approval of non-standard contract terms. A remediation plan has been announced; outside counsel and a second accounting firm are conducting an independent review, which is ongoing.",
+      "op_winter_launch_status": "The Winter Launch program has been terminated. No extended-terms or return-rights promotions are currently planned.",
+      "op_personnel": "The VP of Sales departed 'to pursue other opportunities' two weeks before the 8-K was filed. The company has not connected the departure to the restatement.",
+      "op_guidance_status": "The company has not provided FY2026 guidance, citing the ongoing review."
+    },
+    "hidden_issues": [
+      {
+        "id": "controls_failure",
+        "summary": "The failure was governance, not paperwork: the sales organization granted the 90-day terms and return rights on Winter Launch agreements with no independent credit review — no one outside sales approved the terms before shipment, and finance (including the CFO's office) first learned of the return rights during year-end audit fieldwork, after the $80M now reversed had already been booked. The 'material weakness in review of non-standard contract terms' is the lawyered phrasing of the fact that revenue equal to a quarter of the year's growth reached the financial statements without a second set of eyes, and the VP of Sales' pre-8-K departure was not a coincidence.",
+        "reveal_threshold": "Surfaced by a question that names the approval chain or the timeline: who specifically approved the 90-day terms or the return rights, on what date finance or the CFO first learned of them, whether any independent credit review occurred before shipment, what concrete approval a non-standard term now requires that it did not in October, or why the VP of Sales departed. Generic questions about 'controls', 'remediation', or 'how this happened' are answered with the prepared material-weakness and ongoing-review language."
+      },
+      {
+        "id": "guidance_reset",
+        "summary": "FY2026 revenue faces an air pocket because the borrowed growth reverses: roughly $60.8M of product at cost (about $80M at selling prices, ~7% of a year's revenue) sits unsold in the distributor channel, and distributors will not reorder until it sells through — with the terminated Winter Launch no longer available to force the issue. Even restated FY2025 growth of 19.1% was promotion-assisted, and SG&A (up 32% in FY2025 for the new distribution center and distributor programs) now leans on demand that was partly fictional. Internal plans assume FY2026 revenue roughly flat to down versus the restated $1,072M base; guidance is being withheld to avoid saying so on the record.",
+        "reveal_threshold": "Surfaced by a question that quantifies the forward mechanics: distributor sell-through versus sell-in, weeks or dollars of inventory in the channel and expected workdown time, when (or whether) the reversed $80M will be recognized as distributors sell through, expected reorder timing, or a direct demand for FY2026 revenue framing against the restated $1,072M base. Vague 'outlook' or 'how do you feel about next year' questions get 'we are not providing guidance at this time'."
+      }
+    ],
+    "max_questions": 5
+  }
+]

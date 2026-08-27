@@ -1,0 +1,168 @@
+[
+  {
+    "id": "l5_case_010",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L5",
+    "ordinal": 10,
+    "concept_ids": ["channel_stuffing", "red_flag_synthesis", "receivables_drift"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Sable Peak Beverages just reported a 'breakout' FY2025. Study the three-year evidence table. Something in FY2025 is manufactured. Name the primary revenue-side technique.",
+      "context": "Sable Peak Beverages, fiscal years 2023-2025 ($M except days/ratios):\n\n| Metric | FY2023 | FY2024 | FY2025 |\n|---|---|---|---|\n| Revenue | 850.0 | 900.0 | 1,152.0 (+28.0%) |\n| Receivables | 102.0 | 111.0 | 200.0 (+80.2%) |\n| DSO (ending AR / revenue × 365) | 43.8 | 45.0 | 63.4 |\n| Allowance for doubtful accounts (AR footnote) | 5.2 | 5.5 | 4.4 (−20%) |\n| Inventory | 71.0 | 75.0 | 47.0 |\n| Accounts payable | 53.0 | 56.0 | 93.0 |\n| Net income | 21.0 | 24.0 | 32.4 (+35.0%) |\n| Cash from operations | 37.0 | 39.0 | 38.4 (flat) |\n\nFrom the 10-K: 'Fourth-quarter shipments to distribution partners reached record levels, supported by two new distributor agreements signed in Q4.' The FY2025 depreciation policy, capex, and useful lives are unchanged from prior years.",
+      "choices": [
+        "Improper capitalization of operating costs — expenses parked on the balance sheet to inflate operating income.",
+        "Channel stuffing — pulling future sales forward by pushing product into distributors at quarter-end, likely on loosened terms.",
+        "LIFO liquidation — draining old low-cost inventory layers to flatter gross margin.",
+        "Big-bath restructuring — overstating a one-time charge to create reserves for future years."
+      ]
+    },
+    "answer_key": {
+      "correct_index": 1,
+      "why_wrong": [
+        "Capitalization abuse shows up as a swelling asset base (PP&E or capitalized intangibles) with capex outrunning depreciation. Sable Peak's depreciation policy, useful lives, and capex are unchanged — the anomaly is in receivables, not in long-term assets.",
+        null,
+        "A LIFO liquidation would flatter GROSS MARGIN as cheap old inventory layers hit COGS. Sable Peak's gross margin is essentially unchanged (~24%), and while inventory did fall, the signature here is the receivables explosion, which liquidation cannot explain.",
+        "A big bath requires a large one-time charge that depresses current earnings to inflate future ones. FY2025 earnings are UP 35% with no unusual charge anywhere — the opposite shape. (There is a reserve being manipulated, but it is being released, not built.)"
+      ]
+    },
+    "hints": [
+      {"concept_id": "receivables_drift", "text": "Compare the growth rates of revenue and receivables, then ask: if these were real, arm's-length sales on normal terms, why isn't the cash arriving?"},
+      {"concept_id": "channel_stuffing", "text": "Record Q4 shipments to distributors, receivables up 80% on revenue up 28%, inventory drained into the channel, cash flat. Who is actually buying — the drinker, or the warehouse?"}
+    ],
+    "explanation": "This is channel stuffing: Sable Peak pushed product into its distributors at year-end, booking revenue up 28% while receivables jumped 80% and DSO stretched from 45 to 63 days — the distributors haven't paid, and many may not until they sell through (or may return goods). Corroboration: inventory drained from 75 to 47 (the warehouse was emptied into the channel), payables were stretched from 56 to 93 to keep CFO looking flat, and the allowance for doubtful accounts was CUT 20% while receivables soared — a reserve release that boosts earnings exactly when reserves should be rising. Revenue borrowed from FY2026 creates a cliff: the channel is full."
+  },
+  {
+    "id": "l5_metric_020",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L5",
+    "ordinal": 20,
+    "concept_ids": ["receivables_drift"],
+    "difficulty": 2,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute Sable Peak's FY2025 days sales outstanding (DSO), using ending receivables and a 365-day year. (Answer in days.)",
+      "context": "FY2025: revenue $1,152.0M; ending receivables $200.0M. For reference, the same calculation gives 45.0 days for FY2024 (receivables 111.0, revenue 900.0) and 43.8 days for FY2023 (receivables 102.0, revenue 850.0). DSO = ending receivables ÷ revenue × 365.",
+      "unit": "days"
+    },
+    "answer_key": {"value": 63.4, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "receivables_drift", "text": "DSO = ending receivables ÷ revenue × 365 — the number of days of sales sitting uncollected."}
+    ],
+    "explanation": "DSO = 200.0 / 1,152.0 × 365 = 63.4 days, an 18-day jump after two years pinned near 44-45. DSO is the great normalizer: it asks whether receivables growth is explained by sales growth. An 18-day stretch in one year means the marginal FY2025 sale is being collected far more slowly than the average FY2024 sale — loosened terms, strained customers, or revenue that isn't fully real."
+  },
+  {
+    "id": "l5_metric_030",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L5",
+    "ordinal": 30,
+    "concept_ids": ["cfo_ni_gap", "accruals_quality"],
+    "difficulty": 2,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute Sable Peak's FY2025 CFO-to-net-income ratio (CFO ÷ net income), to two decimal places.",
+      "context": "FY2025: cash from operations $38.4M; net income $32.4M. For reference, FY2024 was 39.0 / 24.0 = 1.63 and FY2023 was 37.0 / 21.0 = 1.76.",
+      "unit": "ratio (x)"
+    },
+    "answer_key": {"value": 1.19, "tolerance_abs": 0.03, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "cfo_ni_gap", "text": "Divide operating cash flow by net income — then compare the ratio to its own history, which is where the signal lives."}
+    ],
+    "explanation": "38.4 / 32.4 = 1.19, down from 1.63 and 1.76. Net income 'grew' 35% while operating cash flow didn't grow at all — the new earnings are made of accruals (mostly the $89M receivables build), not cash. Worse, CFO only stayed flat because inventory was drained and payables stretched from 56 to 93; without those one-time working-capital moves, operating cash would have collapsed. When the CFO/NI ratio breaks sharply below its own trend in the same year earnings accelerate, the earnings are suspect."
+  },
+  {
+    "id": "l5_metric_040",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L5",
+    "ordinal": 40,
+    "concept_ids": ["cookie_jar_reserves", "accruals_quality"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Sable Peak's receivables rose 80% in FY2025, yet its allowance for doubtful accounts FELL from $5.5M to $4.4M (−20%). Absent manipulation, what would you normally expect the allowance to do, and what does the actual move accomplish?",
+      "context": "The allowance is management's estimate of receivables that will not be collected. Additions to the allowance run through bad-debt expense (reducing income); reductions flow back through income. FY2025's new receivables were disproportionately booked to distributors on extended payment terms.",
+      "choices": [
+        "The allowance should roughly track receivables — so it should have risen meaningfully. Cutting it instead released a reserve into earnings, at exactly the moment credit risk was growing.",
+        "The allowance should always fall as a company grows, because larger customers are safer; the decline is routine and conservative.",
+        "The allowance is a cash reserve, so reducing it freed up cash that explains why CFO stayed flat.",
+        "The direction of the allowance is irrelevant to earnings; it only affects the balance sheet presentation of receivables."
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "There is no rule that growth makes receivables safer — and these particular receivables are to distributors on newly extended terms, i.e. RISKIER than the book they replaced. A rate that falls as risk rises is not conservatism.",
+        "The allowance is an accounting estimate (a contra-asset), not a pot of cash. Changing it moves earnings, not cash — it cannot explain anything about CFO.",
+        "The allowance moves earnings directly: a lower allowance means lower bad-debt expense (or an outright release into income). Direction matters a great deal — here it added roughly $1M+ to pretax income while risk was climbing."
+      ]
+    },
+    "hints": [
+      {"concept_id": "cookie_jar_reserves", "text": "A reserve should scale with the exposure it covers. When the exposure nearly doubles and the reserve shrinks, ask whose earnings just improved."}
+    ],
+    "explanation": "An allowance is supposed to track the size and riskiness of the receivables book. With receivables up 80% — concentrated in distributors on extended terms — the allowance should have grown substantially; holding the FY2024 coverage ratio (~5%) would imply roughly $10M, not $4.4M. Cutting it to $4.4M released reserves through bad-debt expense into income exactly when the opposite was warranted. This is the cookie-jar mechanism operating in reverse gear to amplify the channel-stuffing boost: two levers, one direction — reported earnings up."
+  },
+  {
+    "id": "l5_cite_050",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L5",
+    "ordinal": 50,
+    "concept_ids": ["red_flag_synthesis", "receivables_drift", "cfo_ni_gap", "cookie_jar_reserves"],
+    "difficulty": 4,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "One odd number is noise; three that point the same way are a thesis. From Sable Peak's FY2025 evidence, cite the three numbers (or number-pairs) that point the same way, and state in one or two sentences the story they jointly tell.",
+      "context": "Sable Peak Beverages, FY2023-FY2025 ($M except days):\n\n| Metric | FY2023 | FY2024 | FY2025 |\n|---|---|---|---|\n| Revenue | 850.0 | 900.0 | 1,152.0 |\n| Receivables | 102.0 | 111.0 | 200.0 |\n| DSO (days) | 43.8 | 45.0 | 63.4 |\n| Allowance for doubtful accounts | 5.2 | 5.5 | 4.4 |\n| Inventory | 71.0 | 75.0 | 47.0 |\n| Accounts payable | 53.0 | 56.0 | 93.0 |\n| Net income | 21.0 | 24.0 | 32.4 |\n| Cash from operations | 37.0 | 39.0 | 38.4 |\n\n10-K color: record Q4 shipments to distribution partners; two new distributor agreements signed in Q4; $20M drawn on the revolver during FY2025.",
+      "response_guidance": "Name three specific pieces of numerical evidence with their values, then give the unifying story in 1-2 sentences."
+    },
+    "answer_key": {
+      "model_answer": "(1) Receivables grew 80% (111→200; DSO 45→63 days) against revenue growth of 28% — sales are being booked far faster than cash is being collected. (2) The allowance for doubtful accounts moved the WRONG direction, falling 20% (5.5→4.4) while the receivables it covers nearly doubled — a reserve release that adds to earnings just when credit risk is rising. (3) Net income jumped 35% (24→32.4) while CFO was flat (39→38.4; CFO/NI down from 1.63 to 1.19) — and even that flatness was engineered by draining inventory (75→47) and stretching payables (56→93). Story: Sable Peak pulled future sales into FY2025 by stuffing its distributor channel at year-end and sweetened the print with a reserve release; the earnings growth is accruals, not cash, and it borrows from FY2026, where a full channel and swollen receivables will come home.",
+      "rubric": [
+        {"id": "dso", "points": 1, "description": "Cites the receivables/DSO expansion with numbers (AR +80% or 111→200, or DSO 45→63) against revenue +28%"},
+        {"id": "allowance", "points": 1, "description": "Cites the allowance falling (~5.5→4.4, −20%) while receivables surged — explicitly noting the direction is wrong / it releases reserves into earnings"},
+        {"id": "cfo_ni", "points": 1, "description": "Cites the CFO-NI divergence with numbers (NI +35% vs CFO flat, or CFO/NI 1.63→1.19)"},
+        {"id": "story", "points": 2, "description": "Synthesizes a coherent story: revenue pulled forward into the channel (stuffing) plus reserve release inflating earnings; cash doesn't confirm; implies future reversal/cliff. Bonus strength: notes the inventory drain or payables stretch masking CFO"}
+      ],
+      "pass_points": 4
+    },
+    "hints": [
+      {"concept_id": "red_flag_synthesis", "text": "Take each anomaly and ask what single action by management would produce ALL of them at once. Cite values, not adjectives."}
+    ],
+    "explanation": "The three convergent flags: DSO expanding 45→63 days (receivables +80% on revenue +28%); an allowance cut 20% while the book it insures doubled; and net income up 35% with operating cash flat (CFO/NI 1.63→1.19). One action explains all three: stuffing the distributor channel at year-end, then releasing reserves to gild the print. The masking moves (inventory 75→47, payables 56→93, a $20M revolver draw) show the cash strain management was hiding. That is a complete forensic case: technique named, evidence cited, mechanism coherent."
+  },
+  {
+    "id": "l5_call_060",
+    "mode": "earnings_call",
+    "item_type": "cfo_question",
+    "level_id": "L5",
+    "ordinal": 60,
+    "concept_ids": ["questioning_management", "channel_stuffing", "receivables_drift"],
+    "difficulty": 4,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "You get one question on Sable Peak's FY2025 earnings call before the operator cuts to the next analyst. Draft the single best question to ask CFO Dana Whitlock. Make it one a CFO cannot deflect without revealing something.",
+      "context": "You know: revenue +28% to $1,152M; receivables +80% to $200M; DSO 45→63 days; allowance for doubtful accounts down 20% to $4.4M; net income +35% to $32.4M; CFO flat at $38.4M; record Q4 shipments to distributors; two new distributor agreements signed in Q4; $20M drawn on the revolver.",
+      "response_guidance": "One question (a two-part question is acceptable if tightly linked). Anchor it in specific numbers. Vague questions ('can you talk about receivables?') score poorly.",
+      "scenario_id": "sable_call"
+    },
+    "answer_key": {
+      "model_answer": "\"Receivables grew 80% to $200M on 28% revenue growth, taking DSO from 45 to 63 days — so let me ask specifically: did you extend payment terms, offer extended dating, or grant return or price-protection rights to distributors on Q4 shipments, and how much of Q4 revenue shipped under such terms? And given that receivables nearly doubled, walk us through why the allowance for doubtful accounts was cut from $5.5M to $4.4M rather than increased.\"",
+      "rubric": [
+        {"id": "evidence", "points": 1, "description": "Anchors the question in specific cited numbers (e.g. AR +80%/$200M vs revenue +28%, DSO 45→63, allowance 5.5→4.4, CFO flat vs NI +35%)"},
+        {"id": "specificity", "points": 1, "description": "Asks for a specific, checkable fact rather than commentary — e.g. payment terms/dating, return or price-protection rights, share of Q4 revenue on new terms, or the allowance methodology"},
+        {"id": "target", "points": 2, "description": "Aims at a hidden issue: Q4 distributor terms / sell-in vs sell-through (channel stuffing), or the rationale for cutting the allowance while receivables soared (reserve release)"},
+        {"id": "undeflectable", "points": 1, "description": "Framed so any answer is informative: yes/no plus quantification requested, or a direct reconcile-these-two-numbers demand"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "questioning_management", "text": "A good forensic question pairs two numbers management must reconcile, then demands a quantity, not a narrative. Ask about terms, not about 'color'."}
+    ],
+    "explanation": "The strongest questions force reconciliation of two numbers that cannot both be innocent: 80% receivables growth against 28% revenue growth, or a shrinking allowance against a doubling receivables book. Asking specifically about payment terms, extended dating, and return rights on Q4 distributor shipments — with a quantification ('how much of Q4 revenue') — leaves no evasive exit: a denial is checkable against next quarter's collections, and a hedge is a confession. That is the difference between reading statements and interrogating them."
+  }
+]

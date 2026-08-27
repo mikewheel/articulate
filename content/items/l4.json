@@ -1,0 +1,441 @@
+[
+  {
+    "id": "l4_rb_hd_gross_margin",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L4",
+    "ordinal": 10,
+    "concept_ids": ["profitability_ratios", "common_size"],
+    "difficulty": 1,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute Home Depot's gross margin for fiscal 2025 (year ended February 1, 2026), as a percentage of revenue.",
+      "context": "The Home Depot, fiscal 2025 10-K ($M):\nNet sales: 164,683\nCost of sales: 109,818",
+      "unit": "%"
+    },
+    "answer_key": {"value": 33.32, "tolerance_abs": null, "tolerance_rel": 0.02},
+    "hints": [
+      {"concept_id": "profitability_ratios", "text": "Gross profit is revenue minus cost of sales. Then express it per dollar of revenue."}
+    ],
+    "explanation": "Gross profit = 164,683 − 109,818 = $54,865M, and 54,865 / 164,683 = 33.3%. One dollar of merchandise sold keeps 33 cents before operating costs. That 33% is a fingerprint: grocers run near 23%, software near 70%. Home improvement sits in between because product is differentiated and services-attached, but it is still physical retail."
+  },
+  {
+    "id": "l4_rb_cat_current",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L4",
+    "ordinal": 20,
+    "concept_ids": ["liquidity_ratios"],
+    "difficulty": 1,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute Caterpillar's current ratio at the end of fiscal 2025 (December 31, 2025).",
+      "context": "Caterpillar, fiscal 2025 10-K ($M):\nTotal current assets: 52,485\nTotal current liabilities: 36,558",
+      "unit": "x"
+    },
+    "answer_key": {"value": 1.436, "tolerance_abs": null, "tolerance_rel": 0.02},
+    "hints": [
+      {"concept_id": "liquidity_ratios", "text": "Current assets divided by current liabilities: how many dollars of near-term resources per dollar of near-term obligation."}
+    ],
+    "explanation": "52,485 / 36,558 = 1.44x. Caterpillar carries $1.44 of current assets per $1 of current liabilities — comfortable for a manufacturer whose inventory sits for months. Context matters: Delta runs a current ratio near 0.4 and is fine, because its customers prepay. A liquidity ratio only means something against the industry's working-capital rhythm."
+  },
+  {
+    "id": "l4_rb_kr_inv_turns",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L4",
+    "ordinal": 30,
+    "concept_ids": ["activity_ratios"],
+    "difficulty": 2,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute Kroger's inventory turnover for fiscal 2024 (year ended February 1, 2025), using cost of goods sold over year-end inventory.",
+      "context": "The Kroger Co., fiscal 2024 10-K ($M):\nMerchandise costs (cost of goods sold, excluding depreciation): 113,720\nInventories, net (year-end, LIFO basis): 7,038",
+      "unit": "x"
+    },
+    "answer_key": {"value": 16.16, "tolerance_abs": null, "tolerance_rel": 0.02},
+    "hints": [
+      {"concept_id": "activity_ratios", "text": "Turnover = COGS / inventory. It answers: how many times per year does the shelf empty and refill?"}
+    ],
+    "explanation": "113,720 / 7,038 = 16.2x — Kroger sells through its entire inventory about every 23 days (365/16.2). This velocity is the entire grocery business model: at a 1.8% net margin, profit comes from turning capital fast, not from marking it up. Compare Home Depot at ~4.3x or Caterpillar at ~2.5x. Note two honesty flags: this uses year-end (not average) inventory, and Kroger's LIFO carrying value understates inventory, which nudges turnover up."
+  },
+  {
+    "id": "l4_lu_core_four",
+    "mode": "lineup",
+    "item_type": "lineup_match",
+    "level_id": "L4",
+    "ordinal": 40,
+    "concept_ids": ["industry_patterns", "common_size"],
+    "difficulty": 2,
+    "grader": "mapping",
+    "payload": {
+      "prompt": "Four real U.S. companies, anonymized, from recent 10-K filings. Match each to its industry. Every number is computed from the actual statements.",
+      "left": [
+        {"key": "A", "label": "Company A", "stats": [
+          {"name": "Gross margin", "value": "not reported — no cost-of-goods line"},
+          {"name": "Net margin", "value": "5.6%"},
+          {"name": "Inventory", "value": "none"},
+          {"name": "PP&E / total assets", "value": "50%"},
+          {"name": "Current ratio", "value": "0.37"},
+          {"name": "Operating lease liabilities / total assets", "value": "8.7%"}
+        ]},
+        {"key": "B", "label": "Company B", "stats": [
+          {"name": "Gross margin", "value": "22.7%"},
+          {"name": "Net margin", "value": "1.8%"},
+          {"name": "Inventory turnover", "value": "16.2x (≈23 days on shelf)"},
+          {"name": "Days sales outstanding", "value": "5 days"},
+          {"name": "PP&E (incl. finance leases) / total assets", "value": "49%"},
+          {"name": "Asset turnover", "value": "2.8x"}
+        ]},
+        {"key": "C", "label": "Company C", "stats": [
+          {"name": "Net margin", "value": "32.9%"},
+          {"name": "Return on assets", "value": "1.5%"},
+          {"name": "Return on equity (avg)", "value": "17.4%"},
+          {"name": "Equity / total assets", "value": "8.6%"},
+          {"name": "Inventory, PP&E, current/non-current split", "value": "none — assets are almost entirely financial"},
+          {"name": "Goodwill / total assets", "value": "1.3%"}
+        ]},
+        {"key": "D", "label": "Company D", "stats": [
+          {"name": "Gross margin", "value": "68.8%"},
+          {"name": "Net margin", "value": "36.2%"},
+          {"name": "Current deferred revenue / revenue", "value": "22.9%"},
+          {"name": "Inventory / total assets", "value": "0.2%"},
+          {"name": "PP&E / total assets", "value": "33%"},
+          {"name": "Equity / total assets", "value": "55%"}
+        ]}
+      ],
+      "right": ["Grocery chain", "Enterprise software and cloud", "Airline", "Bank"]
+    },
+    "answer_key": {
+      "map": {"A": 2, "B": 0, "C": 3, "D": 1},
+      "tells": {
+        "A": "No inventory plus half the balance sheet in PP&E is a service business that sells a physical experience. The giveaway pair: a current ratio of 0.37 that is perfectly normal (customers pay before they fly, so ticket liabilities pile up in current liabilities) and big operating lease liabilities from rented aircraft and gates. Only the airline fits.",
+        "B": "A 22.7% gross margin and 1.8% net margin scream commodity retail, and inventory that turns every 23 days plus 5-day receivables (shoppers pay at the register) narrow it to groceries. The 2.8x asset turnover is the engine: tiny margin times huge velocity.",
+        "C": "Equity at 8.6% of assets means roughly 12x leverage — no operating company runs that. ROA of 1.5% amplified into a 17.4% ROE by that leverage, plus a balance sheet with no inventory, no PP&E line, and no current/non-current split, is the unmistakable silhouette of a bank.",
+        "D": "A 68.8% gross margin means the product costs almost nothing to replicate: software. Customers prepaying (deferred revenue equal to 23% of a year's revenue) and near-zero inventory confirm subscriptions. Note the 33% PP&E share — data-center buildout is making this software company look more industrial each year."
+      }
+    },
+    "hints": [
+      {"concept_id": "industry_patterns", "text": "Start with what is missing: which balance sheets have no inventory, and why would that be?"},
+      {"concept_id": "common_size", "text": "Equity as a share of assets separates leveraged financial businesses from everything else."}
+    ],
+    "explanation": "Company A is Delta Air Lines (FY2024), B is Kroger (FY2024), C is JPMorgan Chase (FY2024), D is Microsoft (FY2025). The four classic silhouettes: the airline has assets you board, the grocer has velocity, the bank has leverage, and the software firm has margin. Once these shapes are yours, an unlabeled balance sheet reads like a company's face."
+  },
+  {
+    "id": "l4_rb_cat_dso",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L4",
+    "ordinal": 50,
+    "concept_ids": ["activity_ratios"],
+    "difficulty": 2,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute Caterpillar's days sales outstanding (DSO) for fiscal 2024, using year-end receivables and a 365-day year.",
+      "context": "Caterpillar, fiscal 2024 10-K ($M):\nTotal revenues: 64,809\nReceivables — trade and other (year-end): 9,282",
+      "unit": "days"
+    },
+    "answer_key": {"value": 52.28, "tolerance_abs": null, "tolerance_rel": 0.02},
+    "hints": [
+      {"concept_id": "activity_ratios", "text": "DSO = receivables / revenue x 365: how many days of sales are still waiting to be collected."}
+    ],
+    "explanation": "9,282 / 64,809 x 365 = 52.3 days. Caterpillar waits nearly two months for its money because it sells million-dollar machines to dealers on credit — compare Kroger's 5 days, where customers pay at the register. Neither number is good or bad in isolation; what matters is the trend (CAT's DSO drifted from 51 to 59 days over three years, worth asking about) and the fit with how the industry actually sells."
+  },
+  {
+    "id": "l4_rb_kr_coverage",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L4",
+    "ordinal": 60,
+    "concept_ids": ["coverage_ratios"],
+    "difficulty": 2,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute Kroger's interest coverage (operating profit / net interest expense) for fiscal 2023 (year ended February 3, 2024).",
+      "context": "The Kroger Co., fiscal 2023 10-K ($M):\nOperating profit: 3,096\nNet interest expense: 441",
+      "unit": "x"
+    },
+    "answer_key": {"value": 7.02, "tolerance_abs": null, "tolerance_rel": 0.02},
+    "hints": [
+      {"concept_id": "coverage_ratios", "text": "Coverage = operating profit / interest expense: how many times over could the year's operating earnings pay the interest bill?"}
+    ],
+    "explanation": "3,096 / 441 = 7.0x — Kroger earned its interest bill seven times over, a comfortable cushion. Coverage is the ratio lenders watch: below ~3x, a bad year starts to threaten the ability to service debt. Keep this 7.0x in mind; a later item shows what happened to it two years on, and why the answer requires reading past the ratio."
+  },
+  {
+    "id": "l4_ri_dal_deleverage",
+    "mode": "forge",
+    "item_type": "ratio_interpret",
+    "level_id": "L4",
+    "ordinal": 70,
+    "concept_ids": ["solvency_ratios", "trend_analysis"],
+    "difficulty": 3,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Delta's debt-to-equity ratio fell from 1.68x to 1.00x to 0.64x across fiscal 2023-2025. Explain the mechanics of what happened — which parts of the ratio moved and what funded the move — and what this trajectory means for an investor.",
+      "context": "Delta Air Lines, 10-K data ($M):\nFY2023: total debt 18,610 (2,625 current + 15,985 long-term); total equity 11,105; D/E 1.68x\nFY2024: total debt 15,347; total equity 15,293; D/E 1.00x\nFY2025: total debt 13,308; total equity 20,853; D/E 0.64x\nDebt repaid: 4,071 (FY2023), 3,953 (FY2024), 4,827 (FY2025)\nCash from operations: 6,464 / 8,025 / 8,342\nNet income: 4,609 / 3,457 / 5,005; dividends paid: 128 / 321 / 440\nRetained earnings: 5,650 -> 8,783 -> 13,343",
+      "response_guidance": "3-5 sentences. Address both the numerator and the denominator, and the cash source."
+    },
+    "answer_key": {
+      "model_answer": "Both sides of the ratio moved in the deleveraging direction at once: Delta repaid roughly $4-5B of debt every year — funded comfortably out of $6.5-8.3B of annual operating cash flow, not asset sales or equity issuance — cutting total debt from $18.6B to $13.3B, while equity nearly doubled ($11.1B to $20.9B) because Delta retained almost all of its earnings (retained earnings rose $7.7B while dividends stayed small). This is the post-pandemic balance-sheet repair playbook: the debt taken on to survive 2020 is being amortized out of the earnings recovery. For an investor it means falling interest expense, less refinancing risk into any downturn, and a company positioning to regain financial flexibility — the follow-up checks are whether free cash flow after capex actually covers the repayment schedule and whether management pivots from repayment to buybacks/dividends as leverage normalizes.",
+      "rubric": [
+        {"id": "numerator", "points": 1, "description": "Notes that debt fell because Delta repaid ~$4-5B per year (from ~$18.6B to ~$13.3B)"},
+        {"id": "denominator", "points": 1, "description": "Notes that equity roughly doubled from retained earnings (profits kept, minimal dividends), so the ratio fell from both directions"},
+        {"id": "cash_source", "points": 1, "description": "Identifies operating cash flow as the funding source (not equity raises or asset sales)"},
+        {"id": "so_what", "points": 1, "description": "Draws an investor implication: lower financial risk / interest burden / refinancing risk, or what to check next (FCF vs maturities, capital-return pivot)"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "solvency_ratios", "text": "A ratio can fall because the top shrinks, the bottom grows, or both. Check both."},
+      {"concept_id": "trend_analysis", "text": "Where did the cash to repay the debt come from? The cash flow statement answers it."}
+    ],
+    "explanation": "D/E fell 62% in two years because debt shrank (repayment from operating cash) while equity compounded (retained earnings). When both terms of a leverage ratio move favorably and the cash flow statement shows the source, the improvement is high quality. Contrast a ratio that improves only because equity was inflated by a one-time gain — same arithmetic, very different meaning."
+  },
+  {
+    "id": "l4_rb_dal_de",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L4",
+    "ordinal": 80,
+    "concept_ids": ["solvency_ratios"],
+    "difficulty": 2,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute Delta's debt-to-equity ratio at the end of fiscal 2025 (December 31, 2025). Use total debt (current plus long-term, excluding operating leases) over total equity.",
+      "context": "Delta Air Lines, fiscal 2025 10-K ($M):\nCurrent maturities of debt and finance leases: 1,372\nDebt and finance leases (non-current): 11,936\nTotal stockholders' equity: 20,853",
+      "unit": "x"
+    },
+    "answer_key": {"value": 0.638, "tolerance_abs": null, "tolerance_rel": 0.02},
+    "hints": [
+      {"concept_id": "solvency_ratios", "text": "Total debt means both the portion due within a year and the long-term portion."}
+    ],
+    "explanation": "(1,372 + 11,936) / 20,853 = 0.64x. Two footnotes worth internalizing: first, this excludes $6.2B of operating lease liabilities, which are also fixed, debt-like claims — including them lifts the ratio to ~0.93x, and a translate item ahead digs into exactly that. Second, this same company was at 1.68x two years earlier; the level matters less than the direction and the reason."
+  },
+  {
+    "id": "l4_tr_dal_leases",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L4",
+    "ordinal": 90,
+    "concept_ids": ["solvency_ratios", "industry_patterns"],
+    "difficulty": 3,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Translate these balance-sheet lines for an investor: what are they economically, and what should you do with them when judging Delta's leverage against another airline?",
+      "context": "Delta Air Lines, fiscal 2025 10-K ($M):\nOperating lease right-of-use assets: 6,244\nCurrent maturities of operating leases: 809\nNoncurrent operating leases: 5,353\nFor reference: total debt (excl. operating leases) 13,308; total equity 20,853",
+      "response_guidance": "3-4 sentences: plain-English meaning, then the analytical adjustment and why it matters for comparison."
+    },
+    "answer_key": {
+      "model_answer": "Delta rents some of its aircraft, gates, and buildings under long-term contracts; accounting capitalizes those rental promises, putting the right to use the assets ($6.2B) on one side of the balance sheet and the obligation to keep paying rent ($6.2B: $0.8B due this year, $5.4B after) on the other. Economically those lease payments are fixed, debt-like claims — Delta must pay them whether or not planes fly full, just like interest and principal. So when judging leverage, add them to debt: Delta's debt-to-equity moves from 13,308/20,853 = 0.64x to (13,308+6,162)/20,853 = 0.93x, about 45% higher. The comparison point is the reason this matters: airlines split freely between owning and leasing aircraft, so two carriers with identical fleets can show very different 'debt' lines — only the lease-inclusive number puts them on the same footing.",
+      "rubric": [
+        {"id": "mechanics", "points": 1, "description": "Explains ROU asset / lease liability as capitalized long-term rent: the right to use assets and the obligation to pay for them"},
+        {"id": "debt_like", "points": 1, "description": "States that lease obligations are fixed, debt-like claims and should be included in leverage measures (ideally quantifies: D/E ~0.64x -> ~0.93x)"},
+        {"id": "so_what", "points": 1, "description": "Gives the comparability point: own-vs-lease choices differ across airlines, so lease-inclusive leverage is required for a fair peer comparison"}
+      ],
+      "pass_points": 2
+    },
+    "hints": [
+      {"concept_id": "solvency_ratios", "text": "Would Delta's obligations disappear if you relabeled a financed plane as a rented one? Ratios should not change when only the label changes."}
+    ],
+    "explanation": "Leases are rent promises turned into balance-sheet numbers. The right-of-use asset is what Delta gets; the lease liability is what it owes, and the liability behaves exactly like debt. Adding the $6.2B of lease liabilities to debt raises D/E from 0.64x to 0.93x. Any leverage comparison that ignores leases quietly rewards companies that rent instead of borrow-and-buy — same economics, different optics."
+  },
+  {
+    "id": "l4_ri_msft_capex",
+    "mode": "forge",
+    "item_type": "ratio_interpret",
+    "level_id": "L4",
+    "ordinal": 100,
+    "concept_ids": ["trend_analysis", "common_size"],
+    "difficulty": 3,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Microsoft's operating cash flow grew 54% over three years, yet its free cash flow (CFO minus capex) fell every year. Explain what is happening and name two things an analyst should watch next.",
+      "context": "Microsoft, 10-K data ($M), fiscal years ended June 30:\nFY2024: CFO 118,548; capex 44,477; FCF 74,071; capex/revenue 18%\nFY2025: CFO 136,162; capex 64,551; FCF 71,611; capex/revenue 23%\nFY2026: CFO 182,935; capex 115,948; FCF 66,987; capex/revenue 35%\nProperty and equipment, net: 135,591 -> 204,966 -> 313,076\nPP&E / total assets: 26% -> 33% -> 41%",
+      "response_guidance": "3-5 sentences. Say what the divergence means, not just that it exists."
+    },
+    "answer_key": {
+      "model_answer": "The business is generating cash faster than ever — CFO rose from $119B to $183B — but Microsoft is plowing an accelerating share of it into AI/cloud data centers: capex nearly tripled to $116B (35% of revenue), so free cash flow fell even as operations boomed. The balance sheet shows the transformation: PP&E has gone from about a quarter to 41% of total assets in three years — a famously asset-light software company is becoming capital-intensive infrastructure. This is a deliberate investment bet, not distress; the analytical question is whether those dollars earn their keep. Watch: (1) whether revenue and operating income growth (especially cloud/AI) keep pace with the invested capital — i.e., returns on this capex; and (2) the coming depreciation wave — tens of billions of new annual D&A that will compress reported margins for years, plus whether capex eventually normalizes so FCF re-inflects. A third worthwhile check is how the spend is financed and whether useful-life assumptions on servers get stretched.",
+      "rubric": [
+        {"id": "mechanics", "points": 1, "description": "Identifies capex growth (44 -> 116B, to ~35% of revenue) as the wedge between rising CFO and falling FCF"},
+        {"id": "transformation", "points": 1, "description": "Reads the balance-sheet shift (PP&E from ~26% to ~41% of assets): asset-light software becoming capital-intensive infrastructure, a deliberate AI/cloud bet"},
+        {"id": "watch_items", "points": 2, "description": "Names two sensible next checks, e.g. return on the invested capital / cloud revenue growth vs capex, future depreciation pressure on margins, capex normalization and FCF recovery, financing, or useful-life assumptions (1 point each, max 2)"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "trend_analysis", "text": "When two cash flow lines diverge, find the single item driving the wedge — then decide if that item is investment or leakage."},
+      {"concept_id": "common_size", "text": "PP&E as a share of total assets shows how much the company's asset base is changing shape."}
+    ],
+    "explanation": "CFO up, FCF down means one thing: investment is outrunning cash generation. Here it is a visible, deliberate buildout — capex tripled to 35% of revenue and PP&E is now 41% of assets. The follow-ups that separate analysts from ratio-readers: do returns on that capital show up in revenue, and what happens to margins when the depreciation from $300B+ of equipment flows through the income statement?"
+  },
+  {
+    "id": "l4_rb_msft_roe",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L4",
+    "ordinal": 110,
+    "concept_ids": ["profitability_ratios", "dupont"],
+    "difficulty": 3,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute Microsoft's return on equity for fiscal 2025 (year ended June 30, 2025), using average total stockholders' equity, as a percentage.",
+      "context": "Microsoft, 10-K data ($M):\nNet income, FY2025: 101,832\nTotal stockholders' equity, June 30, 2024: 268,477\nTotal stockholders' equity, June 30, 2025: 343,479",
+      "unit": "%"
+    },
+    "answer_key": {"value": 33.28, "tolerance_abs": null, "tolerance_rel": 0.02},
+    "hints": [
+      {"concept_id": "profitability_ratios", "text": "Average equity = (opening + closing) / 2. Income is earned over the whole year, so measure it against the capital held over the whole year."}
+    ],
+    "explanation": "Average equity = (268,477 + 343,479) / 2 = 305,978, and 101,832 / 305,978 = 33.3%. Every dollar shareholders left in the business earned 33 cents this year. The DuPont lens makes it more impressive: Microsoft's leverage is modest (assets only ~1.8x equity), so this ROE comes almost entirely from a 36% net margin — compare JPMorgan, which needs 12x leverage to turn a 1.5% ROA into a 17% ROE. Same ratio, opposite engines."
+  },
+  {
+    "id": "l4_tr_cat_lifo",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L4",
+    "ordinal": 120,
+    "concept_ids": ["activity_ratios", "trend_analysis"],
+    "difficulty": 4,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Translate this inventory note for an investor: what is it saying in plain English, and how does it change the ratios you would compute before comparing Caterpillar to a FIFO-based competitor?",
+      "context": "Caterpillar, fiscal 2025 10-K, inventories note (real figures): about 70% of inventories are valued at LIFO cost. If FIFO had been used, inventories would have been $4,305M higher at December 31, 2025 ($3,864M higher at December 31, 2024).\nReference lines ($M): Inventories (as reported): 18,135; Cost of goods sold: 44,752; Total equity: 21,318",
+      "response_guidance": "3-5 sentences: the plain-English meaning, the direction of the distortions, and at least one concrete ratio adjustment."
+    },
+    "answer_key": {
+      "model_answer": "Caterpillar charges its newest (most expensive) costs to the income statement first and leaves decades-old costs sitting in inventory, so the balance-sheet inventory of $18.1B is understated by $4.3B — about 24% — versus current (FIFO) cost; the $4.3B is the LIFO reserve. Because the reserve grew $441M during 2025, this year's COGS was about $441M higher (and pretax income that much lower) than a FIFO company would have reported for identical operations — LIFO is conservative in inflationary times. Before comparing to a FIFO peer, adjust: add the reserve to inventory and equity, and cut COGS by the reserve's increase. Concretely, reported inventory turnover of 44,752/18,135 = 2.5x falls to (44,752−441)/(18,135+4,305) = 2.0x on a FIFO basis — Caterpillar's inventory is actually slower than it looks, and its current ratio and equity are stronger than they look. The growing reserve is also a signal in itself: input costs are still rising.",
+      "rubric": [
+        {"id": "mechanics", "points": 1, "description": "Explains LIFO/the reserve in plain English: recent costs expensed first, so reported inventory is below current (FIFO) cost by the reserve ($4.3B, ~24%)"},
+        {"id": "income_effect", "points": 1, "description": "Notes the reserve's increase (~$441M) means higher COGS / lower pretax income this year than under FIFO (conservative when costs rise)"},
+        {"id": "adjustment", "points": 1, "description": "Gives a concrete comparability adjustment: add reserve to inventory (and equity), adjust COGS by the change; e.g. turns fall from ~2.5x to ~2.0x, current ratio rises"},
+        {"id": "so_what", "points": 1, "description": "Investor implication: raw ratio comparisons vs FIFO peers are distorted, and/or the growing reserve signals continuing input-cost inflation"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "activity_ratios", "text": "If the inventory number in the denominator is carried at 1990s costs, what happens to the turnover ratio computed from it?"}
+    ],
+    "explanation": "The LIFO reserve is the gap between what inventory cost long ago (what the balance sheet shows) and what it would cost now. Caterpillar's $4.3B reserve means inventory, equity, and the current ratio are all understated, while COGS is overstated by the reserve's annual growth. The practical rule: never compare a LIFO company's inventory ratios to a FIFO company's without adding the reserve back — here it moves inventory turns by half a turn, easily the difference between 'efficient' and 'average' in a peer table."
+  },
+  {
+    "id": "l4_ri_hd_dso",
+    "mode": "forge",
+    "item_type": "ratio_interpret",
+    "level_id": "L4",
+    "ordinal": 130,
+    "concept_ids": ["activity_ratios", "trend_analysis"],
+    "difficulty": 4,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Home Depot's days sales outstanding rose from 8.0 to 11.2 to 12.4 days over fiscal 2023-2025 — up more than 50% while sales grew only ~4% a year. Rising DSO is a classic revenue-quality red flag. Is it one here? Use the other lines to make the case, and say what you would check to confirm.",
+      "context": "The Home Depot, 10-K data ($M):\nRevenue: 152,669 (FY2023) / 159,514 (FY2024) / 164,683 (FY2025)\nReceivables: 3,328 -> 4,903 -> 5,597; DSO: 8.0 -> 11.2 -> 12.4 days\nGoodwill: 8,455 -> 19,475 -> 22,344\nCash paid for acquisitions, net: 1,514 / 17,644 / 5,410\nGross margin: 33.4% / 33.4% / 33.3% (stable)\nCash from operations: 21,172 / 19,810 / 16,325",
+      "response_guidance": "3-5 sentences. Commit to an interpretation and defend it with the numbers."
+    },
+    "answer_key": {
+      "model_answer": "Probably not a red flag — the receivables growth tracks an acquisition-driven change in who the customer is, not loosening credit to juice sales. Home Depot spent $17.6B on acquisitions in fiscal 2024 and $5.4B more in fiscal 2025 (goodwill nearly tripled, $8.5B to $22.3B): it bought professional-distribution businesses (SRS Distribution, then GMS) that sell to contractors on trade credit, unlike DIY shoppers who pay at the register. A mix shift toward credit-terms customers mechanically raises consolidated DSO even if every invoice is collected on time; stable gross margins support the mix story over a desperation-discounting story. To confirm, check the receivables disclosures and MD&A for the acquired businesses' contribution (does organic DSO look flat?), the allowance for doubtful accounts as a share of receivables, and whether DSO stabilizes once acquisitions anniversary. The falling CFO deserves its own look — some is the working-capital build from these credit sales, which is a real cash cost of the strategy even if collection risk is fine.",
+      "rubric": [
+        {"id": "diagnosis", "points": 2, "description": "Attributes the DSO rise to acquisition-driven mix shift toward pro/trade-credit customers, citing the goodwill jump and acquisition outflows as evidence (2 pts for the link; 1 pt if red flag is rejected on evidence without the mechanism)"},
+        {"id": "mechanism", "points": 1, "description": "Explains the mechanic: contractors buy on credit terms while DIY customers pay immediately, so consolidated DSO rises without any collection deterioration"},
+        {"id": "verification", "points": 1, "description": "Proposes a concrete check: organic vs acquired receivables/DSO in disclosures, allowance for doubtful accounts trend, DSO stabilization post-anniversary, or working-capital impact on CFO"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "activity_ratios", "text": "Before calling a ratio a red flag, ask whether the business the ratio describes is still the same business."},
+      {"concept_id": "trend_analysis", "text": "What else jumped in the same two years? The balance sheet usually names the culprit."}
+    ],
+    "explanation": "DSO up 50%+ with modest sales growth is the textbook channel-stuffing signature — which is exactly why this case matters: here the goodwill and acquisition lines show Home Depot bought credit-terms distribution businesses, so the 'deterioration' is a mix shift. The discipline: a moving ratio is a question, not a verdict. The same number that means fake revenue at one company means a strategy change at another, and only the rest of the filing tells you which."
+  },
+  {
+    "id": "l4_lu_margin_twins",
+    "mode": "lineup",
+    "item_type": "lineup_match",
+    "level_id": "L4",
+    "ordinal": 140,
+    "concept_ids": ["industry_patterns", "activity_ratios"],
+    "difficulty": 4,
+    "grader": "mapping",
+    "payload": {
+      "prompt": "Four real companies, anonymized, most recent fiscal year. Two of them report nearly identical gross margins — the other lines have to break the tie. Match each to its industry.",
+      "left": [
+        {"key": "A", "label": "Company A", "stats": [
+          {"name": "Gross margin", "value": "33.8%"},
+          {"name": "Net margin", "value": "13.1%"},
+          {"name": "Inventory turnover", "value": "2.5x (≈148 days held)"},
+          {"name": "Days sales outstanding", "value": "59 days"},
+          {"name": "PP&E / total assets", "value": "15%"},
+          {"name": "Current deferred revenue / revenue", "value": "4.9% and rising"}
+        ]},
+        {"key": "B", "label": "Company B", "stats": [
+          {"name": "Gross margin", "value": "67.9%"},
+          {"name": "Net margin", "value": "40.3%"},
+          {"name": "Inventory / total assets", "value": "0.2%"},
+          {"name": "Days sales outstanding", "value": "89 days"},
+          {"name": "PP&E / total assets", "value": "41%"},
+          {"name": "Current deferred revenue / revenue", "value": "22%"}
+        ]},
+        {"key": "C", "label": "Company C", "stats": [
+          {"name": "Gross margin", "value": "33.3%"},
+          {"name": "Net margin", "value": "8.6%"},
+          {"name": "Inventory turnover", "value": "4.3x (≈86 days held)"},
+          {"name": "Days sales outstanding", "value": "12 days"},
+          {"name": "PP&E / total assets", "value": "27%"},
+          {"name": "Goodwill / total assets", "value": "21%"}
+        ]},
+        {"key": "D", "label": "Company D", "stats": [
+          {"name": "Gross margin", "value": "23.3%"},
+          {"name": "Net margin", "value": "0.7%"},
+          {"name": "Inventory turnover", "value": "16.4x (≈22 days held)"},
+          {"name": "Days sales outstanding", "value": "5 days"},
+          {"name": "PP&E (incl. finance leases) / total assets", "value": "49%"},
+          {"name": "Goodwill / total assets", "value": "5%"}
+        ]}
+      ],
+      "right": ["Grocery chain", "Home-improvement retailer", "Cloud software platform", "Heavy equipment manufacturer"]
+    },
+    "answer_key": {
+      "map": {"A": 3, "B": 2, "C": 1, "D": 0},
+      "tells": {
+        "A": "Same ~34% gross margin as Company C, but everything else says factory, not store: inventory sits five months (machines take time to build and stage through dealers), customers take 59 days to pay (dealer credit and a captive finance arm), PP&E is light because dealers hold the distribution assets, and customers prepay on long-lead equipment orders (rising deferred revenue). Heavy equipment manufacturer.",
+        "B": "A 68% gross margin with 40% net margin and essentially no inventory can only be software; prepaying subscribers (deferred revenue at 22% of revenue) confirm it. The twist worth noticing: PP&E at 41% of assets — the data-center buildout has made this software company more asset-heavy than the retailers here.",
+        "C": "The other 33% gross margin — but inventory turns in ~86 days (big-ticket goods, not milk), customers pay in 12 days (mostly card at the register, with a growing contractor trade-credit business), and goodwill at 21% of assets marks recent large acquisitions. Home-improvement retailer.",
+        "D": "The 23% gross margin, 0.7% net margin, 22-day shelf life, and 5-day collections form the grocery signature: razor-thin economics survived only by velocity, with half the balance sheet in stores and distribution."
+      }
+    },
+    "hints": [
+      {"concept_id": "activity_ratios", "text": "When margins tie, clocks break the tie: how long inventory sits and how long customers take to pay."},
+      {"concept_id": "industry_patterns", "text": "Who holds the assets — the company, its dealers, or its landlord — shapes PP&E share as much as the industry does."}
+    ],
+    "explanation": "A is Caterpillar (FY2025), B is Microsoft (FY2026), C is Home Depot (FY2025), D is Kroger (FY2025). The lesson is the tie-break: Caterpillar and Home Depot both gross ~33-34%, so margin alone cannot separate a manufacturer from a retailer — but the working-capital clocks can. 148-day inventory and 59-day receivables mean heavy manufacturing sold through dealers; 86-day inventory collected in 12 days means big-box retail. Gestalt reading is exactly this: margins first, then the clocks."
+  },
+  {
+    "id": "l4_ri_kr_coverage",
+    "mode": "forge",
+    "item_type": "ratio_interpret",
+    "level_id": "L4",
+    "ordinal": 150,
+    "concept_ids": ["coverage_ratios", "trend_analysis"],
+    "difficulty": 4,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Kroger's interest coverage went from 7.0x to 8.6x to 3.0x across fiscal 2023-2025. A screen would flag that as a solvency deterioration. Decompose what actually happened — both lines of the ratio moved — and give your view on whether the 3.0x is the company's new reality.",
+      "context": "The Kroger Co., 10-K data ($M):\nOperating profit: 3,096 (FY2023) / 3,849 (FY2024) / 1,890 (FY2025)\nNet interest expense: 441 / 450 / 639\nFY2025 operating expenses include restructuring and asset impairment charges of 2,684.\nFY2024 financing: issued 10,502 of long-term debt (merger financing; the merger was blocked in court and terminated); repaid 4,883 the same year. Long-term debt: 10,162 -> 15,805 -> 14,509.\nAlso in FY2024-25: 4,156 and 2,699 of share buybacks; equity fell from 11,601 to 5,936.",
+      "response_guidance": "4-6 sentences. Separate the one-time from the structural, and quantify where you can."
+    },
+    "answer_key": {
+      "model_answer": "Both lines moved against the ratio at once, but for different reasons. The numerator collapsed because fiscal 2025 operating profit absorbed $2,684M of restructuring and impairment charges — mostly one-time; excluding them, operating profit would have been roughly $4.6B and coverage about 7.2x ((1,890+2,684)/639), right in line with history. The denominator's rise is structural, though: Kroger raised $10.5B of bonds in fiscal 2024 to fund the Albertsons merger, the deal was blocked, and while some debt was repaid, long-term debt settled ~$4.3B above the fiscal-2023 level — and the company pivoted the balance-sheet capacity into ~$6.9B of buybacks, shrinking equity by half. So net interest expense stepping up from ~$450M to ~$639M is likely persistent. Verdict: 3.0x overstates the deterioration (the charge is the driver), but the true run-rate is now lower than the old 7-8.6x because the interest bill is permanently higher on a thinner equity base. To confirm: check whether the restructuring charges recur next year, the debt maturity/repayment schedule, and management's leverage target after the buyback program.",
+      "rubric": [
+        {"id": "numerator", "points": 1, "description": "Attributes the operating-profit drop primarily to the $2,684M restructuring/impairment charges and treats them as largely one-time"},
+        {"id": "denominator", "points": 1, "description": "Attributes higher interest expense to the FY2024 $10.5B bond issuance for the blocked Albertsons merger, with debt remaining elevated"},
+        {"id": "quantify", "points": 1, "description": "Quantifies an adjusted view, e.g. ex-charge coverage ≈ (1,890+2,684)/639 ≈ 7x, or notes the interest step-up ~450 -> ~639 is persistent"},
+        {"id": "verdict_check", "points": 1, "description": "Gives a defensible verdict (headline overstates deterioration but run-rate coverage is structurally lower) and/or names what to check next: charge recurrence, debt schedule, leverage policy post-buybacks"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "coverage_ratios", "text": "Decompose: how much of the fall came from the profit line, and how much from the interest line? They have different half-lives."},
+      {"concept_id": "trend_analysis", "text": "One of the two moves reverses if a charge does not repeat. The other one keeps billing every quarter."}
+    ],
+    "explanation": "Coverage fell from 8.6x to 3.0x through a pincer: a $2.7B impairment/restructuring charge crushed the numerator (one-time), while interest from the leftover merger-financing debt raised the denominator (recurring). Ex-charge coverage is ~7x — but pre-2024 coverage is not coming back either, because the debt stayed and equity was bought in. This is why interpretation must always split a ratio into its lines: the screen sees one scary number; the analyst sees a temporary insult layered on a permanent step-change."
+  }
+]

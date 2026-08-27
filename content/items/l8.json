@@ -1,0 +1,399 @@
+[
+  {
+    "id": "l8_enron_note_hunt_010",
+    "mode": "forensics",
+    "item_type": "note_hunt",
+    "level_id": "L8",
+    "ordinal": 10,
+    "concept_ids": ["note_navigation", "questioning_management"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "The Enron FY2000 10-K discloses that the company does billion-dollar deals with partnerships run by one of its own senior officers. Which disclosure establishes that — and is therefore the first thing in this filing you should read?",
+      "context": "\"In 2000 and 1999, Enron entered into transactions with limited partnerships (the Related Party) whose general partner's managing member is a senior officer of Enron. The limited partners of the Related Party are unrelated to Enron. Management believes that the terms of the transactions with the Related Party were reasonable compared to those which could have been negotiated with unrelated third parties.\" — Enron FY2000 10-K, accession 0001024401-01-500010, Note 16.",
+      "choices": [
+        "Note 16, Related Party Transactions",
+        "Note 3, Price Risk Management Activities and Financial Instruments",
+        "Note 14, Litigation and Other Contingencies",
+        "Item 7, Management's Discussion and Analysis of Financial Condition and Results of Operations"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Note 3 quantifies the trading book — notional amounts, fair values, credit risk. It never mentions partnerships run by an Enron officer; those live in the related-party note.",
+        "Note 14 covers lawsuits and contingencies. In April 2001 nobody was suing over these partnerships yet; the only place they appear is the related-party note.",
+        "Enron's MD&A discusses segments and risk management at length and never walks through the officer-run partnerships. Dealings with insiders are disclosed in the notes, not the narrative."
+      ]
+    },
+    "hints": [
+      {"concept_id": "note_navigation", "text": "Transactions between a company and its own officers, directors, or their entities have a dedicated note. Find the note with 'related' in the title."},
+      {"concept_id": "questioning_management", "text": "If you were going to ask management one uncomfortable question about this filing, the raw material would come from the note that admits who is on the other side of the table."}
+    ],
+    "explanation": "Note 16 runs about three paragraphs, and everything was in it in April 2001: a senior officer of Enron is the managing member of the general partner of limited partnerships that buy Enron's assets, write derivatives against its merchant book, and hold its stock. The filing never names him; the bankruptcy examiner's reports and the SEC's enforcement actions later established that the officer was CFO Andrew Fastow and the partnerships were LJM. You did not need the name — you needed to read the note and believe it. The investor lesson: the related-party note is where conflicts of interest are disclosed in the driest language a lawyer can draft, and dry language is not the same as small stakes."
+  },
+  {
+    "id": "l8_enron_note_hunt_020",
+    "mode": "forensics",
+    "item_type": "note_hunt",
+    "level_id": "L8",
+    "ordinal": 20,
+    "concept_ids": ["note_navigation", "revenue_recognition"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Enron's earnings depend on marking long-dated energy contracts to management's estimate of fair value, with the unrealized swings flowing through revenue. Where in the FY2000 10-K is that recognition policy stated?",
+      "context": "\"Under the mark-to-market method of accounting, forwards, swaps, options, energy transportation contracts utilized for trading activities and other instruments with third parties are reflected at fair value and are shown as \"Assets and Liabilities from Price Risk Management Activities\" in the Consolidated Balance Sheet.\" And later: \"Unrealized gains and losses from newly originated contracts, contract restructurings and the impact of price movements are recognized as \"Other Revenues.\"\" — Enron FY2000 10-K, accession 0001024401-01-500010.",
+      "choices": [
+        "Note 3, Price Risk Management Activities and Financial Instruments",
+        "Note 1, Summary of Significant Accounting Policies — 'Accounting for Price Risk Management'",
+        "Note 19, Quarterly Financial Data",
+        "Note 4, Merchant Activities"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 1,
+      "why_wrong": [
+        "Close, and you will read Note 3 next — but Note 3 quantifies the trading book (notionals, fair values, maturities). The recognition policy itself, including unrealized gains booked as 'Other Revenues,' is stated in the accounting-policies note.",
+        null,
+        "Note 19 shows the quarterly results the policy produced, not the policy. By the time a number reaches the quarterly table, the accounting choices have already been made.",
+        "Note 4 covers the merchant investment portfolio — a related but separate fair-value story. The mark-to-market revenue policy for trading is an accounting policy, and accounting policies live in Note 1."
+      ]
+    },
+    "hints": [
+      {"concept_id": "note_navigation", "text": "How a company recognizes revenue is a policy. Policies are collected in one note, almost always the first."},
+      {"concept_id": "revenue_recognition", "text": "You are looking for the sentence that says where unrealized gains go. That sentence defines what this company's 'revenue' even means."}
+    ],
+    "explanation": "Two sentences in Note 1 told you that Enron's revenue included unrealized changes in the value of contracts running out as far as two decades, priced at what the note elsewhere calls 'management's best estimate.' That is legal, it was disclosed, and it means the income statement is substantially an estimate about the future rather than a record of the past. The investor lesson: when the accounting-policies note says revenue comes from marking estimates, read earnings as an opinion — and go find out whose opinion, and what happens when it changes."
+  },
+  {
+    "id": "l8_enron_note_hunt_030",
+    "mode": "forensics",
+    "item_type": "note_hunt",
+    "level_id": "L8",
+    "ordinal": 30,
+    "concept_ids": ["note_navigation", "accruals_quality"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "You want to know how big Enron's trading book actually is — the fair values behind the price-risk-management lines, the notional volumes, and how far out the contracts run. Which disclosure answers that?",
+      "context": "The Consolidated Balance Sheet shows only two summary lines: assets from price risk management activities of $12,018 million (current) and $8,988 million (non-current) at December 31, 2000. Note 3 discloses the portfolio behind them: fair value of price-risk-management instruments as of 12/31/00 of $21,458 million (assets) against $19,918 million (liabilities), with maximum contract terms of up to 23 years in natural gas, 24 in electricity, and 29 in interest rate instruments. — Enron FY2000 10-K, accession 0001024401-01-500010.",
+      "choices": [
+        "Note 1, Summary of Significant Accounting Policies",
+        "The Consolidated Balance Sheet, read on its own",
+        "Note 3, Price Risk Management Activities and Financial Instruments",
+        "Note 20, Geographic and Business Segment Information"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 2,
+      "why_wrong": [
+        "Note 1 tells you the method — mark-to-market, unrealized gains in revenue. It gives you no amounts, volumes, or maturities. Policy without scale is half a fact.",
+        "The balance sheet compresses a $21 billion portfolio into two lines with no composition, no notional volumes, and no maturities. The face of the statements is a table of contents, not the book.",
+        null,
+        "Note 20 allocates revenues and income before interest and taxes across segments. It tells you which business made the money, not what the trading portfolio contains or how long its bets run."
+      ]
+    },
+    "hints": [
+      {"concept_id": "note_navigation", "text": "When a balance-sheet line looks large and vague, there is a note whose title repeats the line's name. Start there."},
+      {"concept_id": "accruals_quality", "text": "The question behind the question: how much of this balance sheet is things, and how much is marks on contracts? The note with the fair-value table answers it."}
+    ],
+    "explanation": "Note 3 is where the balance-sheet line becomes a portfolio: $21.5 billion of fair-value assets against $19.9 billion of liabilities, contracts running out 20 years and more, all valued — per Note 1 — at management's best estimate. Contracts that long have no quoted market; the model is the price. The investor lesson: whenever earnings and assets rest on marks, find the note that discloses the size and tenor of the book, because that is where you learn how much of the company is an estimate."
+  },
+  {
+    "id": "l8_enron_forensic_040",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L8",
+    "ordinal": 40,
+    "concept_ids": ["red_flag_synthesis", "accruals_quality"],
+    "difficulty": 4,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Using the balance-sheet figures in the context, compute assets from price risk management activities (current plus non-current) as a percent of Enron's total assets at December 31, 2000.",
+      "context": "From the Consolidated Balance Sheet, Enron FY2000 10-K, accession 0001024401-01-500010 (in millions): assets from price risk management activities — current $12,018, non-current $8,988. Total assets $65,503. One year earlier: $2,205 current and $2,929 non-current, against total assets of $33,381.",
+      "unit": "% of total assets"
+    },
+    "answer_key": {
+      "value": 32.1,
+      "tolerance_abs": 0.5,
+      "tolerance_rel": null
+    },
+    "hints": [
+      {"concept_id": "red_flag_synthesis", "text": "Add the current and non-current pieces before dividing. Then do the same for 1999 and look at the direction."},
+      {"concept_id": "accruals_quality", "text": "These assets are not plants or receivables — they are the marked value of contracts. Ask what fraction of the balance sheet is a mark."}
+    ],
+    "explanation": "(12,018 + 8,988) / 65,503 is about 32 percent. A year earlier the same calculation gave about 15 percent. So in one year, contracts valued at management's estimate went from a seventh of the balance sheet to a third of it, while total assets themselves doubled. Nothing in that arithmetic proves fraud; it proves concentration — in the least verifiable asset the company owns. The investor lesson: before you trust a balance sheet, compute what fraction of it is marks rather than things, and watch the trend, because a balance sheet that is one-third estimate moves when the estimates do."
+  },
+  {
+    "id": "l8_enron_forensic_050",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L8",
+    "ordinal": 50,
+    "concept_ids": ["red_flag_synthesis", "revenue_recognition"],
+    "difficulty": 4,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Enron's revenue roughly two-and-a-half-timed in a single year. Compute net income as a percent of total revenues for 2000.",
+      "context": "From the Consolidated Income Statement, Enron FY2000 10-K, accession 0001024401-01-500010 (in millions): total revenues — 2000: $100,789; 1999: $40,112. Net income — 2000: $979; 1999: $893. Cost of gas, electricity, metals and other products — 2000: $94,517; 1999: $34,761.",
+      "unit": "% of revenues"
+    },
+    "answer_key": {
+      "value": 0.97,
+      "tolerance_abs": 0.05,
+      "tolerance_rel": null
+    },
+    "hints": [
+      {"concept_id": "red_flag_synthesis", "text": "One division: net income over total revenues. Then compare it with 1999's margin and with the growth rate of the top line."},
+      {"concept_id": "revenue_recognition", "text": "When revenue grows 151% and profit barely moves, the question is not how well the business did — it is what this company counts as revenue."}
+    ],
+    "explanation": "979 / 100,789 is just under one percent — down from 2.2 percent a year earlier, in the same year revenue grew 151 percent. A hundred billion of revenue producing less than a billion of profit is a margin thinner than a grocer's, from a company priced like a technology stock. The reason sits one line down: cost of products was $94.5 billion, about 94 cents of every revenue dollar, because trading volumes ran through the top line at gross value. The investor lesson: revenue growth with a collapsing margin means the top line is measuring flow, not business won — always ask what a dollar of this company's revenue actually is before you pay for its growth."
+  },
+  {
+    "id": "l8_enron_forensic_060",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L8",
+    "ordinal": 60,
+    "concept_ids": ["revenue_recognition", "red_flag_synthesis"],
+    "difficulty": 5,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Enron's revenue went from $40.1 billion in 1999 to $100.8 billion in 2000 while net income went from $893 million to $979 million. Which reading of that pattern best fits the filing?",
+      "context": "From the Consolidated Income Statement, Enron FY2000 10-K, accession 0001024401-01-500010 (in millions): revenues — natural gas and other products $50,500 (1999: $19,536); electricity $33,823 (1999: $15,238); metals $9,234 (1999: $0); total $100,789 (1999: $40,112). Cost of gas, electricity, metals and other products $94,517 (1999: $34,761). Net property, plant and equipment $11,743 (1999: $10,681). Wholesale segment total revenues were $94,906 of the $100,789.",
+      "choices": [
+        "Enron roughly doubled the physical output of its pipelines and power plants; margins are temporarily compressed by commissioning and expansion costs",
+        "Revenue is dominated by wholesale trading and merchant activity booked at gross value, so the top line measures flow through the trading book — volume times commodity price — not sales that drop profit to the bottom line",
+        "The jump is mostly the metals business acquired during 2000 being consolidated into the totals",
+        "Higher commodity prices passed straight through to customers under regulated cost-based tariffs, lifting revenue and cost of gas in lockstep at the pipeline businesses"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 1,
+      "why_wrong": [
+        "Net PP&E grew about $1.1 billion on a $65 billion balance sheet — no doubling of physical plant. The growth sits in the Wholesale segment's trading revenues, not in steel and turbines.",
+        null,
+        "The metals line added $9.2 billion of a roughly $60 billion revenue increase. It cannot carry the pattern; gas and power trading account for most of the jump.",
+        "The regulated transportation businesses were a few billion of revenue and roughly flat year over year. The segment table puts $94.9 billion of the $100.8 billion in Wholesale Services — the trading operation, not the regulated pipes."
+      ]
+    },
+    "hints": [
+      {"concept_id": "revenue_recognition", "text": "Gross versus net: a trader that books the full value of every contract it touches can grow revenue almost without limit. Check whether cost of revenue grew in lockstep."},
+      {"concept_id": "red_flag_synthesis", "text": "Test each story against the other statements — PP&E for the physical story, the segment table for where the revenue actually sits."}
+    ],
+    "explanation": "Cost of products at 94 percent of revenue, PP&E barely moving, and $94.9 billion of the total sitting in Wholesale Services: this is a trading top line booked gross, where revenue rises with volumes and commodity prices whether or not anyone makes money. Under the gross method — permitted for energy traders at the time — Enron's 'revenue' made it look like the seventh-largest company in America. The investor lesson: gross-versus-net revenue recognition can manufacture a growth story out of pass-through dollars, so when a top line explodes, check cost of revenue and the segment table before you call it growth."
+  },
+  {
+    "id": "l8_enron_rubric_070",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L8",
+    "ordinal": 70,
+    "concept_ids": ["questioning_management", "red_flag_synthesis"],
+    "difficulty": 5,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Read the excerpts. In plain English: what is Enron telling you here, and what is the one question you would have put to management in the spring of 2001?",
+      "context": "\"In 2000 and 1999, Enron entered into transactions with limited partnerships (the Related Party) whose general partner's managing member is a senior officer of Enron... Management believes that the terms of the transactions with the Related Party were reasonable compared to those which could have been negotiated with unrelated third parties.\" ... \"In 2000, Enron entered into derivative transactions with the Entities with a combined notional amount of approximately $2.1 billion to hedge certain merchant investments and other assets... Enron recognized revenues of approximately $500 million related to the subsequent change in the market value of these derivatives, which offset market value changes of certain merchant investments and price risk management activities.\" — Enron FY2000 10-K, accession 0001024401-01-500010, Note 16. Among the assets Enron contributed to the Entities: restricted Enron shares and rights to Enron shares. Enron's net income for 2000 was $979 million.",
+      "response_guidance": "3-5 sentences: first translate the disclosure into plain English, then state the specific question you would ask management."
+    },
+    "answer_key": {
+      "model_answer": "Enron is disclosing that its own senior officer — the CFO, as the bankruptcy examiner and SEC actions later established — runs outside partnerships that transact with Enron in the billions: buying its assets and writing the derivatives that 'hedge' its merchant investments. Enron booked roughly $500 million of revenue from marking those derivatives, about half its $979 million of net income, and the entities' capacity to pay rests substantially on Enron's own stock — so the losses on merchant investments were offset by gains owed to Enron by, in effect, itself. The 'management believes the terms were reasonable' sentence is an admission that no market tested these prices. My question for management: why does hedging Enron's merchant book require a partnership run by Enron's CFO as counterparty rather than an independent dealer — and if these entities are funded with Enron shares, what happens to the hedges, and to the $500 million of recognized gains, if Enron's stock price falls?",
+      "rubric": [
+        {"id": "conflict", "points": 2, "description": "Identifies the conflict of interest: a senior officer of Enron stands on both sides of the transactions (runs the counterparty partnerships), so the deals are not arm's length."},
+        {"id": "earnings_quality", "points": 2, "description": "Draws the earnings-quality implication: roughly $500 million of recognized revenue — about half of net income — came from marking derivatives against these related entities, and/or notes that entities capitalized with Enron's own stock mean the risk never truly left the company."},
+        {"id": "plain_english", "points": 1, "description": "Actually translates the disclosure into plain, non-jargon English rather than paraphrasing the note's language."},
+        {"id": "question", "points": 2, "description": "Poses a specific, evidence-anchored question management cannot deflect — e.g. why an officer-run counterparty instead of an independent one, who negotiated for Enron, or what happens to the hedges and gains if Enron's stock falls."}
+      ],
+      "pass_points": 4
+    },
+    "hints": [
+      {"concept_id": "questioning_management", "text": "A good question names the evidence and forecloses the easy exits. 'Tell me about LJM' can be deflected; 'why is your CFO the counterparty to your hedges' cannot."},
+      {"concept_id": "red_flag_synthesis", "text": "Put the two excerpts together: who runs the counterparty, what the counterparty is funded with, and how much of this year's income came from marking positions against it."}
+    ],
+    "explanation": "This note was public in April 2001, seven months before the collapse. What it describes — an officer-run counterparty, capitalized substantially with Enron's own shares, generating half a billion of marked gains that offset merchant losses — is a company hedging with itself and booking the result as income. The bankruptcy examiner's reports and the SEC's actions against Enron's officers later confirmed the mechanics: the partnerships were LJM, the officer was the CFO, and when the stock fell the hedges failed exactly as the structure implied they would. The investor lesson: a hedge is only as good as the counterparty's independence and solvency, and when the related-party note tells you both are compromised, the earnings the hedge protects are compromised too."
+  },
+  {
+    "id": "l8_wcom_note_hunt_080",
+    "mode": "forensics",
+    "item_type": "note_hunt",
+    "level_id": "L8",
+    "ordinal": 80,
+    "concept_ids": ["note_navigation", "capitalization_abuse"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "WorldCom builds much of its own network. Which disclosure in the FY2001 10-K states what construction-related costs it capitalizes into property and equipment?",
+      "context": "\"We construct certain of our own transmission systems and related facilities. Internal costs directly related to the construction of such facilities, including interest and salaries of certain employees, are capitalized. Such internal costs were $625 million ($339 million in interest), $842 million ($495 million in interest) and $858 million ($498 million in interest) in 1999, 2000 and 2001, respectively.\" — WorldCom FY2001 Form 10-K405, accession 0001005477-02-001226.",
+      "choices": [
+        "Note 8, Leases and Other Commitments",
+        "Item 7, MD&A — Results of Operations, 'Line Costs'",
+        "Note 13, Supplemental Disclosure of Cash Flow Information",
+        "Note 1, The Company and Significant Accounting Policies — 'Property and Equipment'"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 3,
+      "why_wrong": [
+        "The leases note covers rental and purchase commitments on property the company does not own outright. The policy for what gets capitalized into owned plant is an accounting policy, stated in Note 1.",
+        "The MD&A line-cost discussion describes access and transport charges — costs that are supposed to be expensed. It is precisely where the improperly capitalized amounts did not appear.",
+        "The supplemental cash flow note reconciles non-cash items and discloses interest and taxes paid. It reports flows; it does not set the capitalize-versus-expense policy.",
+        null
+      ]
+    },
+    "hints": [
+      {"concept_id": "note_navigation", "text": "Capitalize-versus-expense is a policy choice, and policy choices are stated in the significant-accounting-policies note, usually under a heading matching the balance-sheet line."},
+      {"concept_id": "capitalization_abuse", "text": "Before you can ask whether costs were improperly parked on the balance sheet, find the disclosure that says which costs the company is allowed to park there."}
+    ],
+    "explanation": "The policy in Note 1 is unremarkable on its face — GAAP genuinely allows capitalizing costs of constructing your own assets, including interest and certain salaries. What GAAP does not allow, as WorldCom admitted in June 2002 and the SEC charged in SEC v. WorldCom, is what happened outside this note: $3.055 billion of 2001 line costs — fees owed to other carriers for network access, ordinary operating expenses — transferred into these capital accounts. The investor lesson: the capitalization policy note tells you where a company has permission to park costs; that is the account to watch, because a fraud rarely invents a new hiding place when a disclosed one exists."
+  },
+  {
+    "id": "l8_wcom_note_hunt_090",
+    "mode": "forensics",
+    "item_type": "note_hunt",
+    "level_id": "L8",
+    "ordinal": 90,
+    "concept_ids": ["note_navigation", "red_flag_synthesis"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "You want management's own explanation of how line costs moved against revenues — the expense ratio every telecom analyst watches first. Where in the FY2001 10-K do you find it?",
+      "context": "\"Line costs as a percentage of revenues for 2001 increased to 41.9% as compared to 39.6% for 2000.\" The accompanying common-size table shows line costs at 41.0% of revenues in 1999, 39.6% in 2000, and 41.9% in 2001. — WorldCom FY2001 Form 10-K405, accession 0001005477-02-001226.",
+      "choices": [
+        "Item 7, MD&A — Results of Operations, 'Line Costs'",
+        "The Consolidated Statements of Operations",
+        "Note 14, Segment and Geographic Information",
+        "Note 15, Unaudited Quarterly Financial Data"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "The income statement gives you the raw numerator and denominator — $14,739 million against $35,179 million — but no ratio, no trend, and no reasons. The discussion lives in MD&A.",
+        "The segment note splits revenues and operating results by business, but it does not narrate the line-cost ratio or explain why it moved.",
+        "The quarterly table shows the pattern by quarter with no discussion. Useful for timing, silent on causes."
+      ]
+    },
+    "hints": [
+      {"concept_id": "note_navigation", "text": "Ratios and the reasons they moved are management's narrative territory: Results of Operations in Item 7."},
+      {"concept_id": "red_flag_synthesis", "text": "Read the explanation, then ask what it does not say. Pricing pressure, currency, traffic mix — is anything missing from the list?"}
+    ],
+    "explanation": "MD&A is where management narrates the ratio: pricing pressure, currency effects, traffic moving on-net. Fluent, plausible, and — per the SEC's complaint in SEC v. WorldCom and the company's own June 2002 admission — beside the point, because the ratio was being manufactured. Line costs were moved into capital accounts precisely so this percentage would stay near 42 while the underlying business deteriorated. The investor lesson: MD&A explains the ratio management wants you to see; your job is to recompute it from the raw statements and then test whether the level, not just the change, is plausible against the industry."
+  },
+  {
+    "id": "l8_wcom_forensic_100",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L8",
+    "ordinal": 100,
+    "concept_ids": ["capitalization_abuse", "red_flag_synthesis"],
+    "difficulty": 4,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute line costs as a percent of revenues for 2001, exactly as WorldCom filed it.",
+      "context": "From the Consolidated Statements of Operations, WorldCom FY2001 Form 10-K405, accession 0001005477-02-001226 (in millions): revenues — 2001: $35,179; 2000: $39,090; 1999: $35,908. Line costs — 2001: $14,739; 2000: $15,462; 1999: $14,739.",
+      "unit": "% of revenues"
+    },
+    "answer_key": {
+      "value": 41.9,
+      "tolerance_abs": 0.2,
+      "tolerance_rel": null
+    },
+    "hints": [
+      {"concept_id": "capitalization_abuse", "text": "One division: line costs over revenues, both as filed. Then look at the three-year path of the ratio."},
+      {"concept_id": "red_flag_synthesis", "text": "A ratio this steady across a brutal telecom downturn is itself a data point. Steadiness in the number everyone watches is worth a second look."}
+    ],
+    "explanation": "14,739 / 35,179 gives 41.9 percent — the same figure the MD&A reports, so the filing is internally consistent. Now look at the path: 41.0, 39.6, 41.9 across three years in which long-distance pricing collapsed, capacity glutted, and revenue itself fell $3.9 billion. As the SEC's complaint later detailed, that steadiness was the objective: transfers out of line costs were sized to hold the ratio near 42 percent. The investor lesson: recompute the headline ratio yourself, then interrogate its stability — a cost ratio that refuses to move while the industry's economics are moving is a claim, not a comfort."
+  },
+  {
+    "id": "l8_wcom_forensic_110",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L8",
+    "ordinal": 110,
+    "concept_ids": ["capitalization_abuse", "restatement_reading"],
+    "difficulty": 5,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Recompute the 2001 line-cost ratio with the admitted improperly capitalized amount expensed where it belonged. Assumptions: add the $3,055 million of 2001 transfers back to line costs; leave revenues as filed.",
+      "context": "As filed (WorldCom FY2001 Form 10-K405, accession 0001005477-02-001226, in millions): revenues $35,179; line costs $14,739. On June 25, 2002 WorldCom announced: \"it was determined that certain transfers from line cost expenses to capital accounts during this period were not made in accordance with generally accepted accounting principles (GAAP). The amount of these transfers was $3.055 billion for 2001 and $797 million for first quarter 2002.\" — WorldCom Form 8-K filed June 26, 2002, accession 0000912057-02-025338, Exhibit 99.1.",
+      "unit": "% of revenues"
+    },
+    "answer_key": {
+      "value": 50.6,
+      "tolerance_abs": 0.3,
+      "tolerance_rel": null
+    },
+    "hints": [
+      {"concept_id": "capitalization_abuse", "text": "Add the admitted transfers back to the expense line: (14,739 + 3,055) over 35,179."},
+      {"concept_id": "restatement_reading", "text": "Compare your corrected ratio with the 41.9% as filed and with the peers' ratios in 2001. The gap is the size of the lie."}
+    ],
+    "explanation": "(14,739 + 3,055) / 35,179 is about 50.6 percent — nearly nine points of expense ratio parked in property and equipment. Run the correction down the statement: operating income of $3,514 million becomes roughly $459 million, pretax income of $2,393 million becomes a loss, and, as the press release conceded, 2001 turns from $1.5 billion of net income to a net loss. Note what did not change: cash. Capitalization never touches cash; it only decides which statement the spending appears on. The investor lesson: improper capitalization converts today's expenses into tomorrow's depreciation, so profits it manufactures are borrowed, not earned — and the corrected ratio, not the filed one, is the business you actually own."
+  },
+  {
+    "id": "l8_wcom_forensic_120",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L8",
+    "ordinal": 120,
+    "concept_ids": ["capitalization_abuse", "red_flag_synthesis"],
+    "difficulty": 5,
+    "grader": "choice",
+    "payload": {
+      "prompt": "A company is moving ordinary operating costs to the balance sheet as capital spending, quarter after quarter. Which pattern in the financial statements is the diagnostic signature of that fraud?",
+      "context": "WorldCom as filed (FY2001 Form 10-K405, accession 0001005477-02-001226, in millions): line costs as a percent of revenues 41.0 (1999), 39.6 (2000), 41.9 (2001) — roughly flat while long-distance pricing collapsed industry-wide and peers' cost ratios climbed. Gross property and equipment grew from $44,627 to $48,661 during 2001; capital expenditures were $7,886 — while revenues fell from $39,090 to $35,179. Per SEC v. WorldCom, Inc. (S.D.N.Y. 2002) and the company's June 25, 2002 announcement, $3.055 billion of 2001 line costs had been transferred to capital accounts.",
+      "choices": [
+        "Receivables growing faster than revenue while the allowance for doubtful accounts shrinks",
+        "Net income rising while operating cash flow collapses, since the capitalized costs drain cash from operations",
+        "An expense ratio that holds steady or falls while industry economics deteriorate, alongside property, plant and equipment and capex swelling relative to a shrinking revenue base — with depreciation drifting up as the parked costs come back",
+        "A large one-time restructuring charge followed by unusually smooth margin improvement in later periods"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 2,
+      "why_wrong": [
+        "That is the revenue-side signature — channel stuffing and under-reserving, the Sable Peak pattern. WorldCom's game was on the expense side; receivables told you little.",
+        "Backwards, and it is why this fraud is dangerous: capitalization props up operating cash flow too, because the outflow is reclassified into investing. Net income and CFO stay consistent with each other; the tell is in capex and PP&E, not the NI-to-CFO gap.",
+        null,
+        "That is the cookie-jar pattern — over-reserve once, release the reserve into earnings later. It smooths income through liabilities, not through the PP&E account."
+      ]
+    },
+    "hints": [
+      {"concept_id": "capitalization_abuse", "text": "Follow the parked cost: it leaves the expense line, lands in PP&E, inflates capex or asset growth, and returns slowly as depreciation. Every stop is observable."},
+      {"concept_id": "red_flag_synthesis", "text": "One number is noise. The signature is the combination: the cost ratio, the asset base, and the industry backdrop all pointing the same way."}
+    ],
+    "explanation": "Improper capitalization has a shape you can see from the outside: the expense ratio defies the industry's gravity, the balance sheet gains weight — PP&E up $4 billion in a year when revenue fell $3.9 billion — and capex runs hot against a shrinking business, with depreciation slowly rising as the parked costs return. Note the trap in the cash flow statement: this fraud flatters CFO as well as earnings, so the usual income-versus-cash check stays quiet. The investor lesson: for capital-intensive companies, benchmark the expense ratio and capex intensity against peers every period — when a company's costs are uniquely immune to its industry's pain and its balance sheet is swelling, assume the balance sheet is absorbing the income statement's problems until proven otherwise."
+  },
+  {
+    "id": "l8_wcom_rubric_130",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L8",
+    "ordinal": 130,
+    "concept_ids": ["restatement_reading", "capitalization_abuse"],
+    "difficulty": 5,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Translate this announcement into plain English — what is WorldCom admitting, and what does it teach you about reading capital-intensive companies from now on?",
+      "context": "\"As a result of an internal audit of the company's capital expenditure accounting, it was determined that certain transfers from line cost expenses to capital accounts during this period were not made in accordance with generally accepted accounting principles (GAAP). The amount of these transfers was $3.055 billion for 2001 and $797 million for first quarter 2002. Without these transfers, the company's reported EBITDA would be reduced to $6.339 billion for 2001 and $1.368 billion for first quarter 2002, and the company would have reported a net loss for 2001 and for the first quarter of 2002.\" ... \"The expected restatement of operating results for 2001 and 2002 is not expected to have an impact on the Company's cash position and will not affect WorldCom's customers or services.\" — WorldCom, Inc. press release of June 25, 2002, filed as Exhibit 99.1 to Form 8-K, accession 0000912057-02-025338.",
+      "response_guidance": "3-5 sentences: translate the admission, note why cash is unaffected, and state the forward-looking lesson."
+    },
+    "answer_key": {
+      "model_answer": "WorldCom is admitting that billions of ordinary operating expenses — the fees it pays other carriers to complete calls — were recorded as capital assets, so its reported profits were fiction: expensed where they belonged, 2001 and early 2002 were losses, not the $1.5 billion profit it filed. Cash is 'unaffected' because capitalization never changed the cash going out the door — it only moved the spending from the expense line to the balance sheet, which also means reported operating cash flow was flattered while investing outflows absorbed the truth. The restatement converts an earnings story into what the business actually was: a shrinking carrier losing money in a price war. The lesson for reading capital-intensive companies: the opex-capex boundary is a judgement management can bend, so when an expense ratio is implausibly stable against industry economics and PP&E or capex swells while revenue shrinks, recompute the ratios yourself and treat the balance sheet as a place where income-statement problems may be hiding.",
+      "rubric": [
+        {"id": "translation", "points": 2, "description": "States in plain English that ordinary operating costs (line costs) were booked as capital assets, overstating EBITDA and profit, and that properly expensed, 2001 and Q1 2002 were net losses."},
+        {"id": "cash_mechanics", "points": 1, "description": "Explains why the cash position is unaffected: capitalizing versus expensing only reclassifies where spending appears (income statement/CFO versus balance sheet/CFI); no cash was created or lost by the accounting."},
+        {"id": "signature_lesson", "points": 2, "description": "States the forward-looking screen: an expense ratio implausibly stable or declining while industry economics deteriorate, combined with swelling PP&E or capex relative to revenue, is the signature of improper capitalization — verify by recomputing the ratios and benchmarking against peers."}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "restatement_reading", "text": "A restatement announcement is a confession with numbers. Extract three things: what moved, how big, and what the true results were."},
+      {"concept_id": "capitalization_abuse", "text": "Ask why the company can say cash is unaffected. The answer is the whole mechanism of the fraud."}
+    ],
+    "explanation": "Strip the press-release calm and the admission is stark: $3.055 billion of 2001 operating costs were sitting in capital accounts, EBITDA was overstated by nearly a third, and the real 2001 was a loss. The sentence about cash being unaffected is the tell that explains the whole scheme — capitalization is a paper move, which is why the fraud survived every casual income-versus-cash check and why the SEC's complaint in SEC v. WorldCom could describe it as designed to hold the line-cost ratio near 42 percent. Days later the filings said the statements could not be relied upon, and the company was in bankruptcy within two months. The investor lesson: everything needed to doubt the 41.9 percent was public before the confession — the ratio's impossible calm, the swelling asset base, the shrinking revenue — and the reader's job is to notice when a number is too well-behaved for the world it lives in."
+  }
+]

@@ -1,0 +1,414 @@
+[
+  {
+    "id": "l6_choice_010",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L6",
+    "ordinal": 10,
+    "concept_ids": ["investment_classification"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Halberd Group holds three stakes in other companies. Which set of accounting methods is correct?",
+      "context": "Stake 1: 10% of Alder Freight, no board seat, no other ties — a passive position. Stake 2: 30% of Birchline Chemical, with two of seven board seats. Stake 3: 55% of Cormorant Foods.",
+      "choices": [
+        "Fair value for Alder; equity method for Birchline; full consolidation of Cormorant",
+        "Equity method for all three, since all are long-term strategic holdings",
+        "Fair value for Alder and Birchline; full consolidation of Cormorant",
+        "Equity method for Alder; full consolidation of Birchline and Cormorant"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Intent does not decide the method — influence does. A passive 10% stake lacks significant influence (fair value), and a 55% stake is control (consolidation). Only the 30% stake with board representation belongs under the equity method.",
+        "The 30% stake with board seats is significant influence, and significant influence requires the equity method, not fair value. The presumption kicks in around 20-50% ownership, and the board seats settle it.",
+        "It is reversed at both ends: 10% with no board seat is below the influence threshold (fair value), and 30% is influence, not control — consolidation requires control, typically over 50% of the votes."
+      ]
+    },
+    "hints": [
+      {"concept_id": "investment_classification", "text": "The method follows the relationship, not the intent: can Halberd merely watch, meaningfully influence, or actually control each company?"}
+    ],
+    "explanation": "Ownership is a proxy for influence, and influence picks the dialect: passive stakes mark to fair value, roughly 20-50% with real influence uses the equity method, and control consolidates everything. Same cash invested, three different-looking sets of statements. The investor's job is to notice which method is in use before trusting any ratio, because the method decides how much of the other company's revenue, debt, and risk you can actually see."
+  },
+  {
+    "id": "l6_adjust_020",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L6",
+    "ordinal": 20,
+    "concept_ids": ["equity_method", "investment_classification"],
+    "difficulty": 2,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "What is the closing carrying value of Harbor's investment in Quill at year-end? (Answer in $M.)",
+      "context": "Harbor Industrial owns 30% of Quill Robotics and accounts for it under the equity method. Carrying value of the investment at the start of the year: $500M. During the year Quill reported net income of $120M and paid total dividends of $40M to all shareholders.",
+      "unit": "USD_millions"
+    },
+    "answer_key": {"value": 524.0, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "equity_method", "text": "Roll the investment forward like a one-line subsidiary: Harbor's share of earnings grows it, and dividends are a return OF the investment, not income."}
+    ],
+    "explanation": "Closing carrying value = 500 + 30% × 120 − 30% × 40 = 500 + 36 − 12 = $524M. Harbor's income statement shows $36M of equity income whether Quill pays out a euro of dividends or not; the dividend just converts a slice of the investment into cash. That is the equity method's character: earnings flow through on schedule, but the cash is Quill's until declared — so an investor checks whether equity income is ever matched by dividends, because a growing carrying value with no cash coming home is profit you can see and not spend."
+  },
+  {
+    "id": "l6_translate_030",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L6",
+    "ordinal": 30,
+    "concept_ids": ["consolidation_nci", "equity_method", "investment_classification"],
+    "difficulty": 3,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "A 10-K states: 'Following the purchase of an additional 30% interest, which increased the Company's ownership of Kestrel Systems to 55%, the Company ceased accounting for the investment under the equity method and began consolidating Kestrel.' Translate what changes on the three statements, then give the investor implication.",
+      "context": "Under the equity method the stake appeared as one investment line on the balance sheet and one income line. Kestrel's underlying economics did not change on the day of the transaction.",
+      "response_guidance": "3-5 sentences: what the statements look like before vs after, then what an analyst should do about it."
+    },
+    "answer_key": {
+      "model_answer": "Plain English: the one-line investment disappears and is replaced by 100% of Kestrel's assets, liabilities, revenue, and expenses folded into the parent's statements, with the 45% the company does not own carved out as noncontrolling interest in equity and in net income. Revenue, total assets, and debt all jump on the day of the change even though the underlying business is the same; net income attributable to the parent's shareholders is roughly unchanged. Margins therefore fall and leverage rises purely from the accounting switch, and the step-up typically triggers a one-time remeasurement gain on the previously held stake plus new goodwill. Investor implication: do not read the year-over-year 'growth' or the ratio shifts as operational — restate one year onto the other's basis before comparing, and strip the remeasurement gain out of earnings as non-recurring.",
+      "rubric": [
+        {"id": "mechanics", "points": 1, "description": "States the mechanics: one-line investment replaced by 100% of the subsidiary's revenue, assets, and liabilities, with a noncontrolling interest carved out for the unowned share"},
+        {"id": "distortion", "points": 1, "description": "Notes that revenue/assets/debt jump and margins/leverage shift with no change in underlying economics (parent's attributable net income roughly unchanged)"},
+        {"id": "so_what", "points": 2, "description": "Investor implication: comparability breaks — restate to a consistent basis before comparing periods, and/or flag the one-time remeasurement gain and goodwill from the step acquisition"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "consolidation_nci", "text": "Control changes the presentation, not the business. Ask what the income statement and balance sheet gain overnight, and who the carved-out NCI line belongs to."}
+    ],
+    "explanation": "Crossing from influence to control swaps one line for a whole company: full revenue, full assets, full debt, with NCI holding the 45% that belongs to someone else. Nothing about Kestrel changed except the accounting, so every ratio built on revenue, assets, or debt breaks across the boundary — and the step-up usually books a remeasurement gain that flatters the year it lands in. The investor's move is to rebuild both years on one basis and treat the gain as noise, because growth manufactured by a consolidation date is not growth."
+  },
+  {
+    "id": "l6_adjust_040",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L6",
+    "ordinal": 40,
+    "concept_ids": ["consolidation_nci"],
+    "difficulty": 3,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "On the consolidated income statement, what is net income attributable to the noncontrolling interest? (Answer in $M.)",
+      "context": "Parent standalone: revenue $2,000M, net income $180M (excluding any income from the subsidiary). The parent owns 60% of a subsidiary with revenue of $800M and net income of $100M. There are no intercompany sales.",
+      "unit": "USD_millions"
+    },
+    "answer_key": {"value": 40.0, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "consolidation_nci", "text": "Consolidation takes in all of the subsidiary's earnings first, then hands back the share belonging to the owners the parent doesn't represent."}
+    ],
+    "explanation": "NCI = 40% × 100 = $40M. Now compare the two presentations of identical economics: under the equity method the parent would report revenue of $2,000M and net income of 180 + 60 = $240M — a 12.0% margin. Consolidated, revenue is $2,800M, total net income $280M, and income attributable to the parent is still $240M — an 8.6% margin on the same business. The parent's owners earn exactly the same either way; only the denominator changed. That is the trap: consolidation shows 100% of revenue and debt the parent only 60% owns, so margins and leverage move for accounting reasons — check the NCI line before crediting or blaming management for the ratio."
+  },
+  {
+    "id": "l6_choice_050",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L6",
+    "ordinal": 50,
+    "concept_ids": ["fx_remeasurement", "fx_translation"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "A parent converts a foreign subsidiary's books into dollars each quarter. Which statement about where the currency gains and losses land is correct?",
+      "context": "Two methods exist: remeasurement under the temporal method (used when the parent's currency is the functional currency) and translation under the current rate method (used when the local currency is functional).",
+      "choices": [
+        "Temporal-method remeasurement gains and losses run through the income statement; current-rate translation differences accumulate in OCI as the cumulative translation adjustment",
+        "Current-rate translation gains hit the income statement; temporal-method remeasurement differences go to OCI",
+        "Under both methods the differences bypass earnings and sit in OCI until the subsidiary is sold",
+        "Currency movements only affect the statements when cash is actually converted from one currency to the other"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Reversed. The temporal method is the one that puts remeasurement gains and losses in earnings; the current rate method routes the plug into OCI as CTA, sparing the income statement.",
+        "Only the current rate method parks the difference in OCI. Temporal-method remeasurement hits net income every period, which is exactly why the functional-currency call matters to earnings volatility.",
+        "No cash needs to move. Both methods generate gains and losses purely from restating book values at new exchange rates — accounting volatility with no cash behind it."
+      ]
+    },
+    "hints": [
+      {"concept_id": "fx_remeasurement", "text": "One method treats the subsidiary as an extension of the parent, so its currency swings belong in the parent's earnings. The other treats it as self-contained, and the swings wait in equity."}
+    ],
+    "explanation": "The functional-currency decision is the fork: dollar-functional means temporal remeasurement and the gains and losses land in net income each period; local-currency-functional means current rate translation and the plug accumulates quietly in OCI as CTA. Same subsidiary, same rates, very different earnings volatility. The investor's move is to check which method each foreign operation uses before attributing an earnings swing to the business — and to remember that CTA sitting in equity is a real, deferred gain or loss that recycles through income when the operation is sold."
+  },
+  {
+    "id": "l6_adjust_060",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L6",
+    "ordinal": 60,
+    "concept_ids": ["pension_accounting"],
+    "difficulty": 3,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "What net pension liability does Foundry Axle report on its balance sheet for this plan? (Answer in $M.)",
+      "context": "From the pension footnote: projected benefit obligation (PBO) at year-end $1,850M; fair value of plan assets at year-end $1,620M. The funded status is reported net on the balance sheet.",
+      "unit": "USD_millions"
+    },
+    "answer_key": {"value": 230.0, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "pension_accounting", "text": "The balance sheet nets the promise against the pot set aside to pay it. Which is bigger here, and what does the sign make it?"}
+    ],
+    "explanation": "Funded status = plan assets − PBO = 1,620 − 1,850 = −$230M, so a $230M net pension liability, sitting mostly in non-current liabilities. Note what the netting hides: a $1,850M bond-like obligation funded by a $1,620M portfolio of risk assets has been compressed to one modest-looking line — a leveraged investment fund bolted onto an axle maker. The investor's job is to reopen the netting: gross up both sides from the footnote, treat the deficit as debt when measuring leverage, and remember that a market drop in plan assets widens this number without management lifting a finger."
+  },
+  {
+    "id": "l6_translate_070",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L6",
+    "ordinal": 70,
+    "concept_ids": ["pension_assumptions", "pension_accounting"],
+    "difficulty": 3,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "A 10-K states: 'The Company increased its expected long-term rate of return on plan assets from 6.5% to 7.25%.' Translate what this does to reported results, then give the investor implication.",
+      "context": "Under US GAAP, the expected (not actual) return on plan assets reduces reported pension expense each year. The company's plan assets are several billion dollars. Peer companies assume returns between 6.0% and 6.75%.",
+      "response_guidance": "3-4 sentences: the mechanics, then what an analyst should check."
+    },
+    "answer_key": {
+      "model_answer": "Plain English: pension expense is reduced each year by what management expects the plan assets to earn, not what they actually earn — so raising the assumption 75 basis points cuts reported pension expense and lifts reported income immediately, with no change in cash, in the plan, or in what retirees will be paid. On several billion of plan assets, 75bp is tens of millions of pretax income conjured from an estimate. Investor implication: this is a management lever, not performance — the new 7.25% sits above the entire peer range of 6.0-6.75%, which is itself a flag. Compare the assumption to the plan's actual asset mix and realized returns, restate earnings at the old rate to see the run-rate business, and note that optimistic assumptions today mean losses surfacing later through OCI and amortization.",
+      "rubric": [
+        {"id": "mechanics", "points": 1, "description": "States the mechanics: the expected (not actual) return offsets pension expense, so a higher assumption raises reported income with no cash or economic change"},
+        {"id": "lever", "points": 1, "description": "Identifies it as a management estimate/lever and flags that 7.25% sits above the stated peer range (or that it should be tested against asset mix / actual returns)"},
+        {"id": "so_what", "points": 2, "description": "Investor implication: restate or discount the earnings benefit, benchmark the assumption against peers/actual returns, and/or note that the shortfall eventually surfaces (OCI, amortization, funding)"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "pension_assumptions", "text": "Ask who chose this number and what evidence would justify it. Did the plan's assets change, or just the forecast about them?"}
+    ],
+    "explanation": "The expected-return assumption is one of the cleanest earnings dials in the book: it offsets pension expense every year and management sets it. Raising it 75bp changes no cash flow and pays no retiree — it reclassifies hoped-for future returns into current income. When the assumption jumps above the entire peer range, the question is not whether the plan will earn 7.25% but why management needed it to this year; the investor restates at the old rate, and treats the gap as earnings quality, not earnings."
+  },
+  {
+    "id": "l6_adjust_080",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L6",
+    "ordinal": 80,
+    "concept_ids": ["pension_assumptions", "pension_accounting"],
+    "difficulty": 4,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "By how much does this year's reported pretax income INCREASE as a result of the assumption change? (Answer in $M.)",
+      "context": "Plan assets at the beginning of the year: $4,000M. Under US GAAP, reported pension expense includes an offsetting credit equal to the expected long-term rate of return multiplied by beginning-of-year plan assets. Management raises the expected return assumption by 50 basis points. Nothing else changes, and actual asset performance is irrelevant to this component.",
+      "unit": "USD_millions"
+    },
+    "answer_key": {"value": 20.0, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "pension_assumptions", "text": "The credit against pension expense is assumption × beginning plan assets. Only the assumption moved — by how much, on what base?"}
+    ],
+    "explanation": "Extra expected-return credit = 0.50% × 4,000 = $20M, so pension expense falls $20M and pretax income rises $20M — from a forecast revision, with the plan's actual holdings and returns untouched. This is the arithmetic behind the translate item: on a big plan, half a point of assumption is a material earnings item that costs nothing and proves nothing. When a company beats estimates by roughly the size of an assumption change disclosed in the pension footnote, the investor has found where the beat came from — and it was not the business."
+  },
+  {
+    "id": "l6_translate_090",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L6",
+    "ordinal": 90,
+    "concept_ids": ["fx_translation", "fx_remeasurement"],
+    "difficulty": 4,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "A 10-K states: 'Effective this year, the Company designated the euro as the functional currency of its Irish subsidiary.' Translate what this decision means and what changes on the statements, then give the investor implication.",
+      "context": "Previously the subsidiary's functional currency was the US dollar. The subsidiary manufactures locally, sells across the eurozone, and finances itself in euros.",
+      "response_guidance": "3-5 sentences: what functional currency means, what mechanically changes, then the investor takeaway."
+    },
+    "answer_key": {
+      "model_answer": "Plain English: the company has concluded the Irish unit lives its economic life in euros — it earns, spends, and borrows locally — so its books now translate under the current rate method instead of being remeasured as if it were a dollar operation. Mechanically, the whole balance sheet translates at the year-end rate, income at average rates, and the plug lands in OCI as the cumulative translation adjustment instead of running through the income statement. Reported earnings therefore stop absorbing euro-dollar swings; the volatility does not disappear, it moves to equity. Investor implication: earnings will look smoother without the business being any less exposed — so track CTA in the equity section as the running score of currency exposure, remember it recycles through income if the unit is sold, and note that the designation itself is a judgement call worth sanity-checking, since it conveniently shelters earnings from FX noise.",
+      "rubric": [
+        {"id": "meaning", "points": 1, "description": "Explains the designation: the subsidiary is judged to operate self-containedly in euros, which switches it from temporal remeasurement to current rate translation"},
+        {"id": "mechanics", "points": 1, "description": "States the mechanical change: FX differences move out of the income statement and into OCI/CTA (balance sheet at current rate, income at average)"},
+        {"id": "so_what", "points": 2, "description": "Investor implication: smoother earnings with unchanged economic exposure — watch CTA in equity, and/or note that CTA recycles on sale or that the designation is a judgement that shelters earnings"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "fx_translation", "text": "Functional currency is a verdict about where the subsidiary really lives. The verdict decides which statement absorbs the currency swings."}
+    ],
+    "explanation": "Designating the euro as functional says the Irish unit is a self-contained euro business, and the accounting follows: current rate translation, with the plug accumulating in OCI as CTA rather than rattling through earnings each quarter. The exposure is identical; only its address changed. The investor keeps two habits — read CTA in equity as the deferred currency tab, and notice when a functional-currency judgement happens to land just as FX volatility was about to make earnings ugly, because judgements have authors."
+  },
+  {
+    "id": "l6_adjust_100",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L6",
+    "ordinal": 100,
+    "concept_ids": ["fx_translation"],
+    "difficulty": 4,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute the cumulative translation adjustment (CTA) required to make the translated balance sheet balance. (Answer in $M; a negative number means a cumulative loss in OCI.)",
+      "context": "A euro-functional subsidiary is translated under the current rate method. Year-end balance sheet in euros: total assets EUR 800M, total liabilities EUR 500M, common stock EUR 200M. Rates: year-end current rate $1.10 per euro (applied to assets and liabilities); historical rate on the common stock $1.25 per euro. Translated retained earnings, accumulated at the rates in effect when earned: $115M.",
+      "unit": "USD_millions"
+    },
+    "answer_key": {"value": -35.0, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "fx_translation", "text": "Translate each piece at its prescribed rate, then remember the accounting equation still has to hold in dollars. CTA is whatever makes it hold."}
+    ],
+    "explanation": "Translated assets = 800 × 1.10 = $880M; liabilities = 500 × 1.10 = $550M; common stock = 200 × 1.25 = $250M; retained earnings $115M as given. Equity must total 880 − 550 = $330M, but the translated components sum to 250 + 115 = $365M, so CTA = 330 − 365 = −$35M — a $35M cumulative loss parked in OCI. The euro bought $1.25 when the capital went in and $1.10 now; the net asset position lost dollar value and the current rate method routed that loss around the income statement entirely. So earnings looked untouched while the owners' dollar stake shrank — which is exactly why an investor reads the CTA line instead of assuming a quiet income statement means a quiet currency year."
+  },
+  {
+    "id": "l6_choice_110",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L6",
+    "ordinal": 110,
+    "concept_ids": ["ifrs_vs_gaap"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "You are comparing a US GAAP filer with an IFRS filer. Which of the following is an ACTUAL difference between the two frameworks?",
+      "context": null,
+      "choices": [
+        "IFRS prohibits LIFO inventory costing; US GAAP permits it",
+        "US GAAP permits reversing prior impairments of long-lived assets when values recover; IFRS prohibits reversals",
+        "IFRS requires all development costs to be expensed as incurred; US GAAP requires them to be capitalized",
+        "Under IFRS, interest paid must be classified as an investing outflow on the cash flow statement"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Reversed. IFRS is the framework that permits impairment reversals (for assets other than goodwill) up to the pre-impairment carrying amount; US GAAP prohibits reversing an impairment once taken.",
+        "Reversed. IFRS requires capitalizing development costs once technical and commercial feasibility criteria are met; US GAAP generally expenses R&D as incurred, with narrow exceptions such as certain software costs.",
+        "IFRS gives filers a choice: interest paid may be classified as operating or financing (and interest received as operating or investing). Investing is not the mandate — and the optionality itself is a comparability trap for CFO."
+      ]
+    },
+    "hints": [
+      {"concept_id": "ifrs_vs_gaap", "text": "Only a handful of differences actually move the numbers — inventory costing, development costs, impairment reversals, CFS classification. Check each claim's direction carefully."}
+    ],
+    "explanation": "The true difference is LIFO: banned under IFRS, alive under US GAAP, which is why a LIFO reserve adjustment is mandatory before comparing a US industrial with a European peer. The other three are real differences stated backwards — IFRS reverses impairments and capitalizes qualifying development costs, and it permits (not requires) interest paid outside operating. Direction matters: an analyst who remembers that a difference exists but flips its sign will adjust the comparison the wrong way, which is worse than not adjusting at all."
+  },
+  {
+    "id": "l6_translate_120",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L6",
+    "ordinal": 120,
+    "concept_ids": ["ifrs_vs_gaap", "impairments"],
+    "difficulty": 4,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "An IFRS filer's annual report states: 'Following a recovery in net realizable value, the Group reversed EUR 18M of a prior-year inventory write-down, recognized as a reduction of cost of sales.' Translate what happened, then give the investor implication — including how this affects comparison with a US GAAP peer.",
+      "context": "Last year the company wrote inventory down when market prices fell; this year prices recovered. Under IFRS, inventory write-downs are reversed (up to the original cost) when net realizable value recovers. US GAAP prohibits such reversals.",
+      "response_guidance": "3-4 sentences."
+    },
+    "answer_key": {
+      "model_answer": "Plain English: last year's write-down cut inventory's carrying value and this year, with prices recovered, IFRS lets the company write it back up — the EUR 18M credit flows through cost of sales, inflating gross profit with no sale, no shipment, and no cash. It is legitimate accounting, but it is a price-recovery gain, not operating performance. Investor implication: strip the reversal out to see the run-rate margin, and mind the framework gap — a US GAAP peer that took the identical write-down could never reverse it, so the IFRS filer's gross margin is flattered purely by dialect. This year-to-year whipsaw (loss last year, gain this year) also makes single-year margins misleading; look at the two years together.",
+      "rubric": [
+        {"id": "mechanics", "points": 1, "description": "States the mechanics: a prior write-down is written back up through cost of sales, boosting gross profit with no sale or cash"},
+        {"id": "quality", "points": 1, "description": "Identifies the credit as non-operating in character (a price-recovery/accounting gain, not performance), or notes the margin whipsaw across the two years"},
+        {"id": "so_what", "points": 2, "description": "Investor implication: exclude the reversal from run-rate margins AND/OR flag the comparability break with a US GAAP peer, which cannot reverse write-downs"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "ifrs_vs_gaap", "text": "One framework lets a past write-down come back when prices recover; the other treats it as permanent. What does that do to this year's cost of sales, and to a cross-border comparison?"}
+    ],
+    "explanation": "IFRS treats a write-down as an estimate that can be corrected when net realizable value recovers; US GAAP treats it as a one-way door. So EUR 18M of this year's gross profit is an accounting recovery, not a sale — and a US peer with identical economics would show none of it. The investor adjusts twice: remove the reversal to see the operating margin, and remember which dialect each filer speaks before letting a margin comparison decide anything."
+  },
+  {
+    "id": "l6_adjust_130",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L6",
+    "ordinal": 130,
+    "concept_ids": ["dilution_eps", "sbc"],
+    "difficulty": 4,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Using the treasury stock method, what is the diluted weighted-average share count? (Answer in millions of shares.)",
+      "context": "Basic weighted-average shares outstanding: 100M. Employees hold 10M vested in-the-money stock options with an exercise price of $20. The average market price of the stock during the year was $50.",
+      "unit": "millions_of_shares"
+    },
+    "answer_key": {"value": 106.0, "tolerance_abs": 0.1, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "dilution_eps", "text": "Assume the options are exercised, then ask how many shares the exercise proceeds could buy back at the average market price. Only the shortfall dilutes."}
+    ],
+    "explanation": "Assumed exercise delivers proceeds of 10M × $20 = $200M, which buys back 200 / 50 = 4M shares at the average price; the net new shares are 10 − 4 = 6M, so diluted shares = 100 + 6 = 106M. Note what drives the answer: the deeper in the money the options and the higher the stock, the fewer shares the proceeds repurchase and the worse the dilution — success itself dilutes. This is why an investor tracks diluted, not basic, EPS, and why a buyback that merely mops up option exercises is compensation expense wearing a capital-return costume."
+  },
+  {
+    "id": "l6_choice_140",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L6",
+    "ordinal": 140,
+    "concept_ids": ["bank_statements", "solvency_ratios"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "A colleague looks at these figures, notes that equity is only about 8.6% of assets (leverage of roughly 11.6x), and concludes JPMorgan is 'dangerously overlevered' compared with an industrial company that runs equity at 45% of assets. Which reading is correct?",
+      "context": "JPMorgan FY2024 10-K: total assets $4,002,814M; total liabilities $3,658,056M; total equity $344,758M; net income $58,471M.",
+      "choices": [
+        "For a bank this leverage is structural: deposits and borrowings are the raw material of the business, so you judge safety against regulatory capital ratios and credit costs, not against industrial leverage norms",
+        "The colleague is right — any company operating at 11.6x leverage is one bad year from insolvency, whatever its industry",
+        "Leverage is irrelevant for banks because customer deposits are not genuine liabilities in the way debt is",
+        "The leverage means JPMorgan's return on equity is an accounting illusion and should be disregarded"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "A bank's business IS the levered balance sheet — it borrows at deposit rates and lends at loan rates, and the spread only pays if the balance sheet is large relative to equity. 11.6x is normal, regulated, and the right benchmarks are capital ratios and credit losses, not an industrial's debt-to-equity.",
+        "Deposits are among the most real liabilities in finance: roughly $2.5 trillion redeemable at or near par, much of it on demand. Treating them as not-quite-debt is how observers miss bank runs; they are the liability side of the entire business model.",
+        "The ROE is real — about $58.5B of net income on $345B of equity, roughly 17%. Leverage is not an illusion; it is the mechanism, and the same multiplier that produces 17% ROE amplifies losses when credit sours. Real, but risk-bearing."
+      ]
+    },
+    "hints": [
+      {"concept_id": "bank_statements", "text": "Ask what a bank actually sells. If the answer is 'the spread on borrowed money', what would an unlevered bank even be?"}
+    ],
+    "explanation": "JPMorgan runs about $4.0 trillion of assets on $345B of equity — 11.6x leverage — because that is what a bank is: a spread business where deposits and wholesale borrowings are inputs, not imprudence. Net income of $58.5B is a return on assets of only about 1.5%, and it is the 11.6x multiplier that turns that sliver into a ~17% ROE. The industrial comparison fails in both directions: the bank is not overlevered by its own rules, and it is never safe by an industrial's. The investor swaps toolkits at the door — capital ratios, credit costs, and deposit quality are the bank's solvency ratios, and the same leverage that makes the ROE makes the downside."
+  },
+  {
+    "id": "l6_adjust_150",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L6",
+    "ordinal": 150,
+    "concept_ids": ["bank_statements", "profitability_ratios"],
+    "difficulty": 4,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute JPMorgan's FY2024 return on assets: net income divided by year-end total assets, in percent. (Answer to two decimal places.)",
+      "context": "JPMorgan FY2024 10-K: net income $58,471M; total assets $4,002,814M; total equity $344,758M.",
+      "unit": "percent"
+    },
+    "answer_key": {"value": 1.46, "tolerance_abs": 0.05, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "bank_statements", "text": "The ratio itself is ordinary division. The lesson is in how small the answer is for one of the most profitable companies on earth — and what has to multiply it."}
+    ],
+    "explanation": "ROA = 58,471 / 4,002,814 = 1.46%. A company that earned $58B — among the largest profits in corporate history — returned less than a cent and a half per dollar of assets, because a bank's assets are mostly other people's money at work on thin spreads. The equity line completes the arithmetic: 1.46% ROA × 11.6x leverage (4,002,814 / 344,758) ≈ 17% ROE. That decomposition is the whole bank in one line, and it is why the investor watches ROA and leverage separately — an ROE held up by rising leverage rather than rising ROA is not improvement, it is the same engine with less margin for error."
+  },
+  {
+    "id": "l6_translate_160",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L6",
+    "ordinal": 160,
+    "concept_ids": ["bank_statements"],
+    "difficulty": 5,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "A large bank's annual report discloses: 'Net interest margin declined from 2.7% to 2.4% during the year, while the provision for credit losses doubled from $4.5B to $9.0B.' Translate what each of these means for a bank, then give the investor implication of the two moving together.",
+      "context": "Net interest margin (NIM) is net interest income — what the bank earns on loans and securities minus what it pays for deposits and borrowings — divided by earning assets. The provision for credit losses is the expense that builds the reserve for loans expected to go bad; it reflects management's forward-looking estimate, not just current charge-offs.",
+      "response_guidance": "4-5 sentences: translate each disclosure, then the combined implication."
+    },
+    "answer_key": {
+      "model_answer": "Plain English: NIM is the bank's gross margin — the spread between what its loans and securities earn and what its deposits and borrowings cost — and it compressed, most likely because funding costs repriced upward faster than asset yields. The provision doubling means management now expects far more of its loans to go bad, and is charging current earnings to build the reserve before the losses arrive; it is a forward-looking estimate, so it is both an early warning and a lever. Investor implication: the bank's two core earnings engines are deteriorating at once — the spread that generates income is narrowing at exactly the moment credit costs are consuming more of it, a squeeze from both ends typical of a turning credit cycle. Check pre-provision profit against the provision run-rate to see how much cushion remains before losses eat into capital, compare the reserve build with actual charge-offs and delinquencies to judge whether management is ahead of the problem or trailing it, and watch equity — at bank leverage, a thin ROA does not have to fall far before the capital ratios are the story.",
+      "rubric": [
+        {"id": "nim", "points": 1, "description": "Translates NIM correctly as the bank's core spread (asset yields minus funding costs) and reads compression as funding costs rising faster than loan yields (or equivalent)"},
+        {"id": "provisions", "points": 1, "description": "Translates the provision as a forward-looking expense building reserves for expected loan losses — management's estimate of credit deterioration, charged to earnings before losses are realized"},
+        {"id": "so_what", "points": 2, "description": "Combined investor implication: both earnings engines deteriorating together signals a turning credit cycle / squeeze — assesses cushion (pre-provision profit vs provisions, or capital at high leverage) and/or tests whether reserving leads or lags reality (charge-offs, delinquencies)"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "bank_statements", "text": "For a bank, the spread is the revenue engine and provisions are the cost of the loans already made. Ask what it means when the engine weakens just as the bill comes due."}
+    ],
+    "explanation": "NIM is the spread the whole institution runs on, and provisions are the tab for lending decisions already made — one is the engine, the other the bill. Compression plus a doubled provision means the engine is weakening precisely as the bill arrives, which is the signature of a credit cycle turning. The investor's checks are specific: pre-provision profit versus the provision run-rate says how much operating cushion absorbs the losses; reserves versus actual charge-offs says whether management is provisioning ahead of reality or being dragged behind it. And because a bank runs at ten-plus times leverage, the distance between 'earnings problem' and 'capital problem' is short — which is the so-what of every bank disclosure."
+  }
+]

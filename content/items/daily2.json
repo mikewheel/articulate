@@ -1,0 +1,286 @@
+[
+  {
+    "id": "daily2_energy_xom",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 60,
+    "concept_ids": ["industry_patterns", "common_size"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2025 unless noted).\nClue 1: Revenue is $332 billion — one of the largest top lines in America — but the net margin is only 8.7%, and it moves with a price the company does not set.\nClue 2: The income statement shows no gross-profit line and no operating-income line: revenue faces one giant block of 'total costs and other deductions'.\nClue 3: Two-thirds of total assets are wells, plants, and pipelines; depreciation runs $26.0B a year and capital spending $28.4B.\nClue 4: It returned $37.5B to shareholders this year — $20.3B of buybacks plus $17.2B of dividends — against $52.0B of operating cash flow, while total debt sits at just 15% of equity.\nClue 5: Treasury stock on the balance sheet is negative $258B — decades of repurchased shares nearly as large as the $267B of equity that remains.\nClue 6: In fiscal 2024, common stock on its balance sheet jumped from $17.8B to $46.2B: it paid for a roughly $60B acquisition of a Permian shale producer almost entirely in newly issued stock.",
+      "choices": ["Chevron", "ConocoPhillips", "Exxon Mobil Corporation", "Shell"]
+    },
+    "answer_key": {
+      "correct_index": 2,
+      "why_wrong": [
+        "Chevron is the near-twin — integrated, Permian-heavy, and it too struck an all-stock deal (for Hess) in this era — but Clue 1 breaks it: Chevron's revenue runs near $200B, not $332B, and its 2024 stock issuance was far smaller than the $28B jump in Clue 6.",
+        "ConocoPhillips fails Clues 1 and 2 together: it is a pure upstream producer at roughly $56B of revenue — a sixth of this scale — and without refining and chemicals its statement silhouette is narrower than an integrated major's.",
+        null,
+        "Shell matches the integrated silhouette but files with the SEC as a foreign private issuer on Form 20-F under IFRS — it would not appear in a US 10-K data pull at all, and its headquarters currency and statement format give it away before any ratio does."
+      ]
+    },
+    "hints": [
+      {"concept_id": "industry_patterns", "text": "A third of a trillion dollars of revenue at a single-digit margin, with no gross-profit line: what kind of company sells that much of something it cannot price?"}
+    ],
+    "explanation": "Exxon Mobil, fiscal 2025. Clues 1-3 identify an integrated oil major: enormous commodity revenue, a costs-in-one-block income statement (no gross or operating profit is itself a fingerprint), and a balance sheet that is two-thirds steel in the ground. Clue 4-5 show the capital-return machine that distinguishes supermajors from smaller producers. Clue 6 is the reveal: only Exxon's Pioneer acquisition moved common stock by $28B in 2024 — Chevron, the one plausible twin, is barely more than half this size."
+  },
+  {
+    "id": "daily2_pharma_pfe",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 70,
+    "concept_ids": ["industry_patterns", "trend_analysis"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2025 unless noted).\nClue 1: Gross margin is 74% — the product costs almost nothing to make — yet net margin is only 12%. The money goes to science and selling, not factories.\nClue 2: R&D is $10.4B a year, about 17% of revenue, and inventory sits for roughly 240 days: what it sells takes the better part of a year to make and release.\nClue 3: Goodwill plus acquired intangibles are 60% of total assets — much of the product pipeline was bought, not invented in-house.\nClue 4: In fiscal 2023 it earned just $2.1B on $58.5B of revenue, and gross margin was only 57%; two years later margin was back to 74% and profit near $7.8B. A once-in-a-century windfall product had collapsed, taking write-offs with it.\nClue 5: Also in 2023: it issued $30.8B of new long-term debt and spent $43.4B acquiring a single company — a cancer-drug developer — to refill the pipeline.\nClue 6: Revenue is $62.6B across 5.7 billion diluted shares; the fiscal year ends December 31.",
+      "choices": ["Pfizer Inc.", "Merck & Co.", "Johnson & Johnson", "Moderna"]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Merck matches the scale (~$64B revenue) and the R&D intensity, but Clue 4 rules it out: Merck had no pandemic-windfall collapse of this magnitude — its Keytruda-driven earnings grew through these years — and it made no single $43B debt-funded acquisition in 2023.",
+        "Johnson & Johnson fails Clues 1 and 6: it is larger (~$89B revenue), spread across medtech as well as pharma, and its steadier mix never produced a $2.1B-profit trough year or a 57%-to-74% gross margin swing.",
+        "Moderna shares the story shape of Clue 4 — a COVID windfall that collapsed — but fails every scale clue: revenue in the single-digit billions, deep losses (not $7.8B of profit) after the cliff, and no $43B acquisition or 60%-of-assets goodwill pile."
+      ]
+    },
+    "hints": [
+      {"concept_id": "industry_patterns", "text": "A 74% gross margin with a 12% net margin means the cost is upstream of the factory: research, trials, and marketing. Which industry is built that way?"}
+    ],
+    "explanation": "Pfizer, fiscal 2025. Clues 1-3 are the pharma fingerprint: software-like gross margins eaten by R&D and SG&A, slow inventory (drugs take months to manufacture and release), and a balance sheet dominated by acquired science. Clues 4-5 tell the specific story: the COVID revenue cliff and the debt-funded $43B Seagen acquisition bought to replace it. Merck survives until the trend clue — which is the lesson: in pharma, the trajectory and the deals identify the company faster than the ratios."
+  },
+  {
+    "id": "daily2_club_cost",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 80,
+    "concept_ids": ["industry_patterns", "activity_ratios"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2025 unless noted).\nClue 1: Gross margin is only 12.8% — about half of even a grocer's — yet return on average equity is over 30% with almost no debt.\nClue 2: Inventory turns 13x a year (about 28 days) and customers pay within 4 days. Accounts payable ($19.8B) is larger than inventory ($18.1B): suppliers finance the shelves, so goods are often sold before they are paid for.\nClue 3: The real profit engine is not the merchandise at all — customers pay a fee up front for the right to shop here, and that high-margin fee income is most of the bottom line.\nClue 4: Net margin is 2.9 cents per dollar on $275B of revenue; asset turnover is 3.6x, the highest of any large company in this game.\nClue 5: In fiscal 2024 dividends suddenly jumped from $1.3B to $9.0B, then fell back to $2.2B — a one-time $15-per-share special payout of hoarded cash.\nClue 6: Its 52/53-week fiscal year ends the Sunday nearest August 31.",
+      "choices": ["Walmart", "BJ's Wholesale Club", "Target", "Costco Wholesale Corporation"]
+    },
+    "answer_key": {
+      "correct_index": 3,
+      "why_wrong": [
+        "Walmart shares the thin-margin, high-velocity model but fails Clues 1 and 6: its gross margin runs near 24% (it marks up merchandise; it does not live on membership fees), and its fiscal year ends in late January, not August.",
+        "BJ's is the same membership-club model — Clues 1-3 all fit — but Clue 4's scale eliminates it: BJ's revenue is about $20B, a fourteenth of $275B, and Clue 5's $9.0B special dividend exceeds BJ's entire market history of payouts.",
+        "Target fails Clues 1, 2, and 6: gross margin near 28% from discretionary merchandise, inventory turning about 6x rather than 13x, no membership-fee profit engine, and a January fiscal year-end.",
+        null
+      ]
+    },
+    "hints": [
+      {"concept_id": "activity_ratios", "text": "When payables exceed inventory, the working-capital cycle runs backwards: whose money is actually funding the merchandise?"}
+    ],
+    "explanation": "Costco, fiscal 2025 (ended August 31, 2025). Clues 1-3 define the warehouse-club model: sell merchandise at nearly cost, make the profit on membership fees, and turn inventory so fast that suppliers' trade credit funds it — a negative-ish working capital machine. Clue 4's 3.6x asset turnover is the velocity extreme of this whole roster. The August fiscal year and the fiscal-2024 special dividend narrow it from BJ's, the only other pure club, which fails on scale."
+  },
+  {
+    "id": "daily2_stream_nflx",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 90,
+    "concept_ids": ["industry_patterns", "capitalize_vs_expense"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2025 unless noted).\nClue 1: It has no inventory, and property and equipment is under 4% of total assets — yet its single biggest asset, at $32.8B (59% of total assets), is a library of self-produced entertainment, capitalized as it is made and amortized as it is watched.\nClue 2: Customers prepay a monthly fee, so there are essentially no trade receivables; the product is delivered over the internet.\nClue 3: Operating margin marched from 20.6% to 26.7% to 29.5% across three years while revenue grew from $33.7B to $45.2B — a hit costs the same to make no matter how many members watch it.\nClue 4: Operating cash flow ($10.1B) runs just below net income ($11.0B): the cash spent making new titles flows out through operations even as old titles amortize.\nClue 5: It bought back $9.1B of its own stock this year while holding debt flat at about $13.5B.\nClue 6: Diluted shares went from 439 million to 4.34 billion in fiscal 2025 — a ten-for-one stock split.",
+      "choices": ["The Walt Disney Company", "Netflix, Inc.", "Spotify", "Warner Bros. Discovery"]
+    },
+    "answer_key": {
+      "correct_index": 1,
+      "why_wrong": [
+        "Disney fails Clue 1: its balance sheet carries theme parks, cruise ships, and studios — property and equipment is a large share of assets, not 4% — and its revenue mix (parks, advertising, box office) is far broader than one subscription line.",
+        null,
+        "Spotify matches the subscription-and-streaming surface but fails Clue 1's core: it licenses music rather than capitalizing a self-produced library, so no $33B content asset exists; it is also a Luxembourg-incorporated foreign filer with gross margins near 30%, not a 29.5% operating margin.",
+        "Warner Bros. Discovery has the giant content library but fails Clues 3 and 5: it carried roughly $40B of heavy acquisition debt, posted losses and write-downs rather than a rising 29.5% operating margin, and was in no position to buy back $9.1B of stock."
+      ]
+    },
+    "hints": [
+      {"concept_id": "capitalize_vs_expense", "text": "The biggest asset is money already spent on productions, parked on the balance sheet and released into expense as viewers watch. What business capitalizes its main cost that way?"}
+    ],
+    "explanation": "Netflix, fiscal 2025. Clue 1 is the heart: a streamer's statements are a content library wearing a small company around it — cash production spend is capitalized (59% of total assets here) and amortized over viewing life, which is why Clue 4's CFO runs near net income rather than far above it. Clue 3 is the operating-leverage signature of subscription scale. Disney and WBD share the library but not the shape; the split in Clue 6 dates the filing precisely."
+  },
+  {
+    "id": "daily2_semi_nvda",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 100,
+    "concept_ids": ["industry_patterns", "trend_analysis"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2026, ended late January 2026, unless noted).\nClue 1: It sells physical hardware, yet its gross margin is 71% and its net margin 56% — economics no factory owner could print.\nClue 2: The trick is in Clue 1: property and equipment is only 5% of total assets. It designs the product and pays foundries to manufacture it.\nClue 3: Revenue went $60.9B → $130.5B → $215.9B in two years — a 3.5x ramp at a scale with almost no precedent.\nClue 4: The strain shows in working capital: inventory turns only 2.9x (about 125 days) as it prepays for manufacturing capacity, and receivables run 65 days because its biggest customers are a handful of giant cloud platforms buying on terms.\nClue 5: Net income was $120.1B — more than the revenue of all but a few dozen American companies — funding $40.1B of buybacks with total debt under $8.5B.\nClue 6: Its fiscal year ends in late January, and it split its stock ten-for-one in 2024.",
+      "choices": ["Intel", "Advanced Micro Devices", "Taiwan Semiconductor Manufacturing", "NVIDIA Corporation"]
+    },
+    "answer_key": {
+      "correct_index": 3,
+      "why_wrong": [
+        "Intel fails Clues 1-2 in one stroke: it owns its fabs, so property and equipment is roughly half of total assets, gross margins sit decades below 71%, and in these very years it was posting losses while building factories — the opposite silhouette.",
+        "AMD is the honest decoy — fabless, AI-exposed, and it also ramped — but Clues 3 and 5 eliminate it: AMD's revenue is in the tens of billions (roughly an eighth of $215.9B) with gross margins near 50%, and it earned nothing close to $120B.",
+        "TSMC actually manufactures these chips, but it is the mirror image of Clue 2: enormous fabs make PP&E the dominant asset, and it files as a Taiwanese foreign issuer on Form 20-F with a December year-end, not a late-January 10-K.",
+        null
+      ]
+    },
+    "hints": [
+      {"concept_id": "industry_patterns", "text": "Hardware revenue with software margins means the maker of the physical thing is someone else. Who keeps the design and the margin?"}
+    ],
+    "explanation": "NVIDIA, fiscal 2026 (ended January 25, 2026). Clues 1-2 teach the fabless model: 71% gross margin on hardware is possible only when the capital-intensive step is outsourced, which is why PP&E is 5% of assets while TSMC and Intel carry the factories. Clue 4 shows what a demand shock does to working capital even when profits explode. The revenue ramp and $120B of net income have no twin anywhere in public markets — the decoys fail on sheer magnitude."
+  },
+  {
+    "id": "daily2_aero_ba",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 110,
+    "concept_ids": ["industry_patterns", "solvency_ratios", "equity_rollforward"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2024-2025).\nClue 1: Customers pay years before the product is delivered: current deferred revenue is about $60B — in fiscal 2024 that equaled 91% of the entire year's revenue.\nClue 2: Shareholders' equity was NEGATIVE $17.2B at the end of fiscal 2023 — cumulative losses and old buybacks had consumed more than every dollar of equity ever contributed.\nClue 3: Fiscal 2024 was a catastrophe: revenue fell to $66.5B, the net loss was $11.8B, and operating cash flow was negative $12.1B after a strike halted its main factories.\nClue 4: It survived on other people's money: late in 2024 it raised roughly $24B of new equity ($18.2B of common stock plus $5.7B of convertible preferred).\nClue 5: Fiscal 2025 turned: revenue rebounded to $89.5B with a thin $2.2B profit (2.5% net margin), and book equity crossed back above zero to $5.5B.\nClue 6: Only two companies on earth build its flagship product at scale — and the other one does not file a 10-K.",
+      "choices": ["Airbus", "Lockheed Martin", "The Boeing Company", "GE Aerospace"]
+    },
+    "answer_key": {
+      "correct_index": 2,
+      "why_wrong": [
+        "Airbus is the other half of the duopoly in Clue 6 — which is exactly why that clue excludes it: Airbus is a European IFRS filer with no 10-K, and it spent 2024 profitably taking the orders this company could not fill, not raising $24B of rescue equity.",
+        "Lockheed Martin fails Clues 1 and 3: it sells to one main customer (the U.S. government) on progress payments rather than airline pre-delivery deposits at this scale, and its era was one of steady profits and buybacks, not an $11.8B loss and a strike.",
+        null,
+        "GE Aerospace makes the engines, not the airframes: it fails Clue 3 (double-digit margins and strong cash flow in these years, after shedding its other divisions) and Clue 2 — its equity is comfortably positive."
+      ]
+    },
+    "hints": [
+      {"concept_id": "equity_rollforward", "text": "Equity went from −$17.2B to +$5.5B while the company LOST money over the period. Only one line of the equity roll-forward can do that: issuance."},
+      {"concept_id": "industry_patterns", "text": "Who gets paid years before delivering, and can run indefinitely on those deposits even with negative book equity?"}
+    ],
+    "explanation": "Boeing, fiscal 2024-2025. The deep lesson is Clues 2-5 as one arc: a company financed by customer deposits (Clue 1) can operate for years with negative book equity, but when losses turn cash-negative ($12.1B out the door in 2024), the equity must be rebuilt the hard way — $24B of dilution. Note the equity roll-forward: equity rose $22.7B over two years despite a cumulative loss, which is only possible through issuance. The duopoly clue then leaves exactly one 10-K filer."
+  },
+  {
+    "id": "daily2_rail_unp",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 120,
+    "concept_ids": ["industry_patterns", "profitability_ratios"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2025 unless noted).\nClue 1: Property and equipment is 86% of total assets — the highest share in this entire game — and asset turnover is just 0.35x. The infrastructure IS the company.\nClue 2: It moves physical goods for customers, yet reports no cost-of-goods line and no meaningful inventory: just $787M of materials and supplies, about 1% of assets.\nClue 3: Operating margin is 40% and net margin 29% — pricing power that comes from owning a network competitors cannot rebuild, with at most one rival on any route.\nClue 4: Revenue has been nearly flat for three years ($24.1B → $24.5B), but net income still rose 12% — the model grows by price and operating discipline, not volume.\nClue 5: It pays out essentially everything: $2.7B of buybacks plus $3.2B of dividends this year, against free cash flow (CFO minus capex) of $5.5B.\nClue 6: Debt of $31.8B against $18.5B of equity — 1.7x — bothers no one, because the cash flows are as steady as a regulated utility's. Fiscal year ends December 31; it operates only west of the Mississippi.",
+      "choices": ["CSX", "Union Pacific Corporation", "Norfolk Southern", "Canadian National Railway"]
+    },
+    "answer_key": {
+      "correct_index": 1,
+      "why_wrong": [
+        "CSX matches the railroad silhouette exactly — Clues 1-5 fit any big freight rail — but Clue 6 breaks it: CSX operates the eastern network, and its revenue (~$14.5B) is well under $24.5B.",
+        null,
+        "Norfolk Southern is the other eastern railroad: right shape, wrong side of the river and wrong size, with roughly $12B of revenue against Clue 4's $24.5B.",
+        "Canadian National fails Clue 6 twice: it is a Canadian filer reporting in Canadian dollars (about C$17B of revenue), and its network runs north-south through Canada rather than the U.S. West."
+      ]
+    },
+    "hints": [
+      {"concept_id": "industry_patterns", "text": "What business is nothing but fixed assets — no inventory, no COGS — yet earns 40 cents of operating profit per revenue dollar?"}
+    ],
+    "explanation": "Union Pacific, fiscal 2025. Clues 1-3 are the railroad fingerprint at its purest: the balance sheet is track and locomotives (86% of assets), there is nothing to inventory, and a private continental network converts monopoly-like position into 40% operating margins despite turning assets only 0.35x a year — the exact inverse of Kroger's model. Clues 4-5 describe the mature-infrastructure capital cycle: flat volumes, rising price, and all free cash returned. Scale and geography then pick UNP from the four North American majors."
+  },
+  {
+    "id": "daily2_coffee_sbux",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 130,
+    "concept_ids": ["industry_patterns", "solvency_ratios", "leases"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2025 unless noted).\nClue 1: Customers hand it money before buying anything: about $1.8B of stored-value card and loyalty balances sit in deferred revenue — an interest-free float.\nClue 2: It rents nearly every location it operates: operating lease right-of-use assets are $9.3B, 29% of total assets, and lease liabilities ($10.5B) are two-thirds the size of its actual debt.\nClue 3: Total shareholders' equity is NEGATIVE $8.1B — and has been negative for years. Retained earnings is itself a deficit: decades of buybacks and dividends returned more cash than the company ever kept.\nClue 4: Fiscal 2025 was a turnaround year taken on the chin: operating margin halved from 15.0% to 7.9% under restructuring charges, and net income fell to $1.9B on $37.2B of revenue.\nClue 5: It still paid $2.8B of dividends — more than the year's entire net income — while buybacks stopped completely.\nClue 6: The fiscal year ends the Sunday nearest September 30.",
+      "choices": ["Starbucks Corporation", "McDonald's", "Chipotle Mexican Grill", "Yum! Brands"]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "McDonald's also has negative equity from buybacks — Clue 3 alone cannot separate them, which is the point — but it fails Clues 2 and 4: McDonald's is a franchisor that owns a huge share of its real estate and runs ~45% operating margins on ~$26B of franchise-heavy revenue, nothing like an 8-15% margin on $37B of company-operated sales.",
+        "Chipotle matches the company-operated, leased-store model of Clue 2 but fails Clues 3 and 5: its equity is comfortably positive, it pays no dividend at all, and its revenue is about $11B.",
+        "Yum! Brands is the third negative-equity restaurant company — but like McDonald's it is a franchisor: roughly $7.5B of revenue at ~32% operating margins, with a December fiscal year, failing Clues 4 and 6."
+      ]
+    },
+    "hints": [
+      {"concept_id": "solvency_ratios", "text": "Three of these four companies have negative equity. The killer stat narrows the field but cannot finish the job — margins and the fiscal calendar must."},
+      {"concept_id": "leases", "text": "A company that operates (rather than franchises) thousands of leased stores carries the leases on its own balance sheet. Who holds $9.3B of right-of-use assets?"}
+    ],
+    "explanation": "Starbucks, fiscal 2025 (ended September 28, 2025). Clue 3 is the roster's canonical negative-equity case — but deliberately not unique: McDonald's and Yum share it, teaching that buyback-driven equity deficits are a restaurant-industry pattern, not a typo. What separates Starbucks is the operating model: company-operated stores mean fat revenue at thin (and this year, halved) margins plus a $9.3B wall of capitalized leases, where franchisors show small revenue at giant margins. The September year-end and dividends-exceeding-earnings finish it. Corollary: with equity at −$8.1B, ROE and debt-to-equity are meaningless here — use interest coverage instead."
+  },
+  {
+    "id": "daily2_utility_nee",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 140,
+    "concept_ids": ["industry_patterns", "deferred_taxes"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2025 unless noted).\nClue 1: Property, plant, and equipment is $156B — 73% of total assets — yet revenue is only $27.4B. Asset turnover of 0.13x: thirteen cents of sales per dollar of assets, the slowest in this game.\nClue 2: The mirror image: net margin is 25%. Returns are earned as a regulated percentage of that giant asset base, not by markup on a product.\nClue 3: Its income tax line for fiscal 2025 is a BENEFIT of $0.8B on $4.5B of pretax income — an effective tax rate of roughly negative 18% — because the government pays it, through credits, to build a specific kind of power plant.\nClue 4: Noncontrolling interests are $11.9B of the equity section: it routinely sells partnership slices of individual generation projects to investors who want those tax credits.\nClue 5: Total debt is $93B and rises every year by design — in fiscal 2025 it issued $23.4B of new debt and repaid $10.3B — because the buildout is permanent and rate-funded.\nClue 6: One half of the company is a regulated monopoly serving one fast-growing Sun Belt state; the other half is the country's largest builder of wind and solar generation.",
+      "choices": ["Duke Energy", "NextEra Energy, Inc.", "The Southern Company", "Dominion Energy"]
+    },
+    "answer_key": {
+      "correct_index": 1,
+      "why_wrong": [
+        "Duke matches the regulated-utility silhouette of Clues 1-2 and even the scale, but fails Clues 3-4: its generation fleet is conventional enough that tax credits do not flip its tax line negative, and it has no $12B tax-equity partnership block in its equity section.",
+        null,
+        "Southern fits Clues 1-2 and serves the Southeast, but its signature story of this era was nuclear construction (Vogtle) — enormous cost overruns on conventional rate-base assets — not renewables tax equity; its tax line and NCI look nothing like Clues 3-4.",
+        "Dominion fails on scale and direction: it spent these years shrinking — selling businesses to fund one offshore wind project — with revenue and rate-base growth far below Clue 5's $23B-a-year debt-funded buildout."
+      ]
+    },
+    "hints": [
+      {"concept_id": "deferred_taxes", "text": "A profitable company whose tax line is a benefit, year after year, is being subsidized on purpose. What does Congress pay companies to build?"},
+      {"concept_id": "industry_patterns", "text": "0.13x asset turnover with a 25% net margin is the utility trade: enormous capital, guaranteed thin-but-certain returns on it."}
+    ],
+    "explanation": "NextEra Energy, fiscal 2025. Clues 1-2 identify a regulated utility: the extreme capital intensity (73% of assets in PP&E, 0.13x turnover) paired with fat, regulator-guaranteed margins — the exact inverse of Costco's thin-margin velocity. Clues 3-4 then pick NextEra out of the utility crowd: renewable energy credits driving a negative effective tax rate, and $11.9B of tax-equity partners sitting in noncontrolling interests, are the statement signature of the largest wind-and-solar developer bolted to Florida Power & Light."
+  },
+  {
+    "id": "daily2_machinery_de",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 150,
+    "concept_ids": ["industry_patterns", "trend_analysis"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2025 unless noted).\nClue 1: Its balance sheet has NO current/non-current split at all — the unclassified format banks use — because a captive finance arm that lends to its customers is fused into the consolidated statements.\nClue 2: The finance arm is visible everywhere: interest expense is $3.2B a year, and it originated about $26.3B of new customer financing receivables in fiscal 2025 alone.\nClue 3: Revenue fell from $61.3B to $51.7B to $45.7B — down 25% in two years — because its customers' incomes fall with the price of what THEY sell, and this was a brutal downcycle for them.\nClue 4: Even at the trough, net margin held at 11% ($5.0B of profit) — the pricing power of a dominant franchise whose dealers and installed base lock customers in.\nClue 5: Treasury stock is negative $36.4B against $26.0B of total equity: it kept buying back stock straight through the cycle.\nClue 6: Its fiscal year ends near Halloween — the last Sunday of October (fiscal 2025 was a 53-week year ending November 2).",
+      "choices": ["Caterpillar Inc.", "AGCO", "CNH Industrial", "Deere & Company"]
+    },
+    "answer_key": {
+      "correct_index": 3,
+      "why_wrong": [
+        "Caterpillar is the statement twin — dealers, LIFO, captive finance, even the daily-puzzle mirror of this one — but Clue 6 settles it again in reverse: CAT's fiscal year ends December 31 and its revenue held near $67.6B, not a 25% two-year slide to $45.7B.",
+        "AGCO sells to the same farmers and suffered the same downcycle, but fails Clues 1-2 and 4: it has no consolidated captive finance arm of this scale (its finance venture is a joint venture, off the balance sheet), revenue is about $12B, and downcycle margins compress far below 11%.",
+        "CNH Industrial has a true captive finance arm and an unclassified look, but fails on scale and calendar: roughly $20B of revenue, a December year-end, and nothing like $26B of annual receivable originations.",
+        null
+      ]
+    },
+    "hints": [
+      {"concept_id": "industry_patterns", "text": "An equipment maker whose balance sheet looks like a bank's has a finance company inside it. Which one also ends its year in late October?"},
+      {"concept_id": "trend_analysis", "text": "Revenue down 25% while margin holds at 11% is a franchise absorbing a customer-income shock, not losing its market."}
+    ],
+    "explanation": "Deere & Company, fiscal 2025 (53 weeks, ended November 2, 2025). Clues 1-2 are the captive-finance fingerprint: consolidating a lender erases the current/non-current split and puts a bank's interest expense inside a manufacturer. Clue 3 is the farm cycle — Deere's revenue follows crop prices with a lag — and Clue 4 is why analysts pay up for the franchise anyway. Caterpillar survives every structural clue; the October year-end and the direction of revenue (Deere fell 25% while CAT held flat) are what separate the twins, exactly as the CAT puzzle taught from the other side."
+  }
+]

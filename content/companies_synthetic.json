@@ -1,0 +1,24 @@
+[
+  {
+    "id": "meridian_tools",
+    "name": "Meridian Tools, Inc.",
+    "ticker": null,
+    "cik": null,
+    "kind": "synthetic",
+    "industry": "industrial tools",
+    "sic": null,
+    "fye_month": 12,
+    "description": "A mid-cap maker of professional power tools and precision fastening systems sold through industrial distributors. Steady ~6% growth, ~40% gross margins, disciplined capex a bit above depreciation, modest debt paid down on schedule, and a growing dividend. The kind of company whose statements articulate cleanly -- which is exactly why it is your training ground."
+  },
+  {
+    "id": "sable_peak",
+    "name": "Sable Peak Beverages, Inc.",
+    "ticker": null,
+    "cik": null,
+    "kind": "synthetic",
+    "industry": "beverage distribution",
+    "sic": null,
+    "fye_month": 12,
+    "description": "A regional distributor of craft sodas, teas, and sparkling waters, selling through a network of independent beverage distributors. Thin gross margins, fast inventory turns, and a working-capital-heavy model where the gap between shipping product and collecting cash is the whole game. FY2025 was, management says, a breakout year. Read it carefully."
+  }
+]

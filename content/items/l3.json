@@ -1,0 +1,369 @@
+[
+  {
+    "id": "l3_translate_010",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L3",
+    "ordinal": 10,
+    "concept_ids": ["valuation_allowance", "deferred_taxes"],
+    "difficulty": 3,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "A 10-K states: 'During the year, the Company recorded a $40M valuation allowance against its deferred tax assets.' Translate this twice: first into plain English (what did management actually do and why?), then into the investor implication (what does it tell you about the future, and where would you look next?).",
+      "context": "Deferred tax assets arise mostly from past losses and deductible timing differences — they are only worth something if the company earns enough taxable income in the future to use them.",
+      "response_guidance": "3-4 sentences: plain-English meaning, then the investor takeaway."
+    },
+    "answer_key": {
+      "model_answer": "Plain English: management wrote down the value of its future tax deductions by $40M because it no longer believes the company will earn enough taxable income to use them — the deductions are only worth something against future profits. The charge runs through tax expense, so reported earnings drop by $40M with no cash leaving the company. Investor implication: this is management's own, audited forecast that future profitability is in doubt — a bearish forward-looking tell that often precedes guidance cuts. Check the MD&A and the tax footnote for what changed, and note the flip side: a later release of the allowance would inflate earnings without any operational improvement.",
+      "rubric": [
+        {"id": "plain", "points": 1, "description": "Plain-English translation: management doubts it will earn enough future taxable income to use its deferred tax deductions"},
+        {"id": "mechanics", "points": 1, "description": "Notes the mechanics: the allowance increases tax expense / lowers reported earnings but is non-cash"},
+        {"id": "so_what", "points": 2, "description": "Investor implication: a management-issued bearish signal about future profitability; suggests checking MD&A/tax footnote, and/or notes that a future release would flatter earnings"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "valuation_allowance", "text": "A deferred tax asset is a claim against future profits. What is management saying about those profits when it reserves against the claim?"}
+    ],
+    "explanation": "A valuation allowance is one of the few places management is forced to publish its own view of the future: reserving against DTAs says 'we may not be profitable enough to use these deductions.' It is non-cash but forward-looking — and it cuts both ways, because releasing the allowance later boosts earnings with zero operational content."
+  },
+  {
+    "id": "l3_translate_020",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L3",
+    "ordinal": 20,
+    "concept_ids": ["depreciation_estimates"],
+    "difficulty": 2,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "A 10-K states: 'The Company changed the estimated useful life of its data center equipment from four years to six.' Translate into plain English, then give the investor implication — including the one thing that did NOT change.",
+      "context": null,
+      "response_guidance": "2-4 sentences."
+    },
+    "answer_key": {
+      "model_answer": "Plain English: the company will now spread the same equipment cost over six years instead of four, so annual depreciation expense falls immediately. That lifts reported operating income and net income — but nothing about the business changed: cash flow is identical, and the servers do not run any longer just because the schedule says so. Investor implication: check whether the change coincides with a margin miss or slowing growth, because stretching useful lives is a cheap, legal way to manufacture earnings; and compare the new life against what peers use for similar equipment.",
+      "rubric": [
+        {"id": "plain", "points": 1, "description": "Plain English: same cost spread over more years, so depreciation expense falls"},
+        {"id": "earnings", "points": 1, "description": "States the effect: reported earnings rise with no change in cash"},
+        {"id": "so_what", "points": 2, "description": "Investor implication: an estimate change can manufacture earnings — check timing vs a margin miss and/or benchmark against peers' useful lives"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "depreciation_estimates", "text": "Useful life is an estimate, and estimates are levers. Who benefits when this lever is pulled, and what stayed exactly the same?"}
+    ],
+    "explanation": "Useful life is an estimate, and changing it changes earnings prospectively with zero cash effect. Sometimes the change is honest (hardware really does last longer); the analyst's job is to check the timing — a life extension that lands exactly when margins would otherwise have missed deserves suspicion."
+  },
+  {
+    "id": "l3_translate_030",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L3",
+    "ordinal": 30,
+    "concept_ids": ["revenue_recognition"],
+    "difficulty": 3,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "A 10-K states: 'The Company recognizes revenue on certain bill-and-hold arrangements under which finished goods are invoiced to the customer but stored in the Company's warehouses pending delivery instructions.' Translate into plain English, then give the investor implication.",
+      "context": "Bill-and-hold revenue is permitted under GAAP only in narrow circumstances: the customer must have requested the arrangement, the goods must be identified as the customer's, ready for delivery, and the seller cannot retain the ability to use or redirect them.",
+      "response_guidance": "3-4 sentences."
+    },
+    "answer_key": {
+      "model_answer": "Plain English: the company is booking sales for products that have not left its own warehouse — the invoice exists, but the goods do not move. That is only legitimate in narrow cases where the customer asked for the arrangement and truly controls the goods; otherwise it is a way to pull tomorrow's revenue into today. Investor implication: bill-and-hold is one of the oldest revenue-timing devices in the enforcement casebook, so watch the supporting evidence — rising finished-goods inventory alongside rising revenue, receivables growing faster than sales, and disclosure of how much revenue the arrangements contribute. If the proportion is growing, quarter-end sales are likely being manufactured.",
+      "rubric": [
+        {"id": "plain", "points": 1, "description": "Plain English: revenue is booked while the goods are still in the seller's warehouse / before delivery"},
+        {"id": "risk", "points": 1, "description": "Recognizes this as a revenue-timing device that is only legitimate under narrow conditions (customer-requested, customer controls goods)"},
+        {"id": "so_what", "points": 2, "description": "Investor implication: a red-flag policy to monitor — names corroborating evidence (receivables/DSO or inventory patterns, share of revenue from such arrangements, quarter-end timing)"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "revenue_recognition", "text": "Revenue is earned by transferring control of goods, not by printing an invoice. Where is control in this arrangement?"}
+    ],
+    "explanation": "Bill-and-hold puts the revenue-recognition principle under maximum stress: control, not paperwork, is what earns revenue. The policy can be legitimate, but its abuse potential is so well established that its mere prominence in a filing is a signal to check whether receivables and inventory move consistently with the reported sales."
+  },
+  {
+    "id": "l3_translate_040",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L3",
+    "ordinal": 40,
+    "concept_ids": ["capitalize_vs_expense"],
+    "difficulty": 3,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "A 10-K states: 'The Company capitalized $65M of internal-use software development costs during the year, compared with $30M in the prior year.' Translate into plain English, then give the investor implication of the increase.",
+      "context": "Total engineering headcount and cash spent on development were roughly flat year over year.",
+      "response_guidance": "3-4 sentences."
+    },
+    "answer_key": {
+      "model_answer": "Plain English: instead of expensing $65M of developer costs now, the company parked them on the balance sheet as an asset, to be amortized over future years — up from $30M a year ago. With total development spending roughly flat, the extra $35M of capitalization directly boosts this year's operating income without any change in the underlying cash cost. Investor implication: a rising capitalization rate on flat spend is a classic earnings lever; recompute margins as if the cost had been expensed, compare the capitalization ratio with peers, and remember the boost reverses later as amortization stacks up. Improper versions of this move (WorldCom's capitalized line costs) are why analysts treat it as a standing red flag.",
+      "rubric": [
+        {"id": "plain", "points": 1, "description": "Plain English: costs moved to the balance sheet instead of the income statement, expensed later as amortization"},
+        {"id": "signal", "points": 1, "description": "Spots the tell: capitalization more than doubled while actual development spend was flat, mechanically inflating current operating income"},
+        {"id": "so_what", "points": 2, "description": "Investor implication: adjust earnings for the change (or compare capitalization rate to peers/history) and note the future amortization drag / abuse precedent"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "capitalize_vs_expense", "text": "Same cash out the door — the only question is which year's income statement absorbs it. Who chose, and what does the choice do to this year's margin?"}
+    ],
+    "explanation": "Capitalization moves a cost from today's income statement to tomorrow's, and the *change* in capitalization rate is the tell: flat spend with doubled capitalization is a margin improvement made of accounting, not operations. The honest test is to restate earnings under a constant capitalization policy."
+  },
+  {
+    "id": "l3_translate_050",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L3",
+    "ordinal": 50,
+    "concept_ids": ["cookie_jar_reserves"],
+    "difficulty": 3,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "A 10-K states: 'Based on favorable claims experience, the Company reduced its warranty reserve rate, which decreased cost of revenue by $12M.' Translate into plain English, then give the investor implication.",
+      "context": "The company met consensus operating income this year by roughly $10M.",
+      "response_guidance": "3-4 sentences."
+    },
+    "answer_key": {
+      "model_answer": "Plain English: the company decided its earlier warranty reserves were too big, and releasing the excess flowed straight through to profit — $12M of this year's operating income came from reversing a past estimate, not from selling anything. Investor implication: reserve releases are the classic cookie-jar mechanism — over-reserve in good years, release in lean ones — and here the release is suspiciously close to the amount by which the company beat consensus. Strip the $12M out to see the run-rate business (which missed), and check whether reserve rates have ratcheted down for several quarters, because a reserve that only ever falls is an earnings-management tool, not an estimate.",
+      "rubric": [
+        {"id": "plain", "points": 1, "description": "Plain English: reversing a prior over-accrual boosts current profit without any current-period business improvement"},
+        {"id": "quality", "points": 1, "description": "Flags it as low-quality / non-recurring earnings (cookie-jar pattern), especially given the size vs the consensus beat"},
+        {"id": "so_what", "points": 2, "description": "Investor action: exclude the release to see underlying performance, and check the trend in reserve rates / whether releases recur"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "cookie_jar_reserves", "text": "A reserve is an estimate of future costs. When the estimate shrinks, profit appears — but did the business actually earn it this year?"}
+    ],
+    "explanation": "Reserves are estimates, and estimates can be steered: build the jar in fat years, open it in thin ones. A single release can be honest; a release that exactly bridges a consensus miss, or a reserve rate that declines every quarter while the underlying exposure grows, is smoothing. Earnings that come out of a jar have no cash behind them and no future."
+  },
+  {
+    "id": "l3_translate_060",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L3",
+    "ordinal": 60,
+    "concept_ids": ["sbc"],
+    "difficulty": 2,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "A colleague argues: 'Share-based compensation is added back in the operating section of the cash flow statement, so it's non-cash — we should just ignore it when valuing the company.' Translate what SBC actually is, and explain what is wrong with ignoring it.",
+      "context": null,
+      "response_guidance": "2-4 sentences."
+    },
+    "answer_key": {
+      "model_answer": "SBC is real pay for real work — the company settled the bill in ownership instead of cash, which is why it reduces income but is added back in CFO. Ignoring it means pretending employees worked for free: the cost shows up instead as dilution, a growing share count that shrinks each existing owner's slice of every future profit. If the company had paid the same people in cash, CFO would be lower by that amount, so 'cash flow' that depends on paying wages in stock overstates the economics. Value the business net of SBC, or at minimum track dilution and the diluted share count.",
+      "rubric": [
+        {"id": "plain", "points": 1, "description": "States that SBC is genuine compensation expense settled in equity rather than cash (hence the CFO addback)"},
+        {"id": "dilution", "points": 1, "description": "Identifies the real cost as dilution to existing shareholders / rising share count"},
+        {"id": "so_what", "points": 2, "description": "Valuation implication: ignoring SBC overstates true owner cash flow; treat it as an economic expense or adjust for dilution"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "sbc", "text": "If the company had paid the same salaries in cash, what would CFO look like? Someone always pays — find out who."}
+    ],
+    "explanation": "Non-cash is not the same as costless. SBC transfers value from existing owners to employees through dilution; the cash flow statement adds it back only because the statement tracks cash, not value. Analysts who exclude SBC from 'adjusted' earnings are letting the company report labor as free."
+  },
+  {
+    "id": "l3_adjust_070",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L3",
+    "ordinal": 70,
+    "concept_ids": ["lifo_reserve_adjustment", "inventory_methods"],
+    "difficulty": 2,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Restate this company's inventory to a FIFO basis so it can be compared with a FIFO-using peer. What is FIFO inventory?",
+      "context": "From the inventory footnote: inventories are valued using LIFO. Inventory as reported (LIFO basis): $840M. LIFO reserve at year-end: $210M. Prices have been rising.",
+      "unit": "USD_millions"
+    },
+    "answer_key": {"value": 1050.0, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "lifo_reserve_adjustment", "text": "The LIFO reserve is exactly the gap the footnote hands you: FIFO inventory = LIFO inventory + LIFO reserve."}
+    ],
+    "explanation": "FIFO inventory = 840 + 210 = $1,050M. Under rising prices, LIFO charges the newest (most expensive) costs to COGS and leaves old, cheap costs sitting in inventory; the LIFO reserve is the accumulated understatement. Adding it back restates the balance sheet to current-cost FIFO — essential before comparing inventory, current ratio, or turns against a FIFO peer."
+  },
+  {
+    "id": "l3_adjust_080",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L3",
+    "ordinal": 80,
+    "concept_ids": ["lifo_reserve_adjustment"],
+    "difficulty": 3,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Now restate the same company's cost of goods sold to a FIFO basis. What is FIFO COGS for the year?",
+      "context": "COGS as reported (LIFO basis): $5,200M. LIFO reserve: $180M at the beginning of the year, $210M at the end of the year.",
+      "unit": "USD_millions"
+    },
+    "answer_key": {"value": 5170.0, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "lifo_reserve_adjustment", "text": "The balance-sheet fix uses the reserve's level; the income-statement fix uses its CHANGE during the year: FIFO COGS = LIFO COGS − ΔLIFO reserve."}
+    ],
+    "explanation": "The reserve grew by 210 − 180 = $30M, which is the extra cost LIFO pushed into COGS this year. FIFO COGS = 5,200 − 30 = $5,170M, so FIFO gross profit would be $30M higher. Level vs change is the whole trick: the reserve's level adjusts inventory (balance sheet), its change adjusts COGS (income statement). Watch for the reverse case too — a shrinking reserve (LIFO liquidation) flatters LIFO earnings."
+  },
+  {
+    "id": "l3_adjust_090",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L3",
+    "ordinal": 90,
+    "concept_ids": ["capitalize_vs_expense"],
+    "difficulty": 3,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "By how much is this year's operating income HIGHER under the capitalization policy than it would have been if the $90M had been expensed as incurred? (Answer in $M.)",
+      "context": "On January 1, the company spent $90M on software development and capitalized the entire amount, amortizing it straight-line over 3 years with a full year of amortization recorded this year. Under the alternative policy, the whole $90M would have been an operating expense this year.",
+      "unit": "USD_millions"
+    },
+    "answer_key": {"value": 60.0, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "capitalize_vs_expense", "text": "Under capitalization, how much of the $90M reaches this year's income statement? Compare that with all of it."}
+    ],
+    "explanation": "Capitalizing, only one year of amortization hits the income statement: 90 / 3 = $30M. Expensing would have charged the full $90M. Difference: 90 − 30 = $60M of extra operating income — from the same cash outflow. Note the reversal: in years two and three the capitalizer reports $30M of amortization against the expenser's zero, so capitalization borrows earnings from the future. Cash flow optics shift too: capitalized costs leave via investing, not operating."
+  },
+  {
+    "id": "l3_adjust_100",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L3",
+    "ordinal": 100,
+    "concept_ids": ["depreciation_estimates"],
+    "difficulty": 3,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "After the useful-life change, what is the NEW annual depreciation expense for this equipment? (Answer in $M.)",
+      "context": "Equipment cost $240M, zero salvage value, originally depreciated straight-line over 4 years. After exactly 1 year (accumulated depreciation $60M, net book value $180M), management extends the total useful life to 6 years. Changes in estimate are applied prospectively: the remaining book value is spread over the remaining life.",
+      "unit": "USD_millions"
+    },
+    "answer_key": {"value": 36.0, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "depreciation_estimates", "text": "Prospective means no restating the past: take what is left on the books and divide by the years now remaining (total life 6, one year already used)."}
+    ],
+    "explanation": "Remaining book value $180M over remaining life 6 − 1 = 5 years gives 180 / 5 = $36M per year, down from $60M. Annual pretax income rises by $24M with zero cash effect — this is the arithmetic behind the useful-life-extension translate item, and why analysts check whether such changes coincide with margin pressure."
+  },
+  {
+    "id": "l3_adjust_110",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L3",
+    "ordinal": 110,
+    "concept_ids": ["deferred_revenue"],
+    "difficulty": 2,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "How much revenue did this subscription company RECOGNIZE during the year? (Answer in $M.)",
+      "context": "Deferred revenue balance: $100M at the start of the year, $130M at the end. Cash billings added to deferred revenue during the year: $460M. All revenue passes through deferred revenue (customers pay up front).",
+      "unit": "USD_millions"
+    },
+    "answer_key": {"value": 430.0, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "deferred_revenue", "text": "Roll the liability forward like any other account: opening + billings in − revenue recognized out = closing. Solve for the outflow."}
+    ],
+    "explanation": "Opening 100 + billings 460 − recognized X = closing 130, so X = $430M. The $30M build in deferred revenue means billings outran recognition — cash collected today that must be earned (and reported as revenue) tomorrow. That is why investors treat growing deferred revenue as a leading indicator of future revenue, and a shrinking balance as an early warning that bookings are slowing before the income statement shows it."
+  },
+  {
+    "id": "l3_journal_120",
+    "mode": "drill",
+    "item_type": "journal",
+    "level_id": "L3",
+    "ordinal": 120,
+    "concept_ids": ["leases"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "A company signs a 10-year lease on a distribution center and takes possession today (lease commencement). The present value of the lease payments is $80M. Which entry records commencement?",
+      "context": "No payment is due on day one.",
+      "choices": [
+        "Dr Rent expense $80M / Cr Cash $80M",
+        "Dr Right-of-use asset $80M / Cr Lease liability $80M",
+        "Dr PP&E $80M / Cr Notes payable $80M",
+        "No entry at commencement; lease payments are expensed as they are paid each month."
+      ]
+    },
+    "answer_key": {
+      "correct_index": 1,
+      "why_wrong": [
+        "No cash moved at commencement, and the entire 10-year commitment is not this period's rent — expense will be recognized over the lease term, not all at once.",
+        null,
+        "The company does not own the building — it controls the right to USE it for 10 years. That right is a distinct asset (ROU asset), and the obligation is a lease liability, not a note payable.",
+        "That was the old off-balance-sheet treatment for operating leases. Under current standards (ASC 842 / IFRS 16), commencement puts both the right-of-use asset and the lease liability on the balance sheet."
+      ]
+    },
+    "hints": [
+      {"concept_id": "leases", "text": "What did the company acquire today — a building, or a decade of the right to use one? And what mirror-image obligation came with it?"}
+    ],
+    "explanation": "Lease commencement grosses up the balance sheet: Dr right-of-use asset, Cr lease liability, both at the present value of the payments. Nothing hits the income statement or cash flow yet. The investor consequence is comparability: leverage and asset ratios now include lease commitments that once hid in the footnotes, and pre-2019 statements need adjustment before comparison."
+  },
+  {
+    "id": "l3_journal_130",
+    "mode": "drill",
+    "item_type": "journal",
+    "level_id": "L3",
+    "ordinal": 130,
+    "concept_ids": ["valuation_allowance", "deferred_taxes"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Management concludes it is more likely than not that $40M of its deferred tax assets will never be used. Which entry records this?",
+      "context": "The deferred tax assets arose from prior-year operating losses.",
+      "choices": [
+        "Dr Income tax expense $40M / Cr Valuation allowance (contra to deferred tax assets) $40M",
+        "Dr Deferred tax asset $40M / Cr Income tax benefit $40M",
+        "Dr Retained earnings $40M / Cr Deferred tax asset $40M",
+        "Dr Income tax expense $40M / Cr Cash $40M"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "This is the opposite event — it records the CREATION or release of a tax benefit, increasing the asset and increasing income. Doubting the asset must reduce income, not raise it.",
+        "Changes in tax estimates run through current tax expense on the income statement, not directly against retained earnings — investors are supposed to see this hit earnings.",
+        "No cash is involved: the company is writing down a future benefit, not paying the government. The credit goes to a contra-asset account, not cash."
+      ]
+    },
+    "hints": [
+      {"concept_id": "valuation_allowance", "text": "You are reducing the carrying value of an asset via a contra account, and the cost of that doubt must flow through the income statement's tax line."}
+    ],
+    "explanation": "The allowance is a contra-asset: Dr tax expense, Cr valuation allowance, shrinking net DTAs and net income by $40M with no cash movement. Symmetry matters: when the allowance is later released, the same $40M returns through tax expense as an earnings boost — which is why analysts track allowance movements in the tax footnote as both a bearish signal (establishment) and a low-quality earnings source (release)."
+  },
+  {
+    "id": "l3_journal_140",
+    "mode": "drill",
+    "item_type": "journal",
+    "level_id": "L3",
+    "ordinal": 140,
+    "concept_ids": ["impairments"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "A manufacturing line with a carrying value of $150M has a recoverable value of only $95M after its key customer cancels. Which entry records the impairment?",
+      "context": null,
+      "choices": [
+        "Dr Impairment loss $55M / Cr PP&E (or accumulated impairment) $55M",
+        "Dr PP&E $55M / Cr Revaluation surplus $55M",
+        "Dr Depreciation expense $150M / Cr PP&E $150M",
+        "Dr Impairment loss $55M / Cr Cash $55M"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "That entry writes the asset UP, not down. (Upward revaluation is prohibited for PP&E under US GAAP, and impairments are the opposite event in any case.)",
+        "The asset is not worthless — it is written down to its $95M recoverable value, not to zero, and an impairment is a distinct loss line, not accelerated routine depreciation.",
+        "Impairment is a non-cash charge: the cash was spent when the asset was bought. The credit reduces the asset's carrying value; no cash moves now."
+      ]
+    },
+    "hints": [
+      {"concept_id": "impairments", "text": "Write the asset down to what it can still earn — the loss is the gap between carrying value and recoverable value, and no cash moves."}
+    ],
+    "explanation": "Impairment = carrying value 150 − recoverable value 95 = $55M: Dr impairment loss, Cr the asset. It is non-cash (added back in CFO) but far from meaningless — an impairment is management's admission that past capital was misallocated, and the future earnings the asset was supposed to produce are not coming. Goodwill impairments carry the same message about past acquisitions."
+  }
+]
