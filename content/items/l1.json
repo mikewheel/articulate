@@ -1,0 +1,978 @@
+[
+  {
+    "id": "l1_sort_cash",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L1",
+    "ordinal": 10,
+    "concept_ids": ["statement_roles", "bs_structure", "current_vs_noncurrent"],
+    "difficulty": 1,
+    "grader": "choice",
+    "payload": {
+      "prompt": "First one's a gift. Where does the line item 'Cash and cash equivalents' live?",
+      "context": "Marion slides a filing across the desk. \"Sort the mail. Every line item has exactly one home.\"",
+      "choices": [
+        "Balance sheet — current assets",
+        "Balance sheet — non-current assets",
+        "Income statement — revenue",
+        "Cash flow statement — financing activities"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Cash is the most current thing a company owns — it is already money. Non-current is for assets that take more than a year to become cash.",
+        "Revenue is what the company earned by delivering something. A pile of cash is a resource the company holds, which makes it an asset, not income.",
+        "The cash flow statement explains how the cash balance changed over the period. The balance itself — the snapshot — sits on the balance sheet."
+      ]
+    },
+    "hints": [
+      {"concept_id": "statement_roles", "text": "One statement is a snapshot of what the company owns and owes at a point in time. Which one?"},
+      {"concept_id": "current_vs_noncurrent", "text": "Assets are split by a one-year test. How long does cash take to become cash?"}
+    ],
+    "explanation": "Cash sits at the top of current assets on the balance sheet — the snapshot statement. The cash flow statement then explains how that snapshot changed. Investors start here because cash is the one line management cannot accrue into existence; everything else on the statements is, to some degree, an estimate."
+  },
+  {
+    "id": "l1_lex_accrued_expense",
+    "mode": "drill",
+    "item_type": "lexicon",
+    "level_id": "L1",
+    "ordinal": 20,
+    "concept_ids": ["accrual_vs_cash", "expense_matching"],
+    "difficulty": 1,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Gus asks what 'accrued expenses' on the balance sheet means. Pick the answer you'd give him.",
+      "context": null,
+      "choices": [
+        "Costs the company has incurred but not yet paid — the work happened, the bill hasn't left the building",
+        "Cash the company paid in advance for things it hasn't used yet",
+        "Cash customers paid the company before it delivered",
+        "An estimate of future costs that will never actually require cash"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "That's a prepaid expense — cash out first, expense later. An accrual runs the other way: expense first, cash later.",
+        "That's deferred revenue, and it's about customers paying you, not you owing suppliers and employees.",
+        "Accruals absolutely require cash — just later. December wages accrued today get paid in January."
+      ]
+    },
+    "hints": [
+      {"concept_id": "accrual_vs_cash", "text": "Accrual accounting records things when they happen, not when cash moves. Which direction does this one run — cost first, or cash first?"}
+    ],
+    "explanation": "An accrued expense is a cost already incurred with the cash payment still pending — wages earned but unpaid, utilities used but unbilled. It sits in current liabilities. Investors watch it because accruals are where timing lives: a company can look profitable while its unpaid obligations quietly pile up, and the gap between expense and cash is exactly where analysis starts."
+  },
+  {
+    "id": "l1_sort_revenue",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L1",
+    "ordinal": 30,
+    "concept_ids": ["statement_roles", "is_structure", "revenue_definition"],
+    "difficulty": 1,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Where does 'Revenue' live?",
+      "context": null,
+      "choices": [
+        "Income statement — the top line",
+        "Balance sheet — current assets",
+        "Balance sheet — equity",
+        "Cash flow statement — operating activities"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Revenue measures what was earned over a period — a flow, not a stock. The balance sheet holds positions at a moment in time.",
+        "Revenue eventually reaches equity, but only after expenses take their cut — it arrives as net income folded into retained earnings, not as a line of its own.",
+        "Operating cash flow shows cash collected, which is not the same thing as revenue earned. On credit sales, revenue shows up before the cash does."
+      ]
+    },
+    "hints": [
+      {"concept_id": "statement_roles", "text": "Is revenue a position at a point in time, or a performance over a period?"},
+      {"concept_id": "revenue_definition", "text": "Revenue is earned by delivering, whether or not cash has arrived. Which statement measures earning?"}
+    ],
+    "explanation": "Revenue opens the income statement — the film of performance over a period. It is not cash collected; on a credit sale the cash arrives later, on the cash flow statement. Investors care about the distinction because revenue growth that cash collections never confirm is the oldest warning sign in the book."
+  },
+  {
+    "id": "l1_journal_buy_van",
+    "mode": "drill",
+    "item_type": "journal",
+    "level_id": "L1",
+    "ordinal": 40,
+    "concept_ids": ["journal_entries", "debit_credit_mechanics", "accounting_equation"],
+    "difficulty": 1,
+    "grader": "choice",
+    "payload": {
+      "prompt": "The company buys a delivery van for $40,000, paid in cash. Which entry records it?",
+      "context": "Marion: \"An entry is a sentence. Something increased, something decreased, and the books still balance.\"",
+      "choices": [
+        "Dr Equipment 40,000 / Cr Cash 40,000",
+        "Dr Cash 40,000 / Cr Equipment 40,000",
+        "Dr Vehicle expense 40,000 / Cr Cash 40,000",
+        "Dr Equipment 40,000 / Cr Revenue 40,000"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Backwards. Debits increase assets — the van (equipment) went up, so it takes the debit; cash went down, so it takes the credit.",
+        "The van will serve the business for years, so its cost is capitalized as an asset and expensed gradually as depreciation. Expensing it all today would understate this year's profit and overstate the next few.",
+        "Nobody earned anything here — the company swapped one asset for another. Crediting revenue would invent income out of a shopping trip."
+      ]
+    },
+    "hints": [
+      {"concept_id": "debit_credit_mechanics", "text": "Assets increase with a debit. Two assets changed here — one up, one down."},
+      {"concept_id": "accounting_equation", "text": "Total assets shouldn't change at all in this transaction. It's a swap."}
+    ],
+    "explanation": "One asset traded for another: debit Equipment (asset up), credit Cash (asset down). The equation never moves. The investor angle: this purchase bypasses the income statement entirely today and reappears as depreciation over the van's life — which is why profits and cash spending can tell very different stories in any given year."
+  },
+  {
+    "id": "l1_sort_accounts_payable",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L1",
+    "ordinal": 50,
+    "concept_ids": ["bs_structure", "current_vs_noncurrent"],
+    "difficulty": 1,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Where does 'Accounts payable' live?",
+      "context": null,
+      "choices": [
+        "Balance sheet — current liabilities",
+        "Balance sheet — current assets",
+        "Income statement — operating expenses",
+        "Balance sheet — non-current liabilities"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Payables are bills the company owes its suppliers — an obligation, not a resource. Receivables are the asset-side mirror image.",
+        "The expense was recorded when the goods or services were received. The payable is just the unpaid remainder of that transaction — a balance, not a cost.",
+        "Supplier invoices come due in weeks, not years. The one-year test puts them squarely in current."
+      ]
+    },
+    "hints": [
+      {"concept_id": "bs_structure", "text": "Does the company own this, or owe it?"},
+      {"concept_id": "current_vs_noncurrent", "text": "When do supplier invoices typically come due — within the year, or beyond it?"}
+    ],
+    "explanation": "Accounts payable is money owed to suppliers, due soon: a current liability. Investors read it as free short-term financing — a company that stretches payables is borrowing from its suppliers, which is fine until the suppliers notice. Watch the trend, not the level."
+  },
+  {
+    "id": "l1_journal_credit_sale",
+    "mode": "drill",
+    "item_type": "journal",
+    "level_id": "L1",
+    "ordinal": 60,
+    "concept_ids": ["journal_entries", "revenue_definition", "accrual_vs_cash"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "The company delivers $50,000 of product to a customer who will pay in 30 days. Which entry records the sale?",
+      "context": null,
+      "choices": [
+        "Dr Accounts receivable 50,000 / Cr Revenue 50,000",
+        "Dr Cash 50,000 / Cr Revenue 50,000",
+        "Dr Revenue 50,000 / Cr Accounts receivable 50,000",
+        "Dr Accounts receivable 50,000 / Cr Deferred revenue 50,000"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "No cash has moved yet — the customer has 30 days. Debiting cash today would overstate the bank balance by fifty grand.",
+        "Backwards. Revenue increases with a credit; the receivable is the asset you debit. This entry would erase a sale, not record one.",
+        "Deferred revenue is for the opposite situation — cash collected before delivery. Here delivery already happened, so the revenue is earned, not deferred."
+      ]
+    },
+    "hints": [
+      {"concept_id": "revenue_definition", "text": "Revenue is earned by delivering. Delivery happened. What did the company receive in exchange — cash, or a promise?"},
+      {"concept_id": "debit_credit_mechanics", "text": "Revenue increases with a credit. Which asset takes the debit?"}
+    ],
+    "explanation": "Delivery earns the revenue (credit); the customer's promise to pay becomes a receivable (debit). This is accrual accounting's signature move — income before cash. Investors care because receivables are revenue on trust: if they grow much faster than sales, the company may be booking sales its customers can't or won't pay for."
+  },
+  {
+    "id": "l1_lex_deferred_revenue",
+    "mode": "drill",
+    "item_type": "lexicon",
+    "level_id": "L1",
+    "ordinal": 70,
+    "concept_ids": ["accrual_vs_cash", "revenue_definition"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "A customer pays you today for services you'll deliver next quarter. What does the accountant call the balance this creates?",
+      "context": "Marion: \"Both directions. You know the terms, now match the meaning to the name.\"",
+      "choices": [
+        "Deferred revenue",
+        "Accounts receivable",
+        "Accrued expense",
+        "Prepaid expense"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Receivables run the other way — you delivered first and the cash is still coming. Here the cash arrived first.",
+        "Accrued expenses are costs you owe suppliers or employees. This is about a customer paying you.",
+        "A prepaid expense is when the company pays early for something it will use. Here the customer paid early — same shape, other side of the table."
+      ]
+    },
+    "hints": [
+      {"concept_id": "accrual_vs_cash", "text": "Cash arrived before the revenue was earned. Earned when delivered — so until delivery, what does the company owe the customer?"}
+    ],
+    "explanation": "Cash before delivery creates deferred revenue — a liability, because the company now owes the customer work. It converts to real revenue as delivery happens. Investors like this liability: it is future revenue already paid for, and a growing deferred revenue balance is one of the few genuinely bullish lines on a balance sheet."
+  },
+  {
+    "id": "l1_sort_inventory",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L1",
+    "ordinal": 80,
+    "concept_ids": ["bs_structure", "current_vs_noncurrent", "expense_matching"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Where does 'Inventory' live?",
+      "context": null,
+      "choices": [
+        "Balance sheet — current assets",
+        "Income statement — cost of revenue",
+        "Balance sheet — non-current assets",
+        "Cash flow statement — investing activities"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Inventory becomes cost of revenue only when it's sold — matching the cost to the sale. Until then it waits on the balance sheet as an asset.",
+        "Inventory is meant to sell within the operating cycle — that's the definition of current. If it genuinely takes years to sell, you have a different problem, and its name is obsolescence.",
+        "Investing activities are for long-term assets like plants and equipment. Buying inventory is day-to-day operations, and its cash effect lands in operating."
+      ]
+    },
+    "hints": [
+      {"concept_id": "current_vs_noncurrent", "text": "The current test is one year or one operating cycle. How long is inventory supposed to sit?"},
+      {"concept_id": "expense_matching", "text": "When does inventory's cost hit the income statement — when bought, or when sold?"}
+    ],
+    "explanation": "Inventory is a current asset waiting to become cost of revenue at the moment of sale — that is expense matching at work. Investors watch it because inventory is a bet on future demand made with today's cash: when it grows faster than sales, either a big quarter is coming or a write-down is."
+  },
+  {
+    "id": "l1_translate_deferred_cash",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L1",
+    "ordinal": 90,
+    "concept_ids": ["accrual_vs_cash", "revenue_definition"],
+    "difficulty": 2,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Filing sentence: \"The company collected $2 million from customers for services to be delivered next year.\" Explain to Gus what happened to the statements, and why an investor would care.",
+      "context": "Gus, from the coffee machine: \"They got two million dollars. How is that not two million dollars of sales?\"",
+      "response_guidance": "2-3 sentences. First what the accounting did, in plain English, then the investor takeaway."
+    },
+    "answer_key": {
+      "model_answer": "Cash went up $2 million, but none of it is revenue yet — the company hasn't done the work, so it books a $2 million liability called deferred revenue, an IOU for services owed. The revenue will appear on the income statement next year as the services are actually delivered. For an investor this is quietly good news: it's next year's revenue already collected in cash, and a growing deferred revenue balance means customers are paying in advance for more of what the company sells.",
+      "rubric": [
+        {"id": "mechanics", "points": 1, "description": "States that cash increases but revenue is not recognized yet; the offset is a liability (deferred/unearned revenue) representing an obligation to deliver"},
+        {"id": "timing", "points": 1, "description": "Notes the revenue will be recognized later, when the services are delivered (earned)"},
+        {"id": "so_what", "points": 1, "description": "Gives an investor implication: visibility into future revenue, cash collected up front, or the general point that cash received is not the same as revenue earned"}
+      ],
+      "pass_points": 2
+    },
+    "hints": [
+      {"concept_id": "revenue_definition", "text": "Revenue is earned by delivering, not by collecting. What has the company delivered so far?"},
+      {"concept_id": "accrual_vs_cash", "text": "The cash is real and the revenue isn't yet. Something on the balance sheet has to hold the difference."}
+    ],
+    "explanation": "Cash up $2M, deferred revenue (a liability) up $2M, income statement untouched — the company owes the customer work, and revenue arrives only as the work is delivered. Investors actually like this liability: it is future revenue already paid for, and its growth rate is a leading indicator of the top line."
+  },
+  {
+    "id": "l1_sudoku_two_blanks",
+    "mode": "sudoku",
+    "item_type": "sudoku",
+    "level_id": "L1",
+    "ordinal": 100,
+    "concept_ids": ["is_structure", "net_income_definition", "dividends_declared"],
+    "difficulty": 1,
+    "grader": "grid",
+    "payload": {
+      "intro": "Marion covers two cells of a summary with her thumb. \"Coffee got on the printout. Two numbers missing, two identities to find them: net income is pretax income minus tax, and closing retained earnings is opening retained earnings plus net income minus dividends. Everything you need is on the page.\"",
+      "company_id": null,
+      "statements": [
+        {
+          "name": "Income Statement (FY1, $M)",
+          "rows": [
+            {"key": "revenue", "label": "Revenue", "value": 800.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "cost_of_revenue", "label": "Cost of revenue", "value": 480.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "gross_profit", "label": "Gross profit", "value": 320.0, "blank": false, "indent": 0, "subtotal": true},
+            {"key": "operating_expenses", "label": "Operating expenses", "value": 220.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "pretax_income", "label": "Pretax income", "value": 100.0, "blank": false, "indent": 0, "subtotal": true},
+            {"key": "income_tax", "label": "Income tax expense", "value": 25.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "net_income", "label": "Net income", "value": null, "blank": true, "indent": 0, "subtotal": true}
+          ]
+        },
+        {
+          "name": "Retained Earnings (FY1, $M)",
+          "rows": [
+            {"key": "opening_re", "label": "Retained earnings, opening", "value": 300.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "dividends", "label": "Dividends declared", "value": 20.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "closing_re", "label": "Retained earnings, closing", "value": null, "blank": true, "indent": 0, "subtotal": true}
+          ]
+        }
+      ],
+      "identities": [
+        "Net income = Pretax income − Income tax",
+        "Closing RE = Opening RE + Net income − Dividends"
+      ]
+    },
+    "answer_key": {
+      "cells": {"net_income": 75.0, "closing_re": 355.0},
+      "tolerance_abs": 0.5
+    },
+    "hints": [
+      {"concept_id": "net_income_definition", "text": "Net income is what's left of pretax income after the tax line takes its share."},
+      {"concept_id": "dividends_declared", "text": "Retained earnings collects net income and gives up dividends. Opening plus one, minus the other."}
+    ],
+    "explanation": "Pretax 100 minus tax 25 gives net income 75; opening RE 300 plus 75 minus dividends 20 gives closing RE 355. This roll-forward is the hinge between the income statement and the balance sheet — profit doesn't sit in a drawer, it accumulates in retained earnings. Investors check it because a company that pays out more than it earns is eating its own equity."
+  },
+  {
+    "id": "l1_journal_read_deferred",
+    "mode": "drill",
+    "item_type": "journal",
+    "level_id": "L1",
+    "ordinal": 110,
+    "concept_ids": ["journal_entries", "accrual_vs_cash", "revenue_definition"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "You find this entry in the books: Dr Cash 120,000 / Cr Deferred revenue 120,000. What happened?",
+      "context": "Marion: \"Read it back to me as a sentence. What did the business actually do?\"",
+      "choices": [
+        "Customers paid $120,000 up front for goods or services not yet delivered",
+        "The company earned $120,000 of revenue and collected it in cash",
+        "The company collected $120,000 of old receivables from earlier sales",
+        "The company borrowed $120,000 from the bank"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Earned revenue would credit Revenue and hit the income statement. This entry credits a liability — the company took the money but still owes the work.",
+        "Collecting receivables would credit Accounts receivable, swapping one asset for another. This entry creates a brand-new obligation instead.",
+        "A loan would credit Notes payable or debt. Deferred revenue is owed to customers in services, not to a bank in dollars."
+      ]
+    },
+    "hints": [
+      {"concept_id": "journal_entries", "text": "Cash came in — that's the debit. The credit tells you what the company gave up or now owes. What kind of account is deferred revenue?"},
+      {"concept_id": "accrual_vs_cash", "text": "Money arrived but no revenue was recorded. What does that say about whether the work is done?"}
+    ],
+    "explanation": "Cash in, liability up: customers prepaid, and the company owes them delivery. No revenue until the work happens. Investors reading entries like this learn to ask where cash comes from — collecting deposits is good news about demand, but it isn't earnings yet, and treating it as such is one of the classic ways revenue gets manufactured."
+  },
+  {
+    "id": "l1_sort_dividends_paid",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L1",
+    "ordinal": 120,
+    "concept_ids": ["cfs_structure", "dividends_declared", "statement_roles"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "The company paid cash dividends to shareholders this year. Where does 'Dividends paid' show up?",
+      "context": null,
+      "choices": [
+        "Cash flow statement — financing activities",
+        "Income statement — operating expenses",
+        "Cash flow statement — operating activities",
+        "Balance sheet — current assets"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Dividends are never an expense. They're a distribution of profit to owners, not a cost of earning it — they skip the income statement entirely and come straight out of retained earnings.",
+        "Operating is for the cash the business generates. Dividends are a transaction with the company's owners — that's financing, alongside share issues and buybacks.",
+        "A dividend paid is cash leaving, not an asset the company holds. Once it's paid, it's the shareholders' money."
+      ]
+    },
+    "hints": [
+      {"concept_id": "cfs_structure", "text": "Financing activities cover transactions with the providers of capital — lenders and owners. Who received this cash?"},
+      {"concept_id": "dividends_declared", "text": "Dividends reduce retained earnings, not net income. Which statements does that keep them off of?"}
+    ],
+    "explanation": "Dividends paid sit in financing activities — a transaction with owners, not a cost of doing business, which is why they never dent net income. Investors care because the split matters: operating cash tells you what the business makes, financing cash tells you what management does with it, and mixing the two up flatters nobody but the company."
+  },
+  {
+    "id": "l1_lex_accumulated_depreciation",
+    "mode": "drill",
+    "item_type": "lexicon",
+    "level_id": "L1",
+    "ordinal": 130,
+    "concept_ids": ["expense_matching", "bs_structure"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "What is 'Accumulated depreciation'?",
+      "context": null,
+      "choices": [
+        "The total depreciation recorded against the company's assets to date — a running tally that reduces their carrying value",
+        "Cash the company has set aside to replace its equipment when it wears out",
+        "This year's depreciation expense on the income statement",
+        "The decline in the market value of the company's assets"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "There is no cash in it anywhere. Depreciation is a bookkeeping allocation of a cost already paid — no drawer of replacement money exists unless management actually funds one.",
+        "That's the single-year flow. Accumulated depreciation is the lifetime total of all those yearly charges, parked on the balance sheet.",
+        "Book depreciation follows a schedule set years in advance, not the market. An asset can be depreciated to zero and still be worth plenty — or the reverse."
+      ]
+    },
+    "hints": [
+      {"concept_id": "expense_matching", "text": "Depreciation spreads an old purchase over its useful life. This account is the running total of those charges."}
+    ],
+    "explanation": "Accumulated depreciation is the lifetime sum of depreciation charges, netted against PP&E to give carrying value. No cash, no market opinion — just an allocation schedule. Investors use it as an odometer: accumulated depreciation near gross cost means an old asset base, and a capex bill that hasn't been announced yet."
+  },
+  {
+    "id": "l1_journal_accrued_wages",
+    "mode": "drill",
+    "item_type": "journal",
+    "level_id": "L1",
+    "ordinal": 140,
+    "concept_ids": ["journal_entries", "expense_matching", "accrual_vs_cash"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "It's December 31. Employees have earned $30,000 of wages that won't be paid until the January payroll run. What entry does the company make now?",
+      "context": null,
+      "choices": [
+        "Dr Wage expense 30,000 / Cr Accrued wages payable 30,000",
+        "Dr Wage expense 30,000 / Cr Cash 30,000",
+        "No entry until the wages are actually paid in January",
+        "Dr Accrued wages payable 30,000 / Cr Wage expense 30,000"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "The cash hasn't left yet — payday is in January. Crediting cash now would understate the year-end bank balance.",
+        "That's cash accounting, and it would let December borrow free labor from January's books. Accrual accounting records the expense in the period the work was done.",
+        "Backwards — this entry would reverse an accrual, shrinking the expense and the liability. Used at the wrong moment, entries like this are how expenses go missing."
+      ]
+    },
+    "hints": [
+      {"concept_id": "expense_matching", "text": "The work happened in December. Which period should carry its cost?"},
+      {"concept_id": "accrual_vs_cash", "text": "Expense now, cash later. What kind of account bridges the gap?"}
+    ],
+    "explanation": "The work was done in December, so December takes the expense; the unpaid balance becomes a liability until payday. This is matching, and it is why reported profit is an opinion about timing. Investors care because accruals cut both ways — the same machinery that makes earnings honest can, pointed the wrong direction, make them up."
+  },
+  {
+    "id": "l1_translate_depreciation",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L1",
+    "ordinal": 150,
+    "concept_ids": ["expense_matching", "accrual_vs_cash", "net_income_definition"],
+    "difficulty": 2,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Filing sentence: \"The company recorded $10 million of depreciation on its factory equipment this year.\" Tell Gus what that means in plain English, and what it means for someone who owns the stock.",
+      "context": "Gus: \"Ten million? Did they write a check to someone called Depreciation?\"",
+      "response_guidance": "2-3 sentences. Plain-English mechanics first, then the investor angle."
+    },
+    "answer_key": {
+      "model_answer": "No check was written — the cash left years ago when they bought the equipment, and depreciation is just this year's slice of that old purchase being charged against profit. Earnings drop $10 million but the bank account doesn't move at all. For an investor, this is the standard reason reported profit and cash flow differ, and it's a reminder that the machines are wearing out — sooner or later real cash will be needed to replace them, so profit that only exists because depreciation is small deserves suspicion.",
+      "rubric": [
+        {"id": "mechanics", "points": 1, "description": "States that depreciation reduces reported profit but involves no cash outflow this period — the cash was spent when the asset was purchased"},
+        {"id": "matching", "points": 1, "description": "Explains the why: spreading the asset's cost over the years it is used (matching), rather than expensing it all at purchase"},
+        {"id": "so_what", "points": 1, "description": "Gives an investor implication: earnings vs cash flow gap, the eventual need to replace the asset, or that depreciation assumptions affect reported profit"}
+      ],
+      "pass_points": 2
+    },
+    "hints": [
+      {"concept_id": "expense_matching", "text": "The factory equipment was paid for long ago. This year's charge is a slice of that old cost. Why does the income statement take it now?"},
+      {"concept_id": "accrual_vs_cash", "text": "Profit went down. Did the bank balance? That gap is the whole answer."}
+    ],
+    "explanation": "Depreciation charges a slice of a years-old purchase against this year's profit — earnings fall $10M, cash doesn't move. That is matching: the cost follows the years the machine does the work. Investors care twice over: it is the biggest routine reason profit and cash diverge, and the useful-life assumption behind it is a dial management controls."
+  },
+  {
+    "id": "l1_sort_deferred_revenue",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L1",
+    "ordinal": 160,
+    "concept_ids": ["bs_structure", "current_vs_noncurrent", "accrual_vs_cash"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Where does 'Deferred revenue' live?",
+      "context": "Marion: \"Careful. The name is doing its best to mislead you.\"",
+      "choices": [
+        "Balance sheet — current liabilities",
+        "Income statement — revenue",
+        "Balance sheet — current assets",
+        "Balance sheet — equity"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "The word 'revenue' is a decoy. Nothing has been earned yet — the customer paid, the company owes the work, and an obligation is a liability.",
+        "The cash the customer paid is the asset, and it's already counted in the cash line. Deferred revenue is the matching obligation, on the other side of the balance sheet.",
+        "Equity belongs to owners after all obligations are met. This is an obligation — to customers — so it must be settled before anything belongs to anyone."
+      ]
+    },
+    "hints": [
+      {"concept_id": "accrual_vs_cash", "text": "Cash arrived before the work was done. Until delivery, does the company own something or owe something?"},
+      {"concept_id": "current_vs_noncurrent", "text": "If delivery is due within the year, which half of the liabilities section does the obligation sit in?"}
+    ],
+    "explanation": "Deferred revenue is a liability — customers paid, delivery is owed — and it sits in current liabilities when the work comes due within a year. Despite the scary word 'liability', investors often read it as strength: it is future revenue, pre-collected in cash. A software company's deferred revenue shrinking is worth far more worry than the balance itself."
+  },
+  {
+    "id": "l1_lex_working_capital",
+    "mode": "drill",
+    "item_type": "lexicon",
+    "level_id": "L1",
+    "ordinal": 170,
+    "concept_ids": ["current_vs_noncurrent", "bs_structure"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Current assets minus current liabilities. What does the desk call that number?",
+      "context": null,
+      "choices": [
+        "Working capital",
+        "Book value",
+        "Retained earnings",
+        "Free cash flow"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Book value is total equity — all assets minus all liabilities, not just the short-term slices.",
+        "Retained earnings is accumulated profit kept in the business. It says nothing directly about what's due in the next twelve months.",
+        "Free cash flow is a flow — cash generated over a period after capex. Working capital is a stock: a snapshot of the short-term cushion on one date."
+      ]
+    },
+    "hints": [
+      {"concept_id": "current_vs_noncurrent", "text": "Both halves of this calculation pass the one-year test. The result measures the short-term cushion."}
+    ],
+    "explanation": "Working capital is current assets minus current liabilities — the buffer between what turns into cash this year and what demands cash this year. Investors read it two ways: too little and the company is one bad quarter from a financing problem; ballooning receivables and inventory inside it can mean cash is getting stuck on its way in."
+  },
+  {
+    "id": "l1_sudoku_three_blanks",
+    "mode": "sudoku",
+    "item_type": "sudoku",
+    "level_id": "L1",
+    "ordinal": 180,
+    "concept_ids": ["is_structure", "net_income_definition", "dividends_declared"],
+    "difficulty": 2,
+    "grader": "grid",
+    "payload": {
+      "intro": "Marion hands you a fax — an actual fax — with three cells illegible. \"Three numbers missing, this time from the middle of the statement, not just the bottom. Every one is pinned down by the visible cells. If you're stuck, you're missing a connection, not a number.\"",
+      "company_id": null,
+      "statements": [
+        {
+          "name": "Income Statement (FY1, $M)",
+          "rows": [
+            {"key": "revenue", "label": "Revenue", "value": 1200.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "cost_of_revenue", "label": "Cost of revenue", "value": null, "blank": true, "indent": 0, "subtotal": false},
+            {"key": "gross_profit", "label": "Gross profit", "value": 450.0, "blank": false, "indent": 0, "subtotal": true},
+            {"key": "sga", "label": "SG&A expense", "value": 210.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "da", "label": "Depreciation & amortization", "value": 60.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "operating_income", "label": "Operating income", "value": null, "blank": true, "indent": 0, "subtotal": true},
+            {"key": "interest_expense", "label": "Interest expense", "value": 30.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "pretax_income", "label": "Pretax income", "value": 150.0, "blank": false, "indent": 0, "subtotal": true},
+            {"key": "income_tax", "label": "Income tax expense", "value": 45.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "net_income", "label": "Net income", "value": 105.0, "blank": false, "indent": 0, "subtotal": true}
+          ]
+        },
+        {
+          "name": "Retained Earnings (FY1, $M)",
+          "rows": [
+            {"key": "opening_re", "label": "Retained earnings, opening", "value": 520.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "dividends", "label": "Dividends declared", "value": 35.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "closing_re", "label": "Retained earnings, closing", "value": null, "blank": true, "indent": 0, "subtotal": true}
+          ]
+        }
+      ],
+      "identities": [
+        "Gross profit = Revenue − Cost of revenue",
+        "Operating income = Gross profit − SG&A − D&A",
+        "Closing RE = Opening RE + Net income − Dividends"
+      ]
+    },
+    "answer_key": {
+      "cells": {"cost_of_revenue": 750.0, "operating_income": 180.0, "closing_re": 590.0},
+      "tolerance_abs": 0.5
+    },
+    "hints": [
+      {"concept_id": "is_structure", "text": "Subtotals work in both directions. If you know revenue and gross profit, cost of revenue has nowhere to hide."},
+      {"concept_id": "dividends_declared", "text": "The retained earnings line collects net income and gives up dividends. Everything it needs is visible."}
+    ],
+    "explanation": "Cost of revenue is 1200 − 450 = 750; operating income is 450 − 210 − 60 = 180 (check it: minus interest 30 gives the visible pretax 150); closing RE is 520 + 105 − 35 = 590. The lesson is that subtotals run both directions — every visible cell constrains its neighbors. That reflex is how analysts catch statements that don't add up, and companies whose statements don't add up are telling you something."
+  },
+  {
+    "id": "l1_sort_accumulated_depreciation",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L1",
+    "ordinal": 190,
+    "concept_ids": ["bs_structure", "expense_matching", "statement_roles"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Where does 'Accumulated depreciation' live?",
+      "context": null,
+      "choices": [
+        "Balance sheet — a contra-asset, netted against PP&E",
+        "Income statement — operating expenses",
+        "Balance sheet — non-current liabilities",
+        "Cash flow statement — operating activities"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "The income statement carries this year's depreciation expense — the annual flow. Accumulated depreciation is the lifetime total, and totals live on the balance sheet.",
+        "Nobody is owed this money. It doesn't obligate the company to pay anyone anything — it just records how much of the assets' cost has already been used up.",
+        "The CFS operating section adds depreciation back to reconcile income to cash. That's the yearly expense being reversed out, not the accumulated balance."
+      ]
+    },
+    "hints": [
+      {"concept_id": "bs_structure", "text": "It's not an expense and nobody is owed it. It's a reduction of something the company owns."},
+      {"concept_id": "expense_matching", "text": "Yearly depreciation is the flow; this account is the tank the flow drains into. Flows go on the income statement — where do tanks go?"}
+    ],
+    "explanation": "Accumulated depreciation is a contra-asset: it sits on the balance sheet with a credit balance, netting gross PP&E down to carrying value. Not an expense, not a liability — a subtraction. Investors compare it to gross PP&E as an age gauge: a fleet that is 85% depreciated is a capex announcement waiting to happen, whatever the earnings currently say."
+  },
+  {
+    "id": "l1_translate_credit_sale",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L1",
+    "ordinal": 200,
+    "concept_ids": ["revenue_definition", "accrual_vs_cash", "net_income_definition"],
+    "difficulty": 2,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Filing sentence: \"During the quarter, the company shipped $5 million of goods to a new distributor on 90-day payment terms and recognized the related revenue.\" Plain English for Gus, then the investor angle.",
+      "context": "Gus: \"So they made five million dollars this quarter?\"",
+      "response_guidance": "2-3 sentences. What the accounting did, then what a careful investor would watch."
+    },
+    "answer_key": {
+      "model_answer": "They earned $5 million of revenue by delivering the goods, but no cash has arrived — the distributor has 90 days to pay, so for now the sale exists only as a receivable, an IOU on the balance sheet. Profit shows up this quarter; the cash, if all goes well, shows up next quarter. An investor should watch whether the cash actually follows: revenue booked to a new distributor on long terms is real only if it gets collected, and receivables growing faster than sales is the classic sign that a company is shipping product faster than customers truly want it.",
+      "rubric": [
+        {"id": "mechanics", "points": 1, "description": "States that revenue and profit are recognized on delivery while cash has not been received; the sale sits as a receivable"},
+        {"id": "timing", "points": 1, "description": "Distinguishes the timing: earnings this period, cash later, so reported profit runs ahead of cash"},
+        {"id": "so_what", "points": 1, "description": "Investor implication: watch collection — receivables outgrowing sales, generous terms to a new distributor, or the risk the revenue is never collected"}
+      ],
+      "pass_points": 2
+    },
+    "hints": [
+      {"concept_id": "revenue_definition", "text": "Delivery earns the revenue whether or not cash shows up. So what exactly does the company hold instead of cash?"},
+      {"concept_id": "accrual_vs_cash", "text": "The income statement says five million. The bank statement says nothing yet. An investor's question lives in that gap."}
+    ],
+    "explanation": "Delivery earns the revenue; the cash is a 90-day promise sitting in receivables. Earnings lead, cash follows — usually. Investors give sales like this extra scrutiny because generous terms to a new distributor can mean product pushed rather than pulled, and revenue the customer never pays for was never really revenue."
+  },
+  {
+    "id": "l1_journal_declare_dividend",
+    "mode": "drill",
+    "item_type": "journal",
+    "level_id": "L1",
+    "ordinal": 210,
+    "concept_ids": ["journal_entries", "dividends_declared", "net_income_definition"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "The board declares a $2 million dividend, payable next month. What entry records the declaration?",
+      "context": "Marion: \"Declaring and paying are two different sentences. This question is about the first one.\"",
+      "choices": [
+        "Dr Retained earnings 2,000,000 / Cr Dividends payable 2,000,000",
+        "Dr Dividend expense 2,000,000 / Cr Cash 2,000,000",
+        "Dr Retained earnings 2,000,000 / Cr Cash 2,000,000",
+        "Dr Dividends payable 2,000,000 / Cr Cash 2,000,000"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Twice wrong, which is efficient. Dividends are never an expense — they're a distribution of profit, not a cost of earning it — and no cash moves until the payment date.",
+        "Right debit, wrong credit. The declaration creates an obligation; the cash doesn't leave until next month. Until then it's a payable.",
+        "That's the second entry — the payment next month, when the obligation is settled. The declaration has to create the payable before anyone can pay it."
+      ]
+    },
+    "hints": [
+      {"concept_id": "dividends_declared", "text": "A declaration legally commits the company before any cash moves. Commitments you haven't paid yet have a home on the balance sheet."},
+      {"concept_id": "net_income_definition", "text": "Dividends come out of accumulated profit, not out of this year's expenses. Which equity account holds accumulated profit?"}
+    ],
+    "explanation": "Declaration reduces retained earnings and creates a liability, dividends payable; the cash entry waits for payment day. Two things worth keeping: dividends never touch the income statement, and a declared dividend is a legal obligation. Investors track the declaration because that is the moment the money stops being the company's — the payment is a formality."
+  },
+  {
+    "id": "l1_sort_dividends_payable",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L1",
+    "ordinal": 220,
+    "concept_ids": ["bs_structure", "current_vs_noncurrent", "dividends_declared"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Where does 'Dividends payable' live?",
+      "context": null,
+      "choices": [
+        "Balance sheet — current liabilities",
+        "Balance sheet — equity",
+        "Income statement — expenses",
+        "Cash flow statement — financing activities"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "It came out of equity — retained earnings gave it up at declaration — but it isn't equity anymore. It's a debt to the shareholders now, and debts are liabilities.",
+        "Dividends never appear on the income statement. They're a distribution of profits, not a cost of producing them.",
+        "The financing section will show the cash when it's actually paid. The payable is the obligation in the meantime — a snapshot item, so it lives on the balance sheet."
+      ]
+    },
+    "hints": [
+      {"concept_id": "dividends_declared", "text": "Once declared, the dividend is legally owed. Owed, with payment due in weeks — what does that make it?"},
+      {"concept_id": "current_vs_noncurrent", "text": "Declared dividends are typically paid within a month or two. Apply the one-year test."}
+    ],
+    "explanation": "Between declaration and payment, the dividend is a short-term debt to shareholders: a current liability. It has already left retained earnings and hasn't yet left the bank. A small line, but it teaches the pattern behind every 'payable' on the balance sheet — something committed, not yet settled — which is exactly the layer of the statements where obligations hide."
+  },
+  {
+    "id": "l1_lex_book_value",
+    "mode": "drill",
+    "item_type": "lexicon",
+    "level_id": "L1",
+    "ordinal": 230,
+    "concept_ids": ["accounting_equation", "bs_structure"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "A client letter mentions the company's 'book value'. What is that?",
+      "context": null,
+      "choices": [
+        "Total assets minus total liabilities — the equity the balance sheet says belongs to shareholders",
+        "What the company would sell for in the stock market today",
+        "The amount shareholders would be guaranteed to receive if the company were liquidated",
+        "The original price at which the company first sold its shares"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "That's market capitalization — the market's opinion. Book value is the accountant's tally, and the gap between the two is the market's verdict on everything the books can't see.",
+        "Liquidation guarantees nothing. In a fire sale, inventory and equipment rarely fetch carrying value, and book value makes no promise they will.",
+        "Issue price is history. Book value moves every period — profits build it up through retained earnings, losses and dividends and buybacks draw it down."
+      ]
+    },
+    "hints": [
+      {"concept_id": "accounting_equation", "text": "Rearrange the accounting equation to solve for what belongs to the owners."}
+    ],
+    "explanation": "Book value is the accounting equation solved for equity: assets minus liabilities, per the books. Investors compare it with market value because the ratio between them is a compressed opinion — a stock far below book says the market doubts the assets or expects losses; far above book says the value lives in things the balance sheet can't carry, like brands and habits."
+  },
+  {
+    "id": "l1_journal_earn_deferred",
+    "mode": "drill",
+    "item_type": "journal",
+    "level_id": "L1",
+    "ordinal": 240,
+    "concept_ids": ["journal_entries", "revenue_definition", "accrual_vs_cash"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "You find this entry: Dr Deferred revenue 500,000 / Cr Revenue 500,000. What happened?",
+      "context": "Marion: \"Notice what's missing from this entry before you answer.\"",
+      "choices": [
+        "The company delivered $500,000 of goods or services that customers had already paid for",
+        "The company collected $500,000 in cash for future services",
+        "The company refunded $500,000 of customer deposits",
+        "The company made $500,000 of new sales on credit"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "Collecting cash would debit Cash and credit deferred revenue — building the liability up. This entry draws it down, which only happens when the owed work gets delivered.",
+        "A refund would credit Cash — money going back out the door. No cash account appears anywhere in this entry.",
+        "Credit sales debit Accounts receivable. This entry touches no asset at all — the cash came in long ago, and today the company simply earned it."
+      ]
+    },
+    "hints": [
+      {"concept_id": "journal_entries", "text": "No cash, no receivable — no asset moved at all. A liability shrank and revenue appeared. What single business event does both?"},
+      {"concept_id": "accrual_vs_cash", "text": "The cash for this revenue arrived in some earlier period. Today's entry records the earning, not the collecting."}
+    ],
+    "explanation": "The company worked off its IOU: deferred revenue converts to earned revenue as delivery happens, no cash involved today. This is the second half of the prepayment story, and investors track the conversion rate — revenue fed by a draining deferred balance that new bookings aren't refilling is a top line living off its past."
+  },
+  {
+    "id": "l1_sort_treasury_stock",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L1",
+    "ordinal": 250,
+    "concept_ids": ["bs_structure", "accounting_equation", "statement_roles"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Where does 'Treasury stock' live?",
+      "context": "Marion: \"The company bought back its own shares. Now — is a share of yourself an asset?\"",
+      "choices": [
+        "Balance sheet — equity, as a negative (contra-equity) line",
+        "Balance sheet — current assets, as an investment",
+        "Balance sheet — non-current assets",
+        "Income statement — other income"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "A company can't own a piece of itself as an asset — that would be counting the same value twice. Buying back shares returns capital to departing owners; it doesn't acquire a resource.",
+        "Same problem at any maturity. An asset has to be a claim on something outside the company; your own shares are a claim on you.",
+        "Buying back your own shares generates no income — it's a transaction with owners, and those never run through the income statement, whatever price you paid."
+      ]
+    },
+    "hints": [
+      {"concept_id": "accounting_equation", "text": "The buyback spent cash without acquiring any outside resource. If assets fell and liabilities didn't move, what had to absorb the hit?"},
+      {"concept_id": "bs_structure", "text": "Look in the equity section for lines that carry a minus sign."}
+    ],
+    "explanation": "Treasury stock is contra-equity: cash went out to repurchase shares, so equity shrinks by the same amount — shown as a negative line, not an asset. Investors care about the why. Buybacks below intrinsic value quietly enrich remaining holders; buybacks at any price to prop up per-share numbers are equity leaving the building with better marketing."
+  },
+  {
+    "id": "l1_translate_dividend_exceeds_ni",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L1",
+    "ordinal": 260,
+    "concept_ids": ["net_income_definition", "dividends_declared", "accounting_equation"],
+    "difficulty": 3,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Filing fact: \"The company earned net income of $40 million this year and paid $50 million in dividends.\" Explain to Gus how that's even possible, and what it tells an investor.",
+      "context": "Gus: \"Hang on. They handed out ten million more than they made. Is that allowed?\"",
+      "response_guidance": "2-4 sentences. Mechanics first — where the extra $10 million comes from — then the investor read."
+    },
+    "answer_key": {
+      "model_answer": "It's allowed — dividends are paid out of retained earnings, the stockpile of past profits, not out of this year's income alone. This year's $40 million went in and $50 million came out, so retained earnings shrank by $10 million; the cash came from the balance sheet, or from borrowing. An investor should ask how long that can continue: a payout above earnings means the company is drawing down its own equity to pay shareholders, which is sustainable briefly — after a bad year, say — but as a habit it signals either a management unwilling to cut the dividend or a business that no longer earns its own payout. Check whether operating cash flow covers the dividend, because cash, not net income, is what actually pays it.",
+      "rubric": [
+        {"id": "mechanics", "points": 1, "description": "Explains that dividends come from retained earnings (accumulated past profits), so paying more than one year's income is possible; retained earnings/equity declines by the excess"},
+        {"id": "not_expense", "points": 1, "description": "Shows understanding that dividends are a distribution, not an expense — net income is unaffected by the dividend itself"},
+        {"id": "so_what", "points": 2, "description": "Investor implication: sustainability question — payout exceeding earnings erodes equity, may signal reluctance to cut or deteriorating earnings power; strong answers mention checking cash flow coverage"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "dividends_declared", "text": "Dividends draw on retained earnings — the accumulated pot, not just this year's contribution to it."},
+      {"concept_id": "accounting_equation", "text": "More went out to owners than came in as income, so some balance sheet account got smaller. Which one, and can it shrink forever?"}
+    ],
+    "explanation": "Dividends draw on retained earnings — the accumulated pot — so a payout can exceed one year's income; the difference just drains equity by $10M. Legal, and occasionally sensible after a rough year. Investors treat it as a question with a deadline: a dividend the business no longer earns is either a temporary bridge or a slow-motion liquidation, and the cash flow statement usually says which."
+  },
+  {
+    "id": "l1_sort_rou_asset",
+    "mode": "drill",
+    "item_type": "sort",
+    "level_id": "L1",
+    "ordinal": 270,
+    "concept_ids": ["bs_structure", "current_vs_noncurrent", "statement_roles"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Where does 'Right-of-use asset' live?",
+      "context": "Marion: \"The company signed a ten-year lease on a warehouse it doesn't own. The accountants put something on the books anyway. Where?\"",
+      "choices": [
+        "Balance sheet — non-current assets",
+        "Balance sheet — current assets",
+        "Income statement — rent expense",
+        "Balance sheet — non-current liabilities"
+      ]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "The lease runs ten years — the right to use the warehouse will be consumed over a decade, not within one. That fails the current test decisively.",
+        "The periodic lease cost does hit the income statement over time, but the right-of-use asset itself is the up-front capitalized value of the whole arrangement — a balance, not this year's charge.",
+        "Close — the lease creates one of those too. But that's the twin: the lease liability, the obligation to pay. The right-of-use asset is the other half, the value of getting to use the space."
+      ]
+    },
+    "hints": [
+      {"concept_id": "bs_structure", "text": "A ten-year right to use a warehouse is a resource the company controls. Resources controlled are assets, owned or not — and this lease comes as a matched pair with an obligation."},
+      {"concept_id": "current_vs_noncurrent", "text": "The right gets used up over ten years. Apply the one-year test."}
+    ],
+    "explanation": "A long lease puts a matched pair on the books: a right-of-use asset in non-current assets, and a lease liability on the other side. Ownership isn't the test — control of the resource is. Investors cheered this rule change because it dragged decades of rent commitments out of the footnotes and onto the balance sheet, where an airline's 'asset-light' model suddenly looked exactly as leveraged as it always was."
+  },
+  {
+    "id": "l1_sudoku_four_blanks",
+    "mode": "sudoku",
+    "item_type": "sudoku",
+    "level_id": "L1",
+    "ordinal": 280,
+    "concept_ids": ["is_structure", "net_income_definition", "dividends_declared", "accounting_equation"],
+    "difficulty": 3,
+    "grader": "grid",
+    "payload": {
+      "intro": "Friday afternoon. Marion drops a page on your desk with four cells blanked and says only: \"Everything you need is on the page.\" She does not name the identities this time. That's the point.",
+      "company_id": null,
+      "statements": [
+        {
+          "name": "Income Statement (FY1, $M)",
+          "rows": [
+            {"key": "revenue", "label": "Revenue", "value": null, "blank": true, "indent": 0, "subtotal": false},
+            {"key": "cost_of_revenue", "label": "Cost of revenue", "value": 900.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "gross_profit", "label": "Gross profit", "value": 600.0, "blank": false, "indent": 0, "subtotal": true},
+            {"key": "sga", "label": "SG&A expense", "value": 320.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "da", "label": "Depreciation & amortization", "value": 80.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "operating_income", "label": "Operating income", "value": 200.0, "blank": false, "indent": 0, "subtotal": true},
+            {"key": "interest_expense", "label": "Interest expense", "value": 40.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "pretax_income", "label": "Pretax income", "value": null, "blank": true, "indent": 0, "subtotal": true},
+            {"key": "income_tax", "label": "Income tax expense", "value": 40.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "net_income", "label": "Net income", "value": null, "blank": true, "indent": 0, "subtotal": true}
+          ]
+        },
+        {
+          "name": "Retained Earnings (FY1, $M)",
+          "rows": [
+            {"key": "opening_re", "label": "Retained earnings, opening", "value": 700.0, "blank": false, "indent": 0, "subtotal": false},
+            {"key": "dividends", "label": "Dividends declared", "value": null, "blank": true, "indent": 0, "subtotal": false},
+            {"key": "closing_re", "label": "Retained earnings, closing", "value": 790.0, "blank": false, "indent": 0, "subtotal": true}
+          ]
+        }
+      ],
+      "identities": []
+    },
+    "answer_key": {
+      "cells": {"revenue": 1500.0, "pretax_income": 160.0, "net_income": 120.0, "dividends": 30.0},
+      "tolerance_abs": 0.5
+    },
+    "hints": [
+      {"concept_id": "is_structure", "text": "Every subtotal on the income statement is an equation, and equations solve for any one missing piece. Start at whichever subtotal has only one unknown."},
+      {"concept_id": "dividends_declared", "text": "The retained earnings roll-forward has four parts and you can see three of them."}
+    ],
+    "explanation": "Revenue is 900 + 600 = 1500; pretax is 200 − 40 = 160; net income is 160 − 40 = 120; and the roll-forward gives dividends: 700 + 120 − 790 = 30. Four blanks, one chain — each identity handed its answer to the next. This is the reflex the whole game is built on: the statements are one system, and an analyst who can walk the chain can reconstruct what a company didn't say from what it did. Next week, we do exactly that."
+  }
+]

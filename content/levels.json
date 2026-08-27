@@ -1,0 +1,52 @@
+[
+  {
+    "id": "L1",
+    "ordinal": 1,
+    "band": "A",
+    "title": "Week One — Orientation",
+    "tagline": "Learn the alphabet before you write sentences.",
+    "narrative_intro": "Your first morning at Whetstone & Company. The elevator takes a while, which gives you time to read the plaque nobody has polished since the Clinton administration. Marion Cho meets you at the desk with a stack of 10-Ks and one highlighter.\n\n\"Before you get opinions, you get vocabulary. Every line item in these filings lives in exactly one place — a statement, a section — and you're going to know where on sight, the way you know where your own kitchen keeps the forks. You'll also learn to read a journal entry like a sentence, because that's what it is. Subject, verb, object. Debit, credit, done.\"\n\nShe taps the wall where someone painted the firm's rule: We read the filings. \"Accrual accounting is the whole game. Profit is not cash, cash is not profit, and the space between them is where you and I earn a living. By Friday I want you sorting line items without moving your lips.\"",
+    "narrative_outro": "Marion flips through your work without expression, which you are learning is her expression. \"You know where things live. That's not nothing — most people who own stocks never learn it.\"\n\nShe drops a fresh filing on your desk. \"Next week the training wheels come off. The three statements aren't three documents, they're one machine, and I'm going to hand it to you in pieces.\"",
+    "unlock": {"prereq_level": null, "min_mastery": 0.6}
+  },
+  {
+    "id": "L2",
+    "ordinal": 2,
+    "band": "B",
+    "title": "Week Two — Tie-Outs",
+    "tagline": "Three statements, one system.",
+    "narrative_intro": "Monday. The model for one of the firm's holdings stopped balancing over the weekend, and Marion has decided this is now your education.\n\n\"Here's the thing nobody tells you in school: the statements articulate. Net income flows into retained earnings. Depreciation leaves the income statement and walks back into operating cash. Capex on the cash flow statement becomes PP&E on the balance sheet. Every number is a joint in a skeleton, and if the balance sheet doesn't balance or the cash doesn't tie, a bone is broken and it's your job to find which one.\"\n\n\"So this week you get statements with holes in them. No guessing — every blank is pinned down by an identity you already know or one you're about to. If you're stuck, you're not missing information, you're missing a connection. Ask for a hint and I'll name the identity. I will not name the number.\"",
+    "narrative_outro": "The model ties. Marion looks at the reconciled cash line for a moment. \"CFO plus CFI plus CFF equals the change in cash, every time, everywhere, forever. Companies that make that hard to check are telling you something.\"\n\nFrank Whetstone wanders past with his coffee. \"Cash is a fact,\" he says, to no one in particular. \"Profit is an opinion.\" Marion doesn't disagree, which around here is a standing ovation.",
+    "unlock": {"prereq_level": "L1", "min_mastery": 0.6}
+  },
+  {
+    "id": "L3",
+    "ordinal": 3,
+    "band": "C",
+    "title": "Week Three — House Rules",
+    "tagline": "Same business, different books.",
+    "narrative_intro": "Marion puts two annual reports on your desk. Two companies, same industry, same size, and one of them reports a gross margin four points fatter than the other.\n\n\"Different, or just dressed differently? That's the question this week. Inventory methods, useful lives, capitalize versus expense, when revenue counts as earned — these are choices, and management makes them for reasons. GAAP is not a number, it's a range, and the interesting companies live near one end of it.\"\n\n\"Your job is to undo the choices. Put both companies on the same basis and see what's actually there. And every time you find a policy, ask the only question that matters: which way does this choice flatter them, and what would the number be if it didn't.\"",
+    "narrative_outro": "Your memo comes back with one comment in the margin — \"fine\" — which Gus assures you is the best outcome anyone has gotten from Marion on a first policy memo.\n\n\"Now you know the difference between a fact and an estimate,\" she says. \"Next week we find out if you can tell a good business from a bad one, which is harder, because the filings won't say.\"",
+    "unlock": {"prereq_level": "L2", "min_mastery": 0.6}
+  },
+  {
+    "id": "L4",
+    "ordinal": 4,
+    "band": "D",
+    "title": "Week Four — The Comp Sheet",
+    "tagline": "A number means nothing until it stands next to another number.",
+    "narrative_intro": "Real filings this week — pulled from EDGAR, odd fiscal years and all. Marion wants the comparison sheet for a peer group rebuilt from scratch, by you.\n\n\"A 40% gross margin is meaningless on its own. Gorgeous for a grocer, alarming for a software company. So we common-size everything, we compute the ratios, and then — this is the part people skip — we say what the ratio means and when it lies. A current ratio built out of unsellable inventory is not liquidity, it's a warehouse.\"\n\n\"By Friday I want you reading statements the way you'd recognize a friend at a distance. The grocer, the airline, the bank — they have silhouettes. Learn them and you'll never be fully lost in a filing again.\"",
+    "narrative_outro": "You call the anonymized airline an airline in under a minute, from the lease liabilities and the fuel line alone. Marion almost nods.\n\n\"Pattern recognition is the reward for the drudgery. But remember the ratios are thermometers, not diagnoses. Next week someone runs a fever, and you find out why.\"",
+    "unlock": {"prereq_level": "L3", "min_mastery": 0.6}
+  },
+  {
+    "id": "L5",
+    "ordinal": 5,
+    "band": "E",
+    "title": "Week Five — The Sable File",
+    "tagline": "Something in the filing doesn't sit right.",
+    "narrative_intro": "Marion closes the conference room door, which she has never done before. On the table: Sable Industrial Group, a name you recognize from the firm's book.\n\n\"They printed the quarter last night. Revenue up thirty percent, earnings beat, stock up. Fine, which is the problem — receivables grew almost three times as fast as sales, the allowance for bad debt went down, and operating cash didn't move. One odd number is noise. Three pointing the same way is a thesis.\"\n\n\"So work the file. Name the technique, cite the evidence — which ratio moved, which note contradicts which number. Then you get the call: five questions with their CFO, who will answer every one of them truthfully and none of them helpfully. Clients own this stock. This is no longer practice.\"",
+    "narrative_outro": "The position is sold by Thursday. Nobody celebrates; Gus makes coffee, which is the same thing.\n\nMarion leans on your desk on her way out. \"Five weeks ago you couldn't tell a debit from a credit. Today you caught a receivables problem management spent a whole conference call not mentioning. That's the job — read what they filed, notice what they didn't, and say it in plain English while it still matters.\" She picks up her coat. \"Monday, eight sharp. There are ninety filings in season and we read the filings.\"",
+    "unlock": {"prereq_level": "L4", "min_mastery": 0.6}
+  }
+]
