@@ -221,3 +221,6 @@ __marimo__/
 
 # Articulate local artifacts
 articulate.db
+
+# SEC bulk data (regenerable, ~3GB)
+data/
