@@ -1,0 +1,142 @@
+[
+  {
+    "id": "daily_grocer_kr",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 10,
+    "concept_ids": ["industry_patterns", "activity_ratios"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2024 unless noted).\nClue 1: Net margin is 1.8 cents per dollar of sales.\nClue 2: Inventory turns over 16x a year — about every 23 days — and customers pay within 5 days.\nClue 3: Nearly half of total assets are property, equipment, and finance leases, plus $7.2B of operating lease liabilities.\nClue 4: Gross margin is 22.7%.\nClue 5: About 92% of its inventory is carried at LIFO cost, and its fiscal year ends the Saturday nearest January 31.\nClue 6: In fiscal 2024 it issued $10.5B of notes to fund a mega-merger with its closest rival; a court blocked the deal, and the company pivoted to $4.2B of buybacks that year and $2.7B the next.",
+      "choices": ["Albertsons Companies", "Target", "The Kroger Co.", "Walmart"]
+    },
+    "answer_key": {
+      "correct_index": 2,
+      "why_wrong": [
+        "Albertsons is the near-mirror grocer (thin margins, fast turns, Feb fiscal year) — but it was the target of the blocked merger in Clue 6, not the buyer who issued $10.5B of notes and then bought back its own stock.",
+        "Target's fingerprint fails Clues 2 and 4: general merchandise turns roughly 6x a year, not 16x, and its gross margin runs near 28% because apparel and home goods carry real markup.",
+        null,
+        "Walmart shares the thin net margin and January fiscal year, but Clue 2 rules it out: with general merchandise and e-commerce in the mix its inventory turns about 9x, not 16x, and Clue 6's blocked mega-merger never happened to Walmart."
+      ]
+    },
+    "hints": [
+      {"concept_id": "industry_patterns", "text": "Turns of 16x with a 23% gross margin is the signature of one specific kind of retail."}
+    ],
+    "explanation": "The Kroger Co., fiscal 2024 (ended February 1, 2025). Clues 1-4 narrow it to a pure grocer: nothing else combines 1.8% net margin, 16x turns, and 22.7% gross margin. Clue 5's LIFO share and 52/53-week calendar fit both big grocers — which is why Clue 6's merger history (Kroger issued the bonds; Albertsons was the target) is the discriminating fact."
+  },
+  {
+    "id": "daily_airline_dal",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 20,
+    "concept_ids": ["industry_patterns", "solvency_ratios"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2024 unless noted).\nClue 1: Its current ratio is 0.37 — and that is completely normal for this company.\nClue 2: It reports no inventory and no cost-of-goods line; customers pay before the service is delivered.\nClue 3: Half of total assets are property and equipment; capital spending runs about 8% of revenue every year.\nClue 4: Net margin 5.6% on operating margin 9.7% — the gap is mostly interest on a heavy debt load.\nClue 5: Debt-to-equity fell from 1.68x to 1.00x in fiscal 2023-24 while it repaid roughly $4B of debt each year from operating cash flow.\nClue 6: Goodwill is 13% of total assets — a relic of a giant 2008-era merger — and shareholders' equity has rebuilt to 20% of assets.",
+      "choices": ["Delta Air Lines", "American Airlines", "Southwest Airlines", "United Airlines"]
+    },
+    "answer_key": {
+      "correct_index": 0,
+      "why_wrong": [
+        null,
+        "American fails Clues 5 and 6: its shareholders' equity was still negative in these years, so equity could not be 20% of assets and a falling debt-to-equity ratio could not even be computed meaningfully.",
+        "Southwest fails Clues 1 and 6: it holds a famously large cash position (current ratio near 1), carries minimal debt rather than deleveraging from 1.68x, and has essentially no goodwill because it grew organically instead of by mega-merger.",
+        "United matches the deleveraging story but fails Clue 6: its goodwill is about 6% of assets, not 13%, and its equity base rebuilt more slowly than this company's."
+      ]
+    },
+    "hints": [
+      {"concept_id": "industry_patterns", "text": "A current ratio of 0.37 that nobody worries about means customers pay long before they consume."}
+    ],
+    "explanation": "Delta Air Lines, fiscal 2024. Clues 1-3 identify an airline: prepaid tickets make current liabilities huge (so 0.37 is fine), and there is no inventory because the product is a seat-mile. Among the big four U.S. carriers, the equity rebuild plus 13%-of-assets goodwill (the 2008 Northwest merger) is Delta's specific silhouette — American still had negative equity, Southwest has neither the leverage nor the goodwill, United's goodwill share is half as large."
+  },
+  {
+    "id": "daily_bank_jpm",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 30,
+    "concept_ids": ["industry_patterns", "dupont"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2024 unless noted).\nClue 1: Return on assets is just 1.5% — yet return on equity is 17.4%.\nClue 2: The balance sheet has no inventory, no property-plant-equipment line, and no current/non-current split at all.\nClue 3: Equity is 8.6% of total assets; the other 91% belongs to someone else.\nClue 4: Net margin is 32.9% on revenue of $177.6B.\nClue 5: Operating cash flow was negative $42B — and nobody blinked, because growing the core 'working assets' of this business consumes cash by design.\nClue 6: Total assets are $4.0 trillion — the largest balance sheet of any company in America.",
+      "choices": ["Goldman Sachs", "Bank of America", "JPMorgan Chase & Co.", "Wells Fargo"]
+    },
+    "answer_key": {
+      "correct_index": 2,
+      "why_wrong": [
+        "Goldman fits the leverage silhouette but fails Clues 4 and 6: its assets are roughly $1.7 trillion and its revenue is less than a third of $177.6B, with a heavier tilt to trading and advisory than this diversified giant.",
+        "Bank of America is the closest decoy — same model, same era — but Clue 6 settles it: BofA's balance sheet is about $3.3 trillion, second place, and its revenue and ROE both run below the figures shown.",
+        null,
+        "Wells Fargo fails Clues 4 and 6: roughly $1.9 trillion of assets (capped by regulators for years) and materially lower revenue; it is also far more concentrated in plain lending than the mix these numbers imply."
+      ]
+    },
+    "hints": [
+      {"concept_id": "dupont", "text": "A tiny return on assets becoming a large return on equity is leverage doing the multiplying. What kind of business runs 12x leverage on purpose?"}
+    ],
+    "explanation": "JPMorgan Chase, fiscal 2024. Clues 1-3 say 'bank' before anything else: 12x leverage turning a 1.5% ROA into a 17.4% ROE, and a balance sheet that is financial claims rather than stores or machines. Clue 5 teaches the mode-specific reading: a bank's CFO swings negative when loans and trading assets grow — it is not a distress signal. Clue 6's $4 trillion is the reveal; no other U.S. bank is that size."
+  },
+  {
+    "id": "daily_industrial_cat",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 40,
+    "concept_ids": ["industry_patterns", "activity_ratios"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2025 unless noted).\nClue 1: Inventory sits for about 148 days — nearly five months from raw material to sale.\nClue 2: Gross margin 33.8%, net margin 13.1% — real pricing power for something made of steel.\nClue 3: Customers take 59 days to pay: it sells through a network of independent dealers, and a captive finance subsidiary inside the consolidated statements carries billions in receivables and debt.\nClue 4: About 70% of inventories are carried at LIFO; restating to FIFO would add $4.3B (roughly 24%) to the inventory line.\nClue 5: Current deferred revenue has climbed from 2.9% to 4.9% of sales in two years — customers put down deposits for long-lead equipment.\nClue 6: Revenue was $67.6B and the fiscal year ends December 31.",
+      "choices": ["Deere & Company", "Caterpillar Inc.", "PACCAR", "Cummins"]
+    },
+    "answer_key": {
+      "correct_index": 1,
+      "why_wrong": [
+        "Deere is the deliberate near-twin — dealers, LIFO, captive finance all match — but Clue 6 breaks it: Deere's revenue is around $45B and its fiscal year ends in late October, not December 31.",
+        null,
+        "PACCAR fails Clues 2 and 6: a truck maker running gross margins in the high teens, not 34%, on roughly $33B of revenue — half this company's scale.",
+        "Cummins fails Clues 3 and 6: it sells engines and components largely direct to equipment makers rather than through its own dealer network with a captive finance arm, and its revenue is about half of $67.6B."
+      ]
+    },
+    "hints": [
+      {"concept_id": "activity_ratios", "text": "Five-month inventory plus two-month receivables is a working-capital cycle only heavy manufacturing runs."}
+    ],
+    "explanation": "Caterpillar, fiscal 2025. The slow clocks (148-day inventory, 59-day receivables) plus a 34% gross margin describe premium heavy manufacturing sold through dealers on credit. The LIFO reserve in Clue 4 is one of the largest in corporate America and a Caterpillar signature. Deere survives every clue except the calendar and the scale — which is the daily lesson: when two companies share a fingerprint, the fiscal-year end and size data settle it."
+  },
+  {
+    "id": "daily_retailer_hd",
+    "mode": "daily",
+    "item_type": "daily_filing",
+    "level_id": null,
+    "ordinal": 50,
+    "concept_ids": ["industry_patterns", "trend_analysis"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Which company is this?",
+      "context": "All figures computed from this company's most recent 10-K filings (fiscal 2025 unless noted).\nClue 1: Asset turnover 1.6x with an 8.6% net margin — a retailer, but a rich one.\nClue 2: Inventory is a quarter of total assets and turns about 4.3x a year (~86 days on the shelf).\nClue 3: Gross margin 33.3% — ten points richer than a grocer, half a software company's.\nClue 4: Goodwill jumped from 11% to 21% of total assets in two years after two multibillion-dollar acquisitions of professional-distribution businesses ($17.6B, then $5.4B).\nClue 5: Days sales outstanding climbed from 8 to 12 days as it built a trade-credit business for contractors alongside its at-the-register consumers.\nClue 6: Revenue was $164.7B and the fiscal year ends the Sunday nearest January 31.",
+      "choices": ["Lowe's", "The Home Depot", "Best Buy", "Tractor Supply"]
+    },
+    "answer_key": {
+      "correct_index": 1,
+      "why_wrong": [
+        "Lowe's is the same aisle — similar margins, same fiscal calendar, and it too bought pro-distribution businesses recently — but Clue 6 rules it out: Lowe's revenue is roughly half of $164.7B, and its acquisition spending was far smaller than Clue 4's $17.6B.",
+        null,
+        "Best Buy fails Clues 2 and 3: consumer electronics turn faster (about 6x) on a gross margin near 22%, and it has made no goodwill-tripling acquisitions.",
+        "Tractor Supply fails on scale and story: about $15B of revenue against Clue 6's $164.7B, with no multibillion-dollar distribution deals behind Clue 4."
+      ]
+    },
+    "hints": [
+      {"concept_id": "trend_analysis", "text": "Clues 4 and 5 tell one story: what kind of customer pays on trade credit, and what kind of retailer just paid $23B to reach more of them?"}
+    ],
+    "explanation": "The Home Depot, fiscal 2025 (ended February 1, 2026). Clues 1-3 place it precisely in big-box home improvement — richer than groceries, slower than electronics. Clues 4-5 are the current strategic story: the SRS Distribution and GMS acquisitions pushed goodwill past a fifth of assets and added contractor trade credit, which is why DSO rose without any collection problem. Only the scale clue is needed to split it from Lowe's."
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "kr",
+    "name": "The Kroger Co.",
+    "ticker": "KR",
+    "cik": "0000056873",
+    "kind": "real",
+    "industry": "grocery retail",
+    "sic": "5411",
+    "fye_month": 1,
+    "description": "Kroger runs roughly 2,700 supermarkets and one of the largest pharmacy and fuel-center networks in the United States, ringing up about $147 billion a year in sales. The business model is velocity, not markup: it keeps only about 23 cents of gross profit per dollar of sales and under 2 cents of net income, so it survives by turning its inventory over roughly every three weeks and collecting cash from shoppers instantly while paying suppliers weeks later. Almost everything it owns is stores, distribution centers, and leases; almost 92% of its inventory is carried at LIFO cost. When you read Kroger, watch volume, gross margin in basis points, and the working-capital machine — tiny changes in any of them swing earnings that a software company would call a rounding error."
+  },
+  {
+    "id": "msft",
+    "name": "Microsoft Corporation",
+    "ticker": "MSFT",
+    "cik": "0000789019",
+    "kind": "real",
+    "industry": "software and cloud computing",
+    "sic": "7372",
+    "fye_month": 6,
+    "description": "Microsoft sells software, cloud infrastructure (Azure), productivity subscriptions, gaming, and devices, most of it on recurring contracts billed in advance. The economics are the mirror image of a retailer: gross margins near 70%, net margins over 35%, customers who prepay (creating a large deferred revenue liability that is a promise of future revenue, not a debt problem), and almost no inventory. The interesting tension in its recent statements is that a historically asset-light business is pouring well over $100 billion a year into data centers for AI — property and equipment has gone from about a quarter of total assets to over 40% in three years. When you read Microsoft, watch deferred revenue growth, capital spending against operating cash flow, and how depreciation from that buildout will press on future margins."
+  },
+  {
+    "id": "dal",
+    "name": "Delta Air Lines, Inc.",
+    "ticker": "DAL",
+    "cik": "0000027904",
+    "kind": "real",
+    "industry": "airline",
+    "sic": "4512",
+    "fye_month": 12,
+    "description": "Delta flies roughly 200 million passengers a year through a hub-and-spoke network, earning about $62 billion of revenue from tickets, its loyalty program, and a premium-cabin mix. Airlines are capital sold by the seat-mile: half of Delta's balance sheet is aircraft and airport assets, leases add billions more of debt-like obligations, and customers pay before they fly — so current liabilities dwarf current assets and a current ratio near 0.4 is normal, not a crisis. Margins are thin and cyclical (mid-single-digit net margins in good years) because fuel, labor, and capacity decisions are largely outside any one airline's control. The recent Delta story is deleveraging: it borrowed heavily to survive 2020 and has spent every year since repaying $4-5 billion of debt from operating cash flow and rebuilding equity."
+  },
+  {
+    "id": "jpm",
+    "name": "JPMorgan Chase & Co.",
+    "ticker": "JPM",
+    "cik": "0000019617",
+    "kind": "real",
+    "industry": "diversified banking",
+    "sic": "6021",
+    "fye_month": 12,
+    "description": "JPMorgan is the largest U.S. bank: it takes about $2.5 trillion of deposits and turns them into loans, securities, and trading positions across consumer banking, investment banking, markets, and asset management. For a bank the balance sheet IS the business — revenue is mostly the spread between what it earns on $4 trillion of assets and what it pays for the money that funds them, plus fees. That means the statements look like no other company here: no inventory, no cost of goods sold, no current/non-current split, equity of only about 8% of assets, and an operating cash flow line that swings tens of billions negative in normal years simply because loans and trading assets grew. The skill JPMorgan teaches is leverage arithmetic: a return on assets of barely 1.5%, multiplied by 12x leverage, becomes a mid-teens return on equity — and the same multiplier works in reverse when credit sours."
+  },
+  {
+    "id": "cat",
+    "name": "Caterpillar Inc.",
+    "ticker": "CAT",
+    "cik": "0000018230",
+    "kind": "real",
+    "industry": "construction and mining equipment",
+    "sic": "3531",
+    "fye_month": 12,
+    "description": "Caterpillar manufactures construction, mining, and energy equipment — machines that take months to build and decades to wear out — and sells them through independent dealers, most on credit, with a captive finance arm (Cat Financial) that adds a bank-like layer of debt to the consolidated balance sheet. The fingerprints of heavy manufacturing are all over its statements: inventory sits for roughly five months (turns of about 2.5x), receivables stretch nearly two months, and results swing with commodity and construction cycles. Caterpillar is also this game's model LIFO company: about 70% of inventories are carried at last-in-first-out cost, and the LIFO reserve — what inventory would gain if restated to FIFO — has grown past $4 billion, quietly making its inventory look smaller and its historical costs look higher than a FIFO competitor's. Watch the dealer inventory cycle, the finance arm's leverage, and deferred revenue from customers paying ahead for long-lead equipment."
+  },
+  {
+    "id": "hd",
+    "name": "The Home Depot, Inc.",
+    "ticker": "HD",
+    "cik": "0000354950",
+    "kind": "real",
+    "industry": "home improvement retail",
+    "sic": "5211",
+    "fye_month": 1,
+    "description": "Home Depot sells home-improvement products through about 2,300 big-box stores, splitting its business between do-it-yourself consumers and professional contractors. It is a study in how retail economics scale up from a grocer: gross margin around 33% instead of 23%, inventory that turns about four times a year instead of sixteen, and a 9% net margin that a supermarket could only dream of. Decades of aggressive buybacks left reported shareholders' equity near zero — making return on equity meaningless and debt-to-equity explosive — which is a lesson in itself about ratio denominators. The recent story is a strategic push into professional distribution: two giant acquisitions (SRS Distribution in fiscal 2024, GMS in fiscal 2025) nearly tripled goodwill to over a fifth of total assets and, because contractors buy on trade credit, receivables days have climbed from 8 to 12 — growth in a ratio that here signals mix shift, not trouble collecting."
+  }
+]
