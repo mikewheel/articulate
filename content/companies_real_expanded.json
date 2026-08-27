@@ -1,0 +1,112 @@
+[
+  {
+    "id": "xom",
+    "name": "Exxon Mobil Corporation",
+    "ticker": "XOM",
+    "cik": "0000034088",
+    "kind": "real",
+    "industry": "integrated oil and gas",
+    "sic": "2911",
+    "fye_month": 12,
+    "description": "Exxon Mobil pumps, refines, ships, and sells oil, gas, and chemicals — about $332 billion of revenue that rises and falls with commodity prices it does not control. Its income statement looks like no retailer's: there is no gross-profit or operating-income line at all, just revenue against one giant block of costs, which is itself a fingerprint of an integrated commodity producer. Two-thirds of the balance sheet is wells, refineries, and pipelines; depreciation runs $26 billion a year and capital spending even more. The recent story is scale bought with paper: in fiscal 2024 it paid for a roughly $60 billion acquisition of a Permian shale producer almost entirely in newly issued stock — common stock on the balance sheet jumped from $18 billion to $46 billion — while still returning about $37 billion a year to shareholders in buybacks and dividends. When you read Exxon, watch the oil price, capex against operating cash flow, and remember that a 9% net margin here is a good year, not a bad one."
+  },
+  {
+    "id": "pfe",
+    "name": "Pfizer Inc.",
+    "ticker": "PFE",
+    "cik": "0000078003",
+    "kind": "real",
+    "industry": "pharmaceuticals",
+    "sic": "2834",
+    "fye_month": 12,
+    "description": "Pfizer discovers, manufactures, and sells patented medicines and vaccines — a business where the pill costs almost nothing to make (gross margin near 74%) but the science behind it costs $10 billion a year of R&D. The balance sheet confesses how the pipeline is really filled: goodwill plus acquired intangibles are about 60% of total assets, the residue of buying other companies' molecules, including a $43 billion cancer-drug acquisition in 2023 funded with $31 billion of fresh debt. These years are the pandemic hangover: revenue peaked with its COVID products and then fell away, net income collapsed to $2.1 billion in fiscal 2023 before rebuilding to about $7.8 billion, and gross margin swung from 57% back to 74% as write-offs rolled through. Pharma also moves slowly in the flesh: inventory sits for the better part of a year and customers take 69 days to pay. Watch patent-expiry dates, the amortization line, and whether acquired pipelines earn back their goodwill."
+  },
+  {
+    "id": "cost",
+    "name": "Costco Wholesale Corporation",
+    "ticker": "COST",
+    "cik": "0000909832",
+    "kind": "real",
+    "industry": "membership warehouse clubs",
+    "sic": "5331",
+    "fye_month": 8,
+    "description": "Costco sells groceries and general merchandise in bulk through membership-only warehouses, and its statements are an extreme even by retail standards: gross margin is only about 13% — roughly half a conventional retailer's — because the actual profit engine is the membership fee customers pay before they ever shop. Inventory turns over 13 times a year (about 28 days on the shelf), shoppers pay at the register in about 4 days, and accounts payable is larger than inventory itself, which means suppliers effectively finance the merchandise: Costco often sells goods before it has paid for them. On $275 billion of revenue it keeps under 3 cents per dollar, yet the velocity produces a return on equity above 30% with almost no debt. Its 52/53-week fiscal year ends the Sunday nearest August 31, and it periodically returns hoarded cash in one blast — fiscal 2024 included a $9.0 billion special dividend. Watch membership renewal behavior (via deferred revenue), gross margin in basis points, and the payables-to-inventory ratio."
+  },
+  {
+    "id": "nflx",
+    "name": "Netflix, Inc.",
+    "ticker": "NFLX",
+    "cik": "0001065280",
+    "kind": "real",
+    "industry": "subscription streaming",
+    "sic": "7841",
+    "fye_month": 12,
+    "description": "Netflix sells one thing — a monthly subscription to its streaming service — and its statements are shaped by what that money is spent on: self-produced shows and films. Its single biggest asset is a content library of roughly $33 billion, nearly 60% of total assets, which is cash spent on productions capitalized and then amortized against revenue over the years people watch. Physical assets barely register (property and equipment is under 4% of assets) and there is no inventory; subscribers prepay, so receivables are minor. The recent story is operating leverage arriving: revenue grew from $34 billion to $45 billion over three years while operating margin marched from 21% to 29%, because a hit show costs the same whether 10 million or 300 million members watch it. Free cash now funds roughly $9 billion a year of buybacks with debt held flat. Watch cash content spend against its amortization, the operating-margin trajectory, and remember the 2025 ten-for-one stock split when comparing per-share figures across years."
+  },
+  {
+    "id": "nvda",
+    "name": "NVIDIA Corporation",
+    "ticker": "NVDA",
+    "cik": "0001045810",
+    "kind": "real",
+    "industry": "semiconductors (fabless)",
+    "sic": "3674",
+    "fye_month": 1,
+    "description": "NVIDIA designs the graphics and AI accelerator chips at the center of the data-center buildout, and its recent statements record one of the steepest revenue ramps a large company has ever printed: $61 billion to $130 billion to $216 billion across fiscal 2024-2026 (its fiscal year ends in late January). The economics look like software wearing a hardware costume: 71-75% gross margins and a net margin around 56%, because NVIDIA is fabless — it pays foundries to manufacture the silicon, so property and equipment is only about 5% of total assets. The strain of growth shows in working capital: inventory turns under 3x as it prepays for wafer capacity, and receivables run about 65 days because its customers are giant cloud platforms buying on terms. Profit arrives faster than it can be spent — $103 billion of operating cash flow in fiscal 2026 funded $40 billion of buybacks with almost no debt. Watch customer concentration, inventory and purchase commitments against demand, and whether margins hold as competition arrives."
+  },
+  {
+    "id": "ba",
+    "name": "The Boeing Company",
+    "ticker": "BA",
+    "cik": "0000012927",
+    "kind": "real",
+    "industry": "commercial aircraft and defense",
+    "sic": "3721",
+    "fye_month": 12,
+    "description": "Boeing is one of only two companies on earth that build large commercial jets at scale, and its statements show both the privilege and the wreckage of that position. Customers pay years before delivery: current deferred revenue (advances on undelivered planes) runs near $60 billion — in fiscal 2024 that was 91% of the year's entire revenue. The wreckage: years of quality crises and a 2024 factory strike produced an $11.8 billion loss and negative $12.1 billion of operating cash flow in fiscal 2024, on top of a shareholders' deficit that reached negative $17.2 billion — cumulative losses and old buybacks had consumed more than all the equity ever put in. The rescue was a roughly $24 billion stock and convertible-preferred offering in late 2024, which together with a fiscal 2025 recovery (revenue $89 billion, a thin $2.2 billion profit) pushed equity back above zero. Boeing teaches that a company can run for years on customer deposits and debt with negative book equity — and what it costs shareholders when the equity finally has to be rebuilt by dilution."
+  },
+  {
+    "id": "unp",
+    "name": "Union Pacific Corporation",
+    "ticker": "UNP",
+    "cik": "0000100885",
+    "kind": "real",
+    "industry": "freight railroad",
+    "sic": "4011",
+    "fye_month": 12,
+    "description": "Union Pacific hauls freight over about 32,000 miles of track it owns across the western United States, and its balance sheet is the railroad: property and equipment is 86% of total assets, much of it right-of-way first graded more than a century ago. The result is the inverse of retail: asset turnover of only 0.35x, but operating margins near 40% and net margins near 29%, because a private continental network faces one competitor at most and its customers have few alternatives for heavy long-haul freight. Revenue barely grows — $24.1 billion to $24.5 billion over three years — so earnings growth comes from price and operating discipline, and nearly all free cash flow goes back out the door as buybacks and dividends (about $5.9 billion in fiscal 2025 against $5.5 billion of free cash flow). Debt of $32 billion against $18 billion of equity would alarm you at a cyclical company; here the cash flows are utility-steady. Watch the operating ratio, volumes versus price, and capex — the track must be renewed forever."
+  },
+  {
+    "id": "sbux",
+    "name": "Starbucks Corporation",
+    "ticker": "SBUX",
+    "cik": "0000829224",
+    "kind": "real",
+    "industry": "specialty coffee retail",
+    "sic": "5810",
+    "fye_month": 9,
+    "description": "Starbucks operates and licenses tens of thousands of coffeehouses, and it is this roster's standing lesson that a balance sheet can be upside-down while the business still functions: total equity is negative $8.1 billion, because two decades of buybacks and dividends returned more cash than the company ever retained — retained earnings itself is a deficit. The stores are almost all rented, so operating lease right-of-use assets are 29% of total assets and lease liabilities dwarf the reported debt discussion. Customers hand it interest-free money in advance: stored-value cards and loyalty deferrals hold about $1.8 billion. The recent chapter is a turnaround under way: in fiscal 2025 (its year ends the Sunday nearest September 30) operating margin halved from 15% to 8% under restructuring costs, net income fell to $1.9 billion — less than the $2.8 billion of dividends paid — and buybacks stopped entirely. Starbucks is why analysts reach past ROE and debt-to-equity (both meaningless with a negative denominator) to interest coverage and lease-adjusted leverage."
+  },
+  {
+    "id": "nee",
+    "name": "NextEra Energy, Inc.",
+    "ticker": "NEE",
+    "cik": "0000753308",
+    "kind": "real",
+    "industry": "electric utility and renewables",
+    "sic": "4911",
+    "fye_month": 12,
+    "description": "NextEra Energy is Florida's regulated electric utility (Florida Power & Light) bolted to the country's largest developer of wind and solar generation, and its statements show what capital intensity really means: $156 billion of property and equipment — 73% of total assets — producing just $27 billion of revenue, an asset turnover of 0.13x. Margins are the mirror image of the turnover: about 25 cents of net income per revenue dollar, earned as a regulated return on an ever-growing rate base. The financing model is as much the business as the electrons: total debt is $93 billion and rises every year (it issued $23 billion and repaid $10 billion in fiscal 2025 alone), and noncontrolling interests of $12 billion mark the slices of renewable projects sold to tax-equity partners. The tax line is a signature: renewable energy credits made fiscal 2025 income tax a net benefit of $0.8 billion on $4.5 billion of pretax income. Watch rate-case outcomes, the cost of the debt that funds the buildout, and dividends that consume about two-thirds of earnings."
+  },
+  {
+    "id": "de",
+    "name": "Deere & Company",
+    "ticker": "DE",
+    "cik": "0000315189",
+    "kind": "real",
+    "industry": "agricultural and construction machinery",
+    "sic": "3523",
+    "fye_month": 10,
+    "description": "Deere builds the green tractors, combines, and construction machines, sells them through dealers, and — like Caterpillar, its closest statement twin — finances its own customers through a captive credit arm so large that Deere presents an unclassified balance sheet: no current/non-current split at all, the same shape a bank uses. The finance business is visible everywhere: interest expense of $3.2 billion, and about $26 billion of new customer financing receivables originated in fiscal 2025 alone. These three years trace a textbook farm cycle rolling over: revenue fell from $61.3 billion to $45.7 billion (down 25% in two years) as crop prices and farmer incomes slid, yet net margin held at 11% at the trough — evidence of the pricing power and cost flexibility a dominant franchise buys. Its fiscal year ends near Halloween (last Sunday of October; fiscal 2025 was a 53-week year ending November 2). Watch dealer inventories, the credit quality of the finance book, and the gap between equipment operations and financial services when the cycle turns."
+  }
+]

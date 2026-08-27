@@ -1,0 +1,167 @@
+[
+  {
+    "id": "l4_lu_new_wave",
+    "mode": "lineup",
+    "item_type": "lineup_match",
+    "level_id": "L4",
+    "ordinal": 160,
+    "concept_ids": ["industry_patterns", "common_size"],
+    "difficulty": 3,
+    "grader": "mapping",
+    "payload": {
+      "prompt": "Four real U.S. companies, anonymized, most recent fiscal year (10-K data). Two report no gross-profit line at all, and two report gross margins above 70% — the remaining lines must split each pair. Match each to its industry.",
+      "left": [
+        {"key": "A", "label": "Company A", "stats": [
+          {"name": "Gross margin", "value": "not reported — one block of 'total costs and deductions'"},
+          {"name": "Net margin", "value": "8.7%"},
+          {"name": "PP&E / total assets", "value": "67%"},
+          {"name": "D&A / revenue", "value": "7.8%; capex / revenue 8.5%"},
+          {"name": "Asset turnover", "value": "0.74x"},
+          {"name": "Days sales outstanding", "value": "39 days"}
+        ]},
+        {"key": "B", "label": "Company B", "stats": [
+          {"name": "Gross margin", "value": "74.3%"},
+          {"name": "Net margin", "value": "12.4%"},
+          {"name": "R&D / revenue", "value": "16.7%"},
+          {"name": "Goodwill + acquired intangibles / total assets", "value": "60%"},
+          {"name": "Days inventory on hand", "value": "≈242 days"},
+          {"name": "Days sales outstanding", "value": "69 days"}
+        ]},
+        {"key": "C", "label": "Company C", "stats": [
+          {"name": "Gross margin", "value": "71.1%"},
+          {"name": "Net margin", "value": "55.6%"},
+          {"name": "R&D / revenue", "value": "8.6%"},
+          {"name": "PP&E / total assets", "value": "5%"},
+          {"name": "Inventory turnover", "value": "2.9x (≈125 days)"},
+          {"name": "Equity / total assets", "value": "76%"}
+        ]},
+        {"key": "D", "label": "Company D", "stats": [
+          {"name": "Gross margin", "value": "not reported — no cost-of-goods line"},
+          {"name": "Net margin", "value": "29.1% (operating margin 40.2%)"},
+          {"name": "PP&E / total assets", "value": "86%"},
+          {"name": "Inventory / total assets", "value": "≈1% (materials and supplies only)"},
+          {"name": "Asset turnover", "value": "0.35x"},
+          {"name": "Days sales outstanding", "value": "28 days"}
+        ]}
+      ],
+      "right": ["Freight railroad", "Integrated oil & gas major", "Pharmaceutical maker", "Fabless semiconductor designer"]
+    },
+    "answer_key": {
+      "map": {"A": 1, "B": 2, "C": 3, "D": 0},
+      "tells": {
+        "A": "No gross-profit line plus two-thirds of assets in productive plant says extraction-and-processing at commodity scale. The tie-break against Company D (the other no-gross-margin filer): an 8.7% net margin at 0.74x asset turnover means it sells a lot of something it cannot price — a commodity — while D's 29% margin means priced infrastructure. Heavy D&A (7.8% of revenue) matched by even heavier capex is the perpetual drilling treadmill of an integrated oil major.",
+        "B": "A 74% gross margin eaten down to a 12% net margin is the pharmaceutical signature: the pill is nearly free to make, but R&D (16.7% of revenue) and selling costs consume the spread. Confirmation is on the balance sheet and in the clocks — 60% of assets are goodwill and acquired intangibles (pipelines bought, not built) and inventory sits some 240 days because drugs take most of a year to manufacture and release.",
+        "C": "The other 70%+ gross margin — but with a 55.6% NET margin, which no pharma or software-services company prints. PP&E at just 5% of assets is the tell that the physical product is manufactured by someone else: a fabless semiconductor designer keeping the design margin while foundries hold the factories. Slow inventory (125 days of prepaid wafer pipeline) on a hardware seller confirms it.",
+        "D": "No COGS, essentially no inventory, and 86% of assets in plant is a network business that sells the use of infrastructure, not goods. Operating margin of 40% at a glacial 0.35x asset turnover is the freight railroad trade: irreplaceable track converts capital intensity into pricing power. Compare A: same missing gross-profit line, opposite margin story."
+      }
+    },
+    "hints": [
+      {"concept_id": "industry_patterns", "text": "Pair them first: two have no gross margin (asset-heavy sellers of commodity or capacity), two are above 70% (sellers of ideas). Then let net margin split each pair."},
+      {"concept_id": "common_size", "text": "PP&E as a share of assets runs 5% → 67% → 86% across three of these. Who outsources the factory, who owns the wells, who owns the track?"}
+    ],
+    "explanation": "A is Exxon Mobil (FY2025), B is Pfizer (FY2025), C is NVIDIA (FY2026), D is Union Pacific (FY2025). The drill is deliberate pairing: the two no-gross-margin filers split on net margin (8.7% commodity price-taker vs 29.1% network owner), and the two 70%+ gross margins split on what happens below the gross line (pharma's margin is consumed by R&D and SG&A; the fabless designer keeps 56 cents of every dollar). Margins sort industries only when you read them at both altitudes."
+  },
+  {
+    "id": "l4_lu_defensive_four",
+    "mode": "lineup",
+    "item_type": "lineup_match",
+    "level_id": "L4",
+    "ordinal": 170,
+    "concept_ids": ["industry_patterns", "activity_ratios", "solvency_ratios"],
+    "difficulty": 4,
+    "grader": "mapping",
+    "payload": {
+      "prompt": "Four real consumer-facing U.S. companies, anonymized, most recent fiscal year (10-K data). All four sell directly to households — the statements must tell you HOW. Match each to its business.",
+      "left": [
+        {"key": "A", "label": "Company A", "stats": [
+          {"name": "Gross margin", "value": "12.8%"},
+          {"name": "Net margin", "value": "2.9%"},
+          {"name": "Inventory turnover", "value": "13.2x (≈28 days)"},
+          {"name": "Days sales outstanding", "value": "4 days"},
+          {"name": "Accounts payable / inventory", "value": "109% — suppliers finance the shelves"},
+          {"name": "Asset turnover", "value": "3.6x"}
+        ]},
+        {"key": "B", "label": "Company B", "stats": [
+          {"name": "Largest single asset", "value": "capitalized self-produced content, 59% of total assets"},
+          {"name": "Inventory", "value": "none; PP&E only 3.6% of assets"},
+          {"name": "Operating margin", "value": "29.5%, up from 20.6% two years earlier"},
+          {"name": "Receivables", "value": "immaterial — customers prepay monthly"},
+          {"name": "Current deferred revenue / revenue", "value": "3.9%"},
+          {"name": "Asset turnover", "value": "0.81x"}
+        ]},
+        {"key": "C", "label": "Company C", "stats": [
+          {"name": "PP&E / total assets", "value": "73%"},
+          {"name": "Asset turnover", "value": "0.13x"},
+          {"name": "Net margin", "value": "24.9%"},
+          {"name": "Effective tax rate", "value": "NEGATIVE ≈18% — a net tax benefit on positive pretax income"},
+          {"name": "Noncontrolling interests / total equity", "value": "18%"},
+          {"name": "Total debt", "value": "$93B, rising every year by design"}
+        ]},
+        {"key": "D", "label": "Company D", "stats": [
+          {"name": "Total equity", "value": "NEGATIVE $8.1B (retained earnings itself is a deficit)"},
+          {"name": "Operating lease right-of-use assets / total assets", "value": "29%"},
+          {"name": "Net margin", "value": "5.0%, after operating margin halved in one year"},
+          {"name": "Current deferred revenue / revenue", "value": "4.9% — customer stored-value float"},
+          {"name": "Asset turnover", "value": "1.16x"},
+          {"name": "Dividends paid", "value": "$2.8B — more than the year's net income"}
+        ]}
+      ],
+      "right": ["Global coffeehouse chain", "Electric utility and renewables developer", "Membership warehouse retailer", "Subscription streaming service"]
+    },
+    "answer_key": {
+      "map": {"A": 2, "B": 3, "C": 1, "D": 0},
+      "tells": {
+        "A": "The most extreme velocity machine in the roster: 12.8% gross margin (half a grocer's) survivable only at 3.6x asset turnover, with 28-day inventory collected in 4 days. The killer detail is payables exceeding inventory — the membership warehouse retailer sells goods before paying for them, and the real profit is the membership fee collected up front.",
+        "B": "No inventory, no receivables, almost no plant — but 59% of assets is a library of self-produced shows, capitalized when made and amortized when watched. Rising operating margin (20.6% → 29.5%) on a subscription top line is streaming's operating leverage: content costs are fixed, members are not.",
+        "C": "73% of assets in plant turning over 0.13x, with a fat regulated margin, is a utility before any other clue. The renewables developer inside it shows in two lines no ordinary utility prints: a persistently NEGATIVE effective tax rate (credits for building wind and solar) and noncontrolling interests at 18% of equity (project slices sold to tax-equity partners).",
+        "D": "Negative equity from decades of buybacks, a balance sheet 29% capitalized store leases, and customer stored-value float in deferred revenue: a chain that operates thousands of rented coffeehouses. The current-year distress markers — operating margin halved, dividends exceeding net income, buybacks stopped — date it to the turnaround year."
+      }
+    },
+    "hints": [
+      {"concept_id": "activity_ratios", "text": "Asset turnover spans 0.13x to 3.6x across these four. Rank them first — velocity is the fastest sorter of consumer business models."},
+      {"concept_id": "solvency_ratios", "text": "One has negative equity and one has $93B of happily rising debt. Neither is in trouble — explain why for each and you have identified both."}
+    ],
+    "explanation": "A is Costco (FY2025), B is Netflix (FY2025), C is NextEra Energy (FY2025), D is Starbucks (FY2025). Four ways to sell to a household: at cost with a membership fee (velocity, supplier-financed inventory), by subscription to a capitalized content library (operating leverage), through a regulated meter (capital intensity with guaranteed margins and subsidized taxes), and over a rented counter (leases everywhere, equity hollowed out by buybacks). Same customer, four unmistakable silhouettes."
+  },
+  {
+    "id": "l4_rb_nvda_gm",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L4",
+    "ordinal": 180,
+    "concept_ids": ["profitability_ratios", "trend_analysis"],
+    "difficulty": 2,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute NVIDIA's gross margin for fiscal 2026 (year ended January 25, 2026), as a percentage of revenue.",
+      "context": "NVIDIA, fiscal 2026 10-K ($M):\nRevenue: 215,938\nCost of revenue: 62,475\nFor reference, gross margin was 72.7% in fiscal 2024 and 75.0% in fiscal 2025.",
+      "unit": "%"
+    },
+    "answer_key": {"value": 71.07, "tolerance_abs": null, "tolerance_rel": 0.02},
+    "hints": [
+      {"concept_id": "profitability_ratios", "text": "Gross profit = revenue − cost of revenue; divide by revenue. Then compare it to the two prior years given in the context."}
+    ],
+    "explanation": "(215,938 − 62,475) / 215,938 = 71.1%. Two lessons in one number. First the level: 71 cents of gross profit per hardware dollar exists only because NVIDIA is fabless — the foundry owns the factory, NVIDIA owns the design. Second the trajectory: 72.7% → 75.0% → 71.1%. Margin fell almost four points in the newest year even as revenue grew 65%, which is the question an analyst must chase: mix shift toward lower-margin systems, pricing given to win the biggest customers, or ramp costs on a new architecture? A falling margin on exploding revenue is not distress — but it is the first place competition would show up, so it earns a note every single quarter."
+  },
+  {
+    "id": "l4_rb_sbux_coverage",
+    "mode": "forge",
+    "item_type": "ratio_build",
+    "level_id": "L4",
+    "ordinal": 190,
+    "concept_ids": ["coverage_ratios", "solvency_ratios"],
+    "difficulty": 3,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Starbucks' total equity is NEGATIVE $8.1B, so return on equity and debt-to-equity are meaningless — the denominator is upside down. Lenders reach for coverage instead. Compute Starbucks' interest coverage (operating income / interest expense) for fiscal 2025 (year ended September 28, 2025).",
+      "context": "Starbucks, fiscal 2025 10-K ($M):\nOperating income: 2,936.6\nInterest expense: 542.6\nFor reference: fiscal 2023 operating income was 5,870.8 on interest expense of 550.1.",
+      "unit": "x"
+    },
+    "answer_key": {"value": 5.41, "tolerance_abs": null, "tolerance_rel": 0.02},
+    "hints": [
+      {"concept_id": "coverage_ratios", "text": "Coverage = operating income / interest expense: how many times this year's operating profit could pay the interest bill."},
+      {"concept_id": "solvency_ratios", "text": "When equity is negative, every equity-denominator ratio (ROE, D/E) produces a nonsense sign. Solvency analysis shifts to flow measures: coverage, and debt against EBITDA or cash flow."}
+    ],
+    "explanation": "2,936.6 / 542.6 = 5.4x. The framing is the real lesson: with equity at −$8.1B, ROE would be a negative number on a profitable company and debt-to-equity would be negative too — arithmetic garbage. Negative book equity (here from decades of buybacks, not losses) forces the analyst to flow-based solvency measures, and those tell a real story: coverage was 10.7x in fiscal 2023 (5,870.8/550.1) and has halved to 5.4x, entirely from the numerator — operating profit fell by half in the turnaround year while the interest bill stayed flat. Still investment-grade comfortable, but the direction is the warning. One more layer for the careful: $10.5B of operating lease liabilities are fixed store-rent obligations that behave like debt, so lease-adjusted coverage is materially tighter than this headline."
+  }
+]
