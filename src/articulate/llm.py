@@ -222,11 +222,41 @@ class AnthropicLLM:
         reply = next((b.text for b in message.content if b.type == "text"), "")
         if not reply_respects_fact_sheet(reply, fact_sheet):
             reply = SAFE_DEFLECTION
-        # issue coverage: classify with the mock's deterministic matcher so
-        # scoring stays reproducible (spec §5.6: mapping is a classifier with
-        # fixtures, not the character model)
-        issues_hit = self._fallback.cfo_reply(scenario, transcript, question)["issues_hit"]
+        issues_hit = self._classify_issues(scenario, question)
         return {"reply": reply, "issues_hit": issues_hit, "source": self.source}
+
+    def _classify_issues(self, scenario, question) -> list:
+        """Map an analyst question to the hidden issues it meets the reveal
+        threshold for. Separate from the character model (spec §5.6); falls
+        back to the deterministic keyword matcher on any failure."""
+        issues = scenario["hidden_issues"]
+        schema = {
+            "type": "object",
+            "properties": {"issue_ids": {"type": "array", "items": {"type": "string"}}},
+            "required": ["issue_ids"], "additionalProperties": False,
+        }
+        issue_text = "\n".join(
+            f"- id={i['id']}: {i['summary']} REVEAL THRESHOLD: {i['reveal_threshold']}"
+            for i in issues)
+        try:
+            message = self._client.messages.create(
+                model=ANTHROPIC_MODEL,
+                max_tokens=512,
+                system=("Classify whether an analyst's earnings-call question meets the "
+                        "reveal threshold of any hidden issue. Return only the ids of "
+                        "issues whose threshold the question genuinely meets — specific, "
+                        "evidence-anchored questions count; vague fishing does not."),
+                output_config={"format": {"type": "json_schema", "schema": schema}},
+                messages=[{"role": "user",
+                           "content": f"HIDDEN ISSUES:\n{issue_text}\n\nQUESTION:\n{question}"}],
+            )
+            if message.stop_reason == "refusal":
+                raise RuntimeError("refused")
+            text = next(b.text for b in message.content if b.type == "text")
+            valid = {i["id"] for i in issues}
+            return [x for x in json.loads(text)["issue_ids"] if x in valid]
+        except Exception:
+            return self._fallback.cfo_reply(scenario, [], question)["issues_hit"]
 
 
 def get_client():
