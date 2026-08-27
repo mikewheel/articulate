@@ -27,6 +27,8 @@ def grade(item: dict, submitted: dict, judge=None) -> dict:
         if judge is None:
             raise ValueError("llm_rubric item requires a judge")
         return _grade_rubric(payload, key, submitted, judge)
+    if grader == "probability":
+        return _grade_probability(key, submitted)
     raise ValueError(f"unknown grader {grader!r}")
 
 
@@ -127,6 +129,31 @@ def _grade_rubric(payload, key, submitted, judge):
     }
     return _result(points, max_points, correct, feedback,
                    source=verdict.get("source", "llm_mock"))
+
+
+def _grade_probability(key, submitted):
+    """Brier scoring (spec §5.7): a proper scoring rule, so the best strategy
+    is reporting your true belief. 'Correct' means beating the base rate."""
+    try:
+        p = float(submitted.get("p"))
+    except (TypeError, ValueError):
+        p = None
+    if p is None or not 0.0 <= p <= 1.0:
+        return _result(0, 1, False, {"note": "probability must be in [0, 1]"})
+    outcome = 1.0 if key["outcome"] else 0.0
+    brier = (p - outcome) ** 2
+    base_brier = (key["base_rate"] - outcome) ** 2
+    correct = brier <= base_brier
+    feedback = {
+        "outcome": key["outcome"],
+        "base_rate": key["base_rate"],
+        "brier": round(brier, 4),
+        "base_brier": round(base_brier, 4),
+        "resolution": key["resolution"],
+        "source": key.get("source"),
+        "company": key.get("company"),
+    }
+    return _result(1 - brier, 1, correct, feedback)
 
 
 def parse_item_row(row) -> dict:

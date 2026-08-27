@@ -21,7 +21,7 @@ def bundle():
 @needs_content
 def test_content_validates(bundle):
     assert len(bundle["concepts"]) >= 40
-    assert len(bundle["levels"]) == 7
+    assert len(bundle["levels"]) == 8
     assert len(bundle["items"]) >= 60
 
 

@@ -66,16 +66,17 @@ CREATE INDEX IF NOT EXISTS idx_facts_lookup ON facts (company_id, fiscal_year);
 CREATE TABLE IF NOT EXISTS items (
     id          TEXT PRIMARY KEY,
     mode        TEXT NOT NULL CHECK (mode IN
-                 ('drill','sudoku','forge','lineup','forensics','earnings_call','daily')),
+                 ('drill','sudoku','forge','lineup','forensics','earnings_call','daily',
+                  'hindsight')),
     item_type   TEXT NOT NULL CHECK (item_type IN
                  ('sort','journal','translate','lexicon','sudoku','ratio_build',
                   'ratio_interpret','lineup_match','forensic_case','cfo_question',
-                  'daily_filing')),
+                  'daily_filing','hindsight_forecast','note_hunt')),
     level_id    TEXT REFERENCES levels(id),          -- NULL for daily items
     ordinal     INTEGER NOT NULL DEFAULT 0,
     difficulty  INTEGER NOT NULL DEFAULT 1 CHECK (difficulty BETWEEN 1 AND 5),
     grader      TEXT NOT NULL CHECK (grader IN
-                 ('choice','numeric','grid','mapping','llm_rubric')),
+                 ('choice','numeric','grid','mapping','llm_rubric','probability')),
     payload     TEXT NOT NULL CHECK (json_valid(payload)),
     answer_key  TEXT NOT NULL CHECK (json_valid(answer_key)),
     explanation TEXT NOT NULL DEFAULT ''

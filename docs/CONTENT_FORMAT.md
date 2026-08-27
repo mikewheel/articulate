@@ -63,6 +63,10 @@ scope are not):
 | L5 | E | Forensics: one synthetic manipulation case + earnings-call interrogation | forensic case + earnings_call |
 | L6 | F | CFA L2 dialects: intercorporate investments (equity method/consolidation/NCI), pensions, FX translation vs remeasurement, IFRS vs US GAAP, bank statements | translate + numeric adjustments + choice/journal |
 | L7 | E | The reckoning: Sable Peak restates. Restatement autopsy, forensic screens (Beneish, accruals), non-GAAP reconciliation, capstone thesis | numeric + choice + llm_rubric + earnings_call |
+| L8 | E | The Vault: boss cases from the public record (Enron FY2000, WorldCom) + Note Hunt on real filings | note_hunt + forensic_case, evidence quoted from actual filings/SEC actions |
+
+`hindsight` items (mode "hindsight", item_type "hindsight_forecast", grader
+"probability") live outside the level sequence like daily items (level_id null).
 
 `daily.json` holds Daily Filing items (real, anonymized), outside the level sequence.
 
@@ -178,6 +182,29 @@ must verify with arithmetic before writing the item.
 }
 ```
 answer_key `{"map": {"A": 1, "B": 0, ...}, "tells": {"A": "explanation of the tell"}}` (values are indices into `right`).
+
+**probability** (hindsight_forecast) — payload:
+```json
+{
+  "prompt": "Probability that this filer takes a goodwill impairment within the next fiscal year?",
+  "context": "the as-of-date dossier: key figures/ratios visible at the time, NOTHING from after as_of",
+  "as_of": "2018-02-23",
+  "company_label": "a global industrial conglomerate"   // anonymized until feedback
+}
+```
+answer_key:
+```json
+{
+  "outcome": true,
+  "base_rate": 0.05,                  // honest rough base rate for the event class
+  "resolution": "What actually happened, with dates — revealed as feedback",
+  "source": "8-K / 10-K accession or public action establishing the outcome",
+  "company": "General Electric"       // revealed in feedback
+}
+```
+Submitted as `{"p": 0.0..1.0}`. Scored by Brier: score = 1 − (p − outcome)²;
+"correct" means beating the base-rate forecast. The context MUST be strictly
+as-of-date (no leakage), and outcome/resolution MUST rest on the public record.
 
 **llm_rubric** (translate, ratio_interpret, forensic prose, cfo_question) —
 payload `{"prompt": str, "context": str|null, "response_guidance": "e.g. 2-3 sentences"}`;

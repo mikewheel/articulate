@@ -13,14 +13,16 @@ from pathlib import Path
 from . import CONTENT_DIR
 
 BANDS = set("ABCDEFGH")
-MODES = {"drill", "sudoku", "forge", "lineup", "forensics", "earnings_call", "daily"}
+MODES = {"drill", "sudoku", "forge", "lineup", "forensics", "earnings_call", "daily",
+         "hindsight"}
 ITEM_TYPES = {
     "sort", "journal", "translate", "lexicon", "sudoku", "ratio_build",
     "ratio_interpret", "lineup_match", "forensic_case", "cfo_question",
-    "daily_filing",
+    "daily_filing", "hindsight_forecast", "note_hunt",
 }
-GRADERS = {"choice", "numeric", "grid", "mapping", "llm_rubric"}
-LEVEL_IDS = ["L1", "L2", "L3", "L4", "L5", "L6", "L7"]
+GRADERS = {"choice", "numeric", "grid", "mapping", "llm_rubric", "probability"}
+LEVEL_IDS = ["L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8"]
+UNLEVELED_MODES = {"daily", "hindsight"}
 
 # Spec Appendix A, plus catch-all lines authors may need to make totals tie.
 CANONICAL_ITEMS = {
@@ -241,8 +243,8 @@ def _validate_items(items, concept_ids, scenario_ids, errors) -> None:
         level = it.get("level_id")
         if level is not None and level not in LEVEL_IDS:
             errors.append(f"{where}: bad level_id {level!r}")
-        if level is None and it.get("mode") != "daily":
-            errors.append(f"{where}: only daily items may omit level_id")
+        if level is None and it.get("mode") not in UNLEVELED_MODES:
+            errors.append(f"{where}: only daily/hindsight items may omit level_id")
         if not isinstance(it.get("difficulty"), int) or not 1 <= it["difficulty"] <= 5:
             errors.append(f"{where}: difficulty must be int 1..5")
         refs = it.get("concept_ids") or []
@@ -353,12 +355,28 @@ def _check_rubric(where, payload, key, errors):
         errors.append(f"{where}: pass_points missing or exceeds rubric total {total}")
 
 
+def _check_probability(where, payload, key, errors):
+    if not payload.get("prompt") or not payload.get("context"):
+        errors.append(f"{where}: probability needs prompt and context")
+    if not payload.get("as_of"):
+        errors.append(f"{where}: probability needs an as_of date")
+    if not isinstance(key.get("outcome"), bool):
+        errors.append(f"{where}: answer_key.outcome must be boolean")
+    base = key.get("base_rate")
+    if not isinstance(base, (int, float)) or not 0.0 < base < 1.0:
+        errors.append(f"{where}: base_rate must be in (0, 1)")
+    for field in ("resolution", "source"):
+        if not key.get(field):
+            errors.append(f"{where}: answer_key.{field} required")
+
+
 _PAYLOAD_CHECKS = {
     "choice": _check_choice,
     "numeric": _check_numeric,
     "grid": _check_grid,
     "mapping": _check_mapping,
     "llm_rubric": _check_rubric,
+    "probability": _check_probability,
 }
 
 

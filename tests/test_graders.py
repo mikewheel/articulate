@@ -73,6 +73,34 @@ class TestMapping:
         assert result["feedback"]["assignments"]["A"]["tell"] == "thin margins"
 
 
+class TestProbability:
+    item = make_item("probability",
+                     {"prompt": "Bankruptcy within 24 months?", "context": "dossier",
+                      "as_of": "2007-01-29"},
+                     {"outcome": True, "base_rate": 0.02,
+                      "resolution": "Filed Chapter 11.", "source": "8-K Item 1.03",
+                      "company": "Example Corp"})
+
+    def test_confident_right_beats_base_rate(self):
+        result = grade(self.item, {"p": 0.7})
+        assert result["correct"]
+        assert abs(result["score"] - (1 - 0.09)) < 1e-9
+        assert result["feedback"]["resolution"] == "Filed Chapter 11."
+
+    def test_hedge_below_base_rate_fails(self):
+        # outcome true, base rate 0.02: predicting 0.01 is worse than base
+        assert not grade(self.item, {"p": 0.01})["correct"]
+
+    def test_proper_scoring_rewards_honesty(self):
+        # score is monotone in distance from outcome
+        s = [grade(self.item, {"p": p})["score"] for p in (0.2, 0.5, 0.9)]
+        assert s[0] < s[1] < s[2]
+
+    def test_invalid_probability(self):
+        assert not grade(self.item, {"p": 1.7})["correct"]
+        assert not grade(self.item, {})["correct"]
+
+
 class TestRubric:
     item = make_item("llm_rubric",
                      {"prompt": "Explain the change."},

@@ -89,5 +89,18 @@
       "prereq_level": "L6",
       "min_mastery": 0.6
     }
+  },
+  {
+    "id": "L8",
+    "ordinal": 8,
+    "band": "E",
+    "title": "Week Eight — The Vault",
+    "tagline": "The classics. Read them the way the market should have.",
+    "narrative_intro": "Behind the copier there is a door you assumed was a closet. It is not a closet. Filing cabinets, floor to ceiling, and on the front of each drawer a year and a name that made the front page for the wrong reasons.\n\n\"Every firm keeps a morgue,\" Marion says. \"Ours is better organized than most. These are the filings as they were actually filed — Enron's fiscal 2000, WorldCom before the confession. Everything in these drawers was public before the collapse. That's the lesson. Nobody needed a whistleblower to read a related-party footnote; they needed the patience to read it and the nerve to believe it.\"\n\nShe pulls the first drawer. \"You'll work them like any other file: find where things are disclosed, then say what the disclosure means. The numbers are museum pieces now. The habits are not.\"",
+    "narrative_outro": "You slide the last folder back into the drawer. Marion locks it, which strikes you as ceremonial, given what you now know about how little a lock protects.\n\n\"People think these stories are about villains,\" she says. \"They're about readers. Every one of these blew up in full view of anyone holding the filing. You hold filings for a living now. Read them like it matters, because occasionally it does.\"",
+    "unlock": {
+      "prereq_level": "L7",
+      "min_mastery": 0.6
+    }
   }
 ]
