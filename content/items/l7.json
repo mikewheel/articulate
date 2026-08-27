@@ -1,0 +1,372 @@
+[
+  {
+    "id": "l7_translate_010",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L7",
+    "ordinal": 10,
+    "concept_ids": ["restatement_reading", "note_navigation"],
+    "difficulty": 3,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Translate this 8-K into plain English — what is Sable Peak telling you, and what does it mean for someone who owns the stock?",
+      "context": "From Sable Peak Beverages' Form 8-K, Item 4.02 (Non-Reliance on Previously Issued Financial Statements):\n\n\"On February 20, 2026, the Audit Committee of the Board of Directors of Sable Peak Beverages, Inc. (the 'Company'), after consultation with management and with the Company's independent registered public accounting firm, concluded that the Company's previously issued consolidated financial statements for the fiscal year ended December 31, 2025 should no longer be relied upon, due to errors in the recognition of revenue on certain fourth-quarter shipments to distribution partners under the Company's Winter Launch program. Earnings releases, investor presentations, and other communications describing the affected period should similarly no longer be relied upon. Management has identified a material weakness in the Company's internal control over financial reporting related to the review and approval of non-standard contract terms. The Company expects to file restated financial statements as promptly as practicable and estimates that the restatement will reduce fiscal 2025 revenue by approximately $80 million and net income by approximately $16 million.\"",
+      "response_guidance": "3-5 sentences: what happened, why, and the investor implication."
+    },
+    "answer_key": {
+      "model_answer": "Sable Peak is saying its FY2025 financial statements are wrong and cannot be used — and neither can anything built on them: the earnings release, the guidance, every ratio and growth rate you computed from that filing. The reason is the one the receivables were already telling you: revenue booked on Q4 Winter Launch shipments to distributors was not actually earned, and roughly $80M of it — about 7% of the year's revenue, and about half of net income — is coming back out. The 'material weakness' sentence is the forward-looking part: non-standard contract terms reached the financial statements without anyone independent reviewing them, which means the failure was a control failure, not a rounding error, and you cannot yet be sure it is confined to one program or one year. For an investor: the FY2025 growth story is void pending restated numbers, management's credibility trades at a discount until the remediation is proven, and FY2026 starts with a channel already full of last year's product.",
+      "rubric": [
+        {"id": "plain_english", "points": 1, "description": "States plainly that the FY2025 statements (and communications built on them) are wrong and must not be used"},
+        {"id": "mechanism", "points": 1, "description": "Identifies the cause: revenue on Q4 Winter Launch distributor shipments should not have been recognized, with the approximate magnitude (~$80M revenue, ~$16M net income)"},
+        {"id": "controls", "points": 1, "description": "Explains what 'material weakness' admits — non-standard terms escaped independent review, so this is a control/governance failure with scope risk beyond one line item"},
+        {"id": "so_what", "points": 2, "description": "Draws the investor implication: prior-period trends/ratios/valuation are invalid until restated, management credibility is impaired, and the reversed revenue implies a weaker FY2026 setup"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "restatement_reading", "text": "Item 4.02 has three payloads: which numbers die, why they died, and what control let it happen. Translate each one."},
+      {"concept_id": "note_navigation", "text": "'Should no longer be relied upon' is a term of art — it voids the filing, not just the one line item that was wrong."}
+    ],
+    "explanation": "An Item 4.02 8-K is the strongest sentence a filing can contain: the statements are void. Read it in three layers. What: FY2025 is wrong, along with every release and deck built on it. Why: Q4 Winter Launch shipments — the extended-terms distributor push — were not completed sales, and ~$80M of revenue and ~$16M of net income reverse. What it admits: a material weakness in reviewing non-standard contract terms, meaning revenue of that size reached the statements with no independent check. For the investor, the growth story is void pending restatement, the FY2026 base is weaker than it looked, and management's numbers now carry a credibility discount that only a clean restated filing and proven remediation can lift."
+  },
+  {
+    "id": "l7_restate_020",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L7",
+    "ordinal": 20,
+    "concept_ids": ["restatement_reading", "channel_stuffing"],
+    "difficulty": 3,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "The restated income statement is in. How much FY2025 revenue did the restatement reverse (in $M)?",
+      "context": "Sable Peak Beverages, FY2025 income statement, as filed vs as restated ($M):\n\n| Line | As filed | As restated |\n|---|---|---|\n| Revenue | 1,152.0 | 1,072.0 |\n| Cost of revenue | 875.0 | 814.2 |\n| Gross profit | 277.0 | 257.8 |\n| SG&A | 205.8 | 207.8 |\n| Depreciation & amortization | 20.0 | 20.0 |\n| Operating income | 51.2 | 30.0 |\n| Interest expense | 8.0 | 8.0 |\n| Pretax income | 43.2 | 22.0 |\n| Income tax | 10.8 | 5.5 |\n| Net income | 32.4 | 16.5 |\n\nBasis for the restatement: Q4 'Winter Launch' shipments to distributors carried 90-day payment terms and return rights, and collectibility was not probable — not completed sales under ASC 606.",
+      "unit": "USD millions"
+    },
+    "answer_key": {"value": 80.0, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "restatement_reading", "text": "The autopsy starts with the top line: filed minus restated, line by line."}
+    ],
+    "explanation": "1,152.0 − 1,072.0 = $80.0M reversed — 6.9% of filed revenue, and 32% of the year's reported growth (revenue grew $252M as filed; only $172M survived). Note where the reversal lands: the goods were never sold, so the matching $60.8M of cost of revenue reverses too, and the goods go back on the balance sheet as inventory sitting in the channel. Restated growth is +19.1% — still a good year, which is the tell worth remembering: manipulation usually decorates a real story rather than inventing one, because a decorated story is harder to doubt."
+  },
+  {
+    "id": "l7_choice_030",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L7",
+    "ordinal": 30,
+    "concept_ids": ["restatement_reading", "cash_reconciliation", "cfo_ni_gap"],
+    "difficulty": 3,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Sable Peak's restatement rewrote the income statement and the balance sheet. Which financial statement did NOT need restating, and why?",
+      "context": "As filed vs as restated, FY2025 ($M): revenue 1,152.0 → 1,072.0; net income 32.4 → 16.5; receivables (net) 200.0 → 118.0; inventory 47.0 → 107.8; total assets 457.4 → 441.5. Cash on the balance sheet: 48.4 both times. Cash from operations: 38.4 both times; CFI −24.0 both times; CFF 0.0 both times; net change in cash +14.4 both times.",
+      "choices": [
+        "The income statement — revenue is an estimate, so it can never be 'misstated', only revised.",
+        "The balance sheet — it always balances, so it is self-correcting and needs no restatement.",
+        "The cash flow statement — the cash receipts and payments actually happened as reported. The fraud mislabeled accruals (revenue, receivables, inventory); it never touched cash.",
+        "All three statements were misstated, including total operating cash flow, since net income is the first line of the indirect CFO."
+      ]
+    },
+    "answer_key": {
+      "correct_index": 2,
+      "why_wrong": [
+        "Backwards. Revenue recognition is exactly where the misstatement lived — $80M of it. Estimates can absolutely be misstated when the recognition criteria were never met.",
+        "Balancing is an arithmetic property, not a truth property. Sable's filed balance sheet balanced perfectly while carrying $82M of receivables that were not going to become cash. A fraudulent balance sheet balances too.",
+        null,
+        "Close, and worth understanding why it is wrong: the top of the indirect CFO did change (net income 32.4 → 16.5), but the working-capital lines re-decomposed by exactly the offsetting amount, because the misstated revenue lived entirely in receivables — an accrual. Total CFO stayed 38.4, CFI −24.0, CFF 0.0, Δcash +14.4. The sections' internal labels moved; the cash totals did not."
+      ]
+    },
+    "hints": [
+      {"concept_id": "cash_reconciliation", "text": "Ask which statement is built from bank-verifiable events. Money either moved or it did not."},
+      {"concept_id": "cfo_ni_gap", "text": "Compare filed vs restated: net income fell 15.9 but CFO is 38.4 in both columns. What absorbed the difference?"}
+    ],
+    "explanation": "The cash flow statement — cash was never misstated because cash is the one thing accrual choices cannot invent. The stuffed revenue was booked against receivables (a promise), so reversing it reverses the promise: within the indirect CFO, net income drops 15.9 and the working-capital change moves from −18.0 to −2.1 to offset it exactly, leaving CFO at 38.4, CFI at −24.0, CFF at 0.0, and Δcash at +14.4 — identical to the filed statement. This is why the CFO-versus-net-income comparison was the screen that worked before the 8-K existed: earnings were rewritten by $16M and the cash column did not move a dime. Frank's line, proven by counterexample: cash is a fact, profit is an opinion — and it is the opinion that got restated."
+  },
+  {
+    "id": "l7_restate_040",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L7",
+    "ordinal": 40,
+    "concept_ids": ["restatement_reading", "cookie_jar_reserves"],
+    "difficulty": 3,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Rebuild the restated FY2025 net income from the filed figure and the restatement adjustments (in $M).",
+      "context": "As filed FY2025: pretax income $43.2M, income tax $10.8M (a 25% rate), net income $32.4M.\n\nRestatement adjustments, all pretax:\n- Revenue derecognized on Winter Launch shipments: −$80.0M\n- Cost of revenue reversed on those goods (returned to inventory at cost): +$60.8M benefit\n- Allowance for doubtful accounts rebuilt from $4.4M to $6.4M, the rebuild running through bad-debt expense: −$2.0M\n\nRestated income tax is 25% of restated pretax income.",
+      "unit": "USD millions"
+    },
+    "answer_key": {"value": 16.5, "tolerance_abs": 0.2, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "restatement_reading", "text": "Work in pretax dollars first: filed pretax, minus the revenue, plus the cost reversal, minus the reserve rebuild. Tax the result last."},
+      {"concept_id": "cookie_jar_reserves", "text": "The allowance rebuild is the released reserve going back where it belonged — it is an expense on the way back in, just as it was income on the way out."}
+    ],
+    "explanation": "Restated pretax = 43.2 − 80.0 + 60.8 − 2.0 = $22.0M; tax at 25% = $5.5M; restated net income = $16.5M. The bridge is the whole case in four numbers: the stuffed sale comes out at full price (−80.0), the goods come back at cost (+60.8) — the difference being the fake gross profit of 19.2 — the released reserve is put back (−2.0), and the government refunds a quarter of the damage (+5.3 versus filed tax). So the 'breakout year' of +35% earnings growth restates to a 31% earnings decline (24.0 → 16.5). For the investor, the restated column is the real company: thinner, slower, and spending heavily for growth it had been faking."
+  },
+  {
+    "id": "l7_restate_050",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L7",
+    "ordinal": 50,
+    "concept_ids": ["restatement_reading", "receivables_drift", "cookie_jar_reserves"],
+    "difficulty": 4,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "By how much did the restatement reduce Sable Peak's FY2025 receivables, net of allowance (in $M)?",
+      "context": "Receivables detail, FY2025 ($M):\n\n| | As filed | As restated |\n|---|---|---|\n| Gross receivables | 204.4 | 124.4 |\n| Allowance for doubtful accounts | (4.4) | (6.4) |\n| Receivables, net | 200.0 | ? |\n\nThe restatement derecognized $80.0M of gross receivables tied to the reversed Winter Launch revenue, and restored the allowance to ~5.1% of the remaining gross book (FY2024 coverage was ~4.7%). For reference: FY2024 net receivables were $111.0M.",
+      "unit": "USD millions"
+    },
+    "answer_key": {"value": 82.0, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "receivables_drift", "text": "Two things hit net receivables: the derecognized gross balance and the rebuilt allowance. Net both."},
+      {"concept_id": "cookie_jar_reserves", "text": "The filed allowance had been cut to 4.4 while the book doubled. Restoring defensible coverage nets the book down further."}
+    ],
+    "explanation": "Restated net receivables = 124.4 − 6.4 = $118.0M, so the swing is 200.0 − 118.0 = $82.0M: $80.0M of derecognized paper plus $2.0M of rebuilt allowance. Now look at what that does to the year-over-year story — filed, receivables 'grew' 111 → 200 (+80%); restated, they grew 111 → 118 (+6.3%), against restated revenue growth of +19.1%. In other words, essentially the entire receivables explosion — the anomaly that flagged this company in week five — was the manipulation, and nothing else. When a balance moves violently out of proportion to the business, the base case is not that the business changed; it is that the accounting did."
+  },
+  {
+    "id": "l7_restate_060",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L7",
+    "ordinal": 60,
+    "concept_ids": ["receivables_drift", "restatement_reading"],
+    "difficulty": 4,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute Sable Peak's restated FY2025 DSO, using restated ending net receivables, restated revenue, and a 365-day year. (Answer in days.)",
+      "context": "As restated, FY2025: revenue $1,072.0M; ending receivables, net $118.0M. DSO = ending receivables ÷ revenue × 365.\n\nFor reference, the same calculation on the filed numbers gave 63.4 days, and the clean prior years ran 43.8 (FY2023) and 45.0 (FY2024).",
+      "unit": "days"
+    },
+    "answer_key": {"value": 40.2, "tolerance_abs": 0.5, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "receivables_drift", "text": "Same formula as always — the point is what the restated reading does to the time series."}
+    ],
+    "explanation": "118.0 / 1,072.0 × 365 = 40.2 days. The filed 63.4 collapses back to the low 40s — at or slightly below the 44-45 day historical band, because the surviving receivables are the normal-terms book that collects on schedule. Read the pair of numbers as a verdict on the metric itself: the entire 18-day DSO blowout was manufactured revenue, and DSO caught it in real time, from the face of the filed statements, a full restatement cycle before the auditors did. That is why the drift screens earn their place: they are the restated statements, seen early."
+  },
+  {
+    "id": "l7_screen_070",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L7",
+    "ordinal": 70,
+    "concept_ids": ["beneish_mscore", "receivables_drift"],
+    "difficulty": 4,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Run the first Beneish screen on the ORIGINAL (as-filed) numbers: compute Sable Peak's FY2025 Days Sales in Receivables Index (DSRI), to two decimal places.",
+      "context": "DSRI = (Receivables_t ÷ Sales_t) ÷ (Receivables_t−1 ÷ Sales_t−1).\n\nAs filed: FY2025 receivables $200.0M, revenue $1,152.0M; FY2024 receivables $111.0M, revenue $900.0M.\n\nCalibration (Beneish, 1999): non-manipulator mean ≈ 1.03; manipulator mean ≈ 1.47. DSRI carries one of the largest weights in the M-score.",
+      "unit": "index (x)"
+    },
+    "answer_key": {"value": 1.41, "tolerance_abs": 0.02, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "beneish_mscore", "text": "It is a ratio of ratios: this year's receivables intensity over last year's. A clean company holds it near 1.0."}
+    ],
+    "explanation": "(200.0/1,152.0) ÷ (111.0/900.0) = 0.1736 ÷ 0.1233 = 1.41 — receivables intensity 41% above the prior year, sitting almost on the Beneish manipulator mean of 1.47 and far from the clean-company mean of 1.03. DSRI is the M-score's receivables conscience: it asks whether each dollar of sales is turning into paper faster than it used to, which is precisely the signature of revenue booked ahead of economic reality. The restatement later confirmed what the index implied — the excess receivables intensity was the fake revenue. A screen this cheap, computable from two lines of two filings, is the first thing to run on any 'breakout' year."
+  },
+  {
+    "id": "l7_screen_080",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L7",
+    "ordinal": 80,
+    "concept_ids": ["beneish_mscore", "red_flag_synthesis"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Sable Peak's filed FY2025 DSRI came in at 1.41, against a clean-company mean of ~1.03 and a manipulator mean of ~1.47. What is the correct professional use of that reading?",
+      "context": "The Beneish M-score aggregates eight indices (DSRI, GMI, AQI, SGI, DEPI, SGAI, LVGI, TATA) into a single manipulation probability. Sable's other indices were mixed: sales growth (SGI) elevated at 1.28, gross margin (GMI) and depreciation (DEPI) benign.",
+      "choices": [
+        "A DSRI above 1.0 proves manipulation; the position should be reported to the SEC on the strength of the index alone.",
+        "It is a screen, not a verdict: 1.41 says receivables far outgrew sales, so read the receivables machinery harder — terms, allowance, aging, Q4 mechanics — and test the innocent explanations (a genuine terms change, an acquisition, timing) before concluding anything.",
+        "A single index is uninterpretable; unless all eight Beneish inputs point the same way, a 1.41 DSRI carries no information.",
+        "A high DSRI is actually bullish — booking sales ahead of collection means demand is running ahead of the billing cycle."
+      ]
+    },
+    "answer_key": {
+      "correct_index": 1,
+      "why_wrong": [
+        "Mechanical thresholds convict innocents constantly: a company that acquires a business mid-year, changes terms deliberately and discloses it, or lands a lumpy Q4 contract can print a high DSRI honestly. The index tells you where to read, not what to conclude.",
+        null,
+        "Backwards. A single extreme input is exactly the pointer you want — it names the account to investigate. Waiting for all eight to agree means waiting for the fraud to be obvious, by which point the screen has no value. The M-score aggregates precisely because individual signals arrive one at a time.",
+        "Receivables outgrowing sales means revenue is outrunning cash collection — the opposite of demand strength. Real demand shows up as cash; a stretched billing cycle at year-end shows up as DSRI. Calling it bullish is how Sable's holders spent week five."
+      ]
+    },
+    "hints": [
+      {"concept_id": "beneish_mscore", "text": "Beneish himself calls it a screening model. What does a metal detector tell you, and what does it not?"}
+    ],
+    "explanation": "A forensic screen is a metal detector, not a conviction: 1.41 against a clean mean of 1.03 says receivables intensity moved four standard patterns' worth in one year, so the receivables machinery — terms, allowance coverage, aging, Q4 shipment mechanics — is where the reading time goes. The discipline runs both ways: no mechanical conviction (innocent DSRI spikes exist and must be tested) and no dismissal for lack of unanimity (single extreme inputs are the early warnings; consensus among all eight arrives only after the damage). At Sable, the innocent explanations failed one by one — no acquisition, terms 'change' undisclosed, allowance moving the wrong way — which is what converted a screen into a thesis. The investor's edge is not the index; it is the reading list the index writes."
+  },
+  {
+    "id": "l7_screen_090",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L7",
+    "ordinal": 90,
+    "concept_ids": ["beneish_mscore", "accruals_quality"],
+    "difficulty": 4,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute Sable Peak's filed FY2025 TATA — Total Accruals to Total Assets, the Beneish accruals index — to three decimal places.",
+      "context": "TATA = (Net income − Cash from operations) ÷ Total assets, all from the same year.\n\nAs filed, FY2025: net income $32.4M; CFO $38.4M; total assets $457.4M.\n\nCalibration: clean companies average about −0.02 (cash flow exceeding earnings); large positive values are the manipulation signature.",
+      "unit": "ratio"
+    },
+    "answer_key": {"value": -0.013, "tolerance_abs": 0.005, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "accruals_quality", "text": "Accruals are the part of earnings that is not cash: NI minus CFO, scaled by assets."}
+    ],
+    "explanation": "(32.4 − 38.4) / 457.4 = −0.013 — technically inside the clean range, and that is the lesson: this screen was defeated, and knowing how matters more than the number. TATA nets ALL accruals together, so the $89M receivables build (income-inflating) was offset inside the same line by the inventory drain (75 → 47) and the payables stretch (56 → 93) — real cash-timing moves made precisely to keep CFO looking normal. Decompose the working-capital change and the offset is visible on the face of the filing. Two investor lessons: run screens as a battery, because a manipulator can defeat any one of them (DSRI still screamed while TATA slept); and when an aggregate looks fine, check whether its components are quietly cancelling — offsetting extremes are not the same thing as calm."
+  },
+  {
+    "id": "l7_screen_100",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L7",
+    "ordinal": 100,
+    "concept_ids": ["accruals_quality", "cfo_ni_gap"],
+    "difficulty": 4,
+    "grader": "numeric",
+    "payload": {
+      "prompt": "Compute Sable Peak's filed FY2025 accruals ratio: (Net income − CFO) ÷ average total assets, as a percentage (one decimal).",
+      "context": "As filed, FY2025: net income $32.4M; CFO $38.4M; total assets $378.0M (start of year) and $457.4M (end of year). Use the simple average of beginning and ending assets.\n\nFor reference, the same calculation for FY2024: (24.0 − 39.0) ÷ avg(364.0, 378.0) = −4.0%.",
+      "unit": "% of average total assets"
+    },
+    "answer_key": {"value": -1.4, "tolerance_abs": 0.3, "tolerance_rel": null},
+    "hints": [
+      {"concept_id": "accruals_quality", "text": "The level matters less than the move against the company's own baseline. You are handed FY2024 for a reason."},
+      {"concept_id": "cfo_ni_gap", "text": "A distribution business should convert earnings to cash at better than 1:1. Watch the direction the ratio travels."}
+    ],
+    "explanation": "(32.4 − 38.4) ÷ ((378.0 + 457.4)/2) = −6.0 / 417.7 = −1.4%. Still negative — but the signal is the trend, not the sign: Sable's own baseline was −4.0%, so accruals swung 2.6 points of assets toward earnings in a single year, and that is WITH the inventory drain and payables stretch suppressing the measured accrual. The restated figure — (16.5 − 38.4) ÷ avg(378.0, 441.5) = −5.3% — shows where the company really lived, right on its historical baseline. The filed year was roughly four points of assets hotter than the truth. The investor habit this builds: benchmark every quality metric against the company's own history first, because 'normal for the population' can be red-hot for the specific patient."
+  },
+  {
+    "id": "l7_nongaap_110",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L7",
+    "ordinal": 110,
+    "concept_ids": ["nongaap_gap", "channel_stuffing"],
+    "difficulty": 4,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Read Sable Peak's non-GAAP reconciliation from the restated-results press release. What is wrong with excluding the $18.0M of 'distributor program investments' from Adjusted EBITDA?",
+      "context": "From the press release accompanying the restated FY2025 results ($M):\n\n| Reconciliation of Net Income to Adjusted EBITDA | FY2025 (restated) |\n|---|---|\n| Net income (GAAP) | 16.5 |\n| Interest expense | 8.0 |\n| Income tax expense | 5.5 |\n| Depreciation and amortization | 20.0 |\n| EBITDA | 50.0 |\n| Distributor program investments (Winter Launch incentives and related credits) | 18.0 |\n| Restatement and remediation costs (audit, legal, consulting) | 6.5 |\n| Share-based compensation | 4.0 |\n| **Adjusted EBITDA** | **78.5** |\n\n\"Management believes Adjusted EBITDA better reflects the underlying earnings power of the business, excluding investments in distributor relationships and costs related to the restatement.\"",
+      "choices": [
+        "Nothing — non-GAAP reconciliations are reviewed by the auditor, so any disclosed exclusion is by definition acceptable.",
+        "The exclusion double-counts: distributor incentives are already removed in the D&A add-back, so Adjusted EBITDA strips them twice.",
+        "Distributor incentives are a recurring cash cost of how Sable sells — economically a price concession on the very revenue the company kept. Excluding the cost while keeping the associated sales manufactures 'earnings power' the business does not have.",
+        "The only problem is the label: calling incentives 'investments' is aggressive, but since the amount is disclosed and reconciled, the measure itself is fine."
+      ]
+    },
+    "answer_key": {
+      "correct_index": 2,
+      "why_wrong": [
+        "Non-GAAP measures sit outside the audited financial statements — they are management's own arithmetic, governed only by Regulation G's reconciliation and prominence rules. The auditor's opinion does not cover the press release. Treating 'disclosed' as 'validated' is exactly the reading error the measure is designed to invite.",
+        "Distributor incentives are trade-promotion costs — cash concessions that run through revenue or SG&A. They are nowhere in depreciation and amortization, so the D&A add-back cannot have removed them. Know which line an expense lives on before deciding whether an add-back is legitimate.",
+        null,
+        "Disclosure does not cure the economics. SEC guidance specifically flags excluding normal, recurring, cash operating expenses as potentially misleading — and trade incentives for a distributor-model beverage company are as normal and recurring as costs get. A reconciled bad number is still a bad number; the reconciliation is where you catch it, not where it becomes acceptable."
+      ]
+    },
+    "hints": [
+      {"concept_id": "nongaap_gap", "text": "For each add-back ask two questions: will this cost recur, and is it cash? Costs that are both are part of earnings power, whatever the label says."},
+      {"concept_id": "channel_stuffing", "text": "The incentives being excluded are the price Sable paid to move product into the channel. The revenue those incentives bought — the part that survived restatement — is still in the numbers."}
+    ],
+    "explanation": "The $18M is the cost of Sable's selling model: incentives and credits paid to distributors to move product — recurring, cash, and inseparable from the revenue they generate. Excluding the cost while retaining the sales it purchased creates margin out of a definition. The audacity is worth savoring: these are the incentives from the very program that triggered the restatement, rebranded as 'investments'. Note what the reconciliation admits by its own arithmetic — GAAP net income 16.5 versus Adjusted EBITDA 78.5, a 4.8x gap, with only the $6.5M of restatement costs plausibly one-time. The investor's rule: the reconciliation is the most honest table in a press release, because it is where management itemizes, in dollars, exactly which real costs they would like you to ignore. Read it as a confession, then rebuild the number yourself."
+  },
+  {
+    "id": "l7_nongaap_120",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L7",
+    "ordinal": 120,
+    "concept_ids": ["nongaap_gap", "accruals_quality"],
+    "difficulty": 4,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Translate this reconciliation for the investment committee: what is management doing with the Adjusted EBITDA presentation, and what number should an investor actually use?",
+      "context": "Sable Peak restated-results press release, FY2025 ($M): Net income (GAAP, restated) 16.5 → + interest 8.0 + taxes 5.5 + D&A 20.0 = EBITDA 50.0 → + distributor program investments 18.0 + restatement and remediation costs 6.5 + share-based compensation 4.0 = Adjusted EBITDA 78.5.\n\nHeadline of the release: 'Sable Peak Reports Adjusted EBITDA of $78.5 Million, Reaffirms Distribution-Led Growth Strategy.' Restated GAAP net income of 16.5 is down 31% from FY2024's 24.0; the release does not state that comparison.",
+      "response_guidance": "3-5 sentences: size the gap, sort the add-backs by legitimacy, and give the so-what."
+    },
+    "answer_key": {
+      "model_answer": "Management is steering attention from a GAAP number that fell to an adjusted number that looks resilient: Adjusted EBITDA of 78.5 is 4.8 times restated net income of 16.5, and the headline leads with the former while omitting that GAAP earnings declined 31% year over year. Sorting the add-backs: interest, tax, and D&A are standard EBITDA mechanics; the $6.5M of restatement and remediation costs is a defensible one-time item; but the $18.0M of 'distributor program investments' is a recurring cash cost of the selling model — the incentives behind the channel-stuffing itself — and the $4.0M of share-based compensation is a real, recurring cost of labor. An investor should treat roughly $22M of the $28.5M of adjustments above EBITDA as ordinary operating cost, not noise. The number to use is restated GAAP net income of 16.5 (or, at most, EBITDA plus back only the genuinely one-time 6.5) — and the fact that management reached for this presentation in the same release as a restatement is itself a data point on how they will report the next bad year.",
+      "rubric": [
+        {"id": "gap", "points": 1, "description": "Sizes the gap with numbers: Adjusted EBITDA 78.5 vs GAAP NI 16.5 (≈4.8x), and/or notes the headline framing while GAAP NI fell 31%"},
+        {"id": "sort", "points": 2, "description": "Sorts add-backs by legitimacy: the $18.0M distributor incentives (and $4.0M SBC) are recurring real costs; only the $6.5M restatement costs plausibly one-time"},
+        {"id": "own_number", "points": 1, "description": "States which figure an investor should rely on (restated GAAP NI, or an adjusted figure re-including recurring costs) — i.e., rebuilds the number rather than accepting management's"},
+        {"id": "so_what", "points": 1, "description": "Draws the credibility inference: reaching for a flattering non-GAAP frame in the restatement release is itself evidence about management's reporting posture going forward"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "nongaap_gap", "text": "Walk the bridge item by item and put each add-back in one of two buckets: cost of doing business, or genuinely one-time. Then total the first bucket."},
+      {"concept_id": "accruals_quality", "text": "A company that just restated earnings is asking you to accept a second, even more generous earnings definition. Say that out loud in the memo."}
+    ],
+    "explanation": "The reconciliation decomposes into mechanics (interest, tax, D&A — standard), one genuine one-timer (6.5 of restatement costs), and $22M of recurring operating cost relabeled as adjustments — $18M of distributor incentives that are the price of the revenue Sable kept, plus $4M of compensation paid in shares instead of cash. The gap between the headline (78.5) and the audited bottom line (16.5) is therefore mostly definitional, and the direction of every choice flatters management. The professional response is not indignation but arithmetic: rebuild earnings power yourself — roughly EBITDA of 50.0 plus the 6.5 one-timer, still supporting the conclusion that the real company earns far less than the headline — and log the presentation itself as evidence. A management team that restates revenue in February and leads with a softer earnings definition in March has told you, twice, how it prefers to be measured. Price that."
+  },
+  {
+    "id": "l7_call_130",
+    "mode": "earnings_call",
+    "item_type": "cfo_question",
+    "level_id": "L7",
+    "ordinal": 130,
+    "concept_ids": ["questioning_management", "restatement_reading", "channel_stuffing"],
+    "difficulty": 5,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Sable Peak is hosting a call on the restated results. Dana Whitlock is back, reading from prepared language. You get one question. Draft the question that pins accountability — one she cannot answer with the 8-K's own words.",
+      "context": "You know, from the restated filings: revenue reversed $80.0M (1,152.0 → 1,072.0); net income 32.4 → 16.5; net receivables 200.0 → 118.0; allowance rebuilt 4.4 → 6.4; inventory restated 47.0 → 107.8, including ~$60.8M of product at cost sitting unsold in the distributor channel; CFO unchanged at 38.4. The 8-K cites a material weakness in the review and approval of non-standard contract terms. The Winter Launch program offered 90-day terms and return rights. The VP of Sales departed two weeks before the 8-K. No FY2026 guidance has been given.",
+      "response_guidance": "One question, at most two tightly linked parts. Anchor it in restated numbers or documented facts. Questions answerable by re-reading the 8-K aloud score poorly.",
+      "scenario_id": "sable_call_2"
+    },
+    "answer_key": {
+      "model_answer": "\"Dana, the 8-K says non-standard terms escaped review — so let me ask about the specific chain: who approved the 90-day terms and return rights on the Winter Launch agreements, on what date did your office first learn those return rights existed, and was any independent credit review performed before the $80 million now reversed was shipped? And going forward, give us the control, not the plan: what approval does a non-standard term now require that it did not require in October, and how should we think about FY2026 revenue given the roughly $61 million of product, at cost, your restated balance sheet shows still sitting unsold in the channel?\"",
+      "rubric": [
+        {"id": "evidence", "points": 1, "description": "Anchors in specific restated numbers or documented facts (the $80.0M reversal, 90-day terms/return rights, allowance 4.4→6.4, ~$60.8M in-channel inventory, the VP of Sales departure)"},
+        {"id": "accountability", "points": 2, "description": "Pins a person, office, or date: who approved the non-standard terms, when the CFO/finance first knew of the return rights, whether any credit review occurred pre-shipment — not a generic 'how did this happen'"},
+        {"id": "control", "points": 1, "description": "Asks a forward-looking CONTROL question with checkable specificity: what approval/review now exists that did not before (thresholds, independent credit review, sign-off), not just 'are you remediating'"},
+        {"id": "forward", "points": 1, "description": "Forces quantification of the FY2026 consequence: channel sell-through/inventory workdown, reorder timing, or guidance versus the restated base"},
+        {"id": "undeflectable", "points": 1, "description": "Framed so prepared language cannot answer it: demands dates, names/roles, yes/no plus a number, or reconciliation of two specific figures"}
+      ],
+      "pass_points": 4
+    },
+    "hints": [
+      {"concept_id": "questioning_management", "text": "Prepared language survives 'what happened'. It does not survive 'who, on what date'. Ask for the artifact — an approval, a review, a sign-off — that either exists or does not."},
+      {"concept_id": "restatement_reading", "text": "The restated balance sheet handed you a new number the old filings never showed: ~$61M of product at cost sitting in the channel. That is your bridge from accountability to FY2026."}
+    ],
+    "explanation": "Post-restatement calls are fought over prepared language: the CFO's objective is to answer every question with the 8-K, and yours is to ask something the 8-K does not contain. Three question types do that. Accountability: who approved the terms, and when did finance know — the answer is a date and a name, and 'the ongoing review' as a response is itself informative. Controls: name the specific approval that now exists; a remediation that cannot be stated as a concrete control is a press release. Forward mechanics: the restated balance sheet discloses ~$61M of product at cost in the channel, so FY2026 orders are impaired until it sells through — force a number against the restated base. The investor rationale is cold: the stock's next move depends less on FY2025, which is now known, than on whether management can be believed about FY2026, which is exactly what these three questions test."
+  },
+  {
+    "id": "l7_capstone_140",
+    "mode": "forensics",
+    "item_type": "forensic_case",
+    "level_id": "L7",
+    "ordinal": 140,
+    "concept_ids": ["thesis_writing", "red_flag_synthesis", "restatement_reading", "accruals_quality"],
+    "difficulty": 5,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Frank reads it Friday. Write the one-page thesis on Sable Peak: a rating (buy / hold / avoid-or-short), two to three drivers with cited evidence, and — the part most analysts skip — what would change your mind. The dossier below is everything you have earned over seven weeks. Use it.",
+      "context": "SABLE PEAK BEVERAGES — DOSSIER ($M, post-restatement)\n\n| | FY2023 | FY2024 | FY2025 filed | FY2025 restated |\n|---|---|---|---|---|\n| Revenue | 850.0 | 900.0 | 1,152.0 | 1,072.0 |\n| Net income | 21.0 | 24.0 | 32.4 | 16.5 |\n| CFO | 37.0 | 39.0 | 38.4 | 38.4 |\n| Receivables, net | 102.0 | 111.0 | 200.0 | 118.0 |\n| Allowance | 5.2 | 5.5 | 4.4 | 6.4 |\n| Inventory | 71.0 | 75.0 | 47.0 | 107.8 |\n| Payables | 53.0 | 56.0 | 93.0 | 93.0 |\n| DSO (days) | 43.8 | 45.0 | 63.4 | 40.2 |\n\nBalance sheet: cash 48.4; total debt 190.0 (incl. $20M revolver drawn in FY2025); equity (restated) 119.5; dividend $10M/yr.\nScreens on filed FY2025: DSRI 1.41; CFO/NI 1.19 vs 1.63 prior; accruals/(avg assets) −1.4% vs −4.0% baseline. Restated: CFO/NI 2.33; accruals −5.3%.\nRestatement mechanics: $80.0M revenue reversed (Winter Launch, 90-day terms + return rights); ~$60.8M of product at cost remains unsold in the distributor channel; allowance rebuilt to 6.4; material weakness in review of non-standard contract terms; VP of Sales departed pre-8-K.\nNon-GAAP: press release leads with Adjusted EBITDA 78.5 (adds back $18M recurring distributor incentives) vs restated GAAP NI 16.5, down 31% y/y.\nFY2026: no guidance given. Restated FY2025 growth +19.1%, partly promotion-assisted. SG&A grew 32% y/y (new distribution center, distributor programs).",
+      "response_guidance": "One page, memo form: rating on the first line, 2-3 numbered drivers each with cited figures, a short paragraph on what would change your mind. Write for a portfolio manager who has thirty seconds and no patience for hedging."
+    },
+    "answer_key": {
+      "model_answer": "RATING: AVOID (short for accounts that can borrow it). The restated numbers describe a decelerating, thin-margin distributor that spent FY2025 buying growth twice — once with promotions, once with accounting — and FY2026 must repay both loans.\n\nDriver 1 — The channel repays borrowed revenue. ~$60.8M of product at cost (roughly $80M at selling prices, ~7% of a year's revenue) sits unsold with distributors, who will not reorder until it clears; the Winter Launch that put it there is terminated. Even the restated +19.1% growth was promotion-assisted, and SG&A grew 32% supporting it. Base case FY2026 revenue is flat to down against the restated 1,072, with negative operating leverage on the new cost base: restated operating income is already down to 30.0 from 40.0 in FY2024.\n\nDriver 2 — Earnings quality reset, confirmed by cash. The 'breakout' restates to a 31% earnings decline (24.0 → 16.5) while CFO sat at 38.4 in both versions — cash flagged the fake in real time (filed CFO/NI 1.19 vs 1.63 baseline; DSRI 1.41) and now anchors the real earnings power near ~16-20, not the 32.4 the market paid for or the 78.5 Adjusted EBITDA management is now marketing, which adds back $18M of recurring distributor incentives.\n\nDriver 3 — Credibility and balance-sheet friction compound the operating problem. A material weakness on exactly the control that matters for a distributor (non-standard terms), a VP of Sales gone pre-8-K, a $20M revolver draw and $10M dividend against 48.4 cash and 190.0 debt, and a non-GAAP presentation that re-excludes the cost of the offending program — management's numbers deserve a discount until a clean audited year exists.\n\nWHAT WOULD CHANGE MY MIND: evidence the channel is clearing and the base is real — two consecutive quarters of distributor sell-through exceeding sell-in (or channel inventory below ~8 weeks), DSO holding in the low-to-mid 40s with the allowance stable near 5% of gross receivables, FY2026 guidance built explicitly off the restated 1,072 base that the company then meets, and a remediation the auditor signs without qualification. Growth in that configuration would be cash-collateralized, and I would re-underwrite it at a normal multiple.",
+      "rubric": [
+        {"id": "rating", "points": 1, "description": "Opens with an unambiguous rating/position and a one-line summary judgment on the restated base"},
+        {"id": "drivers", "points": 2, "description": "Presents 2-3 distinct, decision-relevant drivers (e.g., FY2026 channel overhang / borrowed growth reversing; earnings-quality reset to restated ~16.5; credibility-controls-balance-sheet discount) rather than a list of grievances"},
+        {"id": "evidence", "points": 2, "description": "Each driver carries cited figures from the dossier (e.g., ~$60.8M in-channel at cost, NI 24.0 → 16.5 restated (−31%), DSO 63.4 → 40.2, DSRI 1.41, revolver $20M / debt 190.0, Adjusted EBITDA 78.5 vs 16.5)"},
+        {"id": "cash_anchor", "points": 1, "description": "Uses cash as the analytical anchor: CFO 38.4 unchanged through the restatement, filed CFO/NI 1.19 vs 1.63 baseline — cash both exposed the fake and now sizes real earnings power"},
+        {"id": "forward", "points": 2, "description": "Makes the FY2026 mechanics explicit and quantified: channel must sell through before reorders, restated growth partly promotional, SG&A +32% creating negative leverage — a forward earnings view, not just a recap of the fraud"},
+        {"id": "nongaap_tell", "points": 1, "description": "Flags the Adjusted EBITDA presentation ($18M recurring incentives added back; 78.5 vs 16.5) as evidence of ongoing reporting posture"},
+        {"id": "falsifier", "points": 2, "description": "Gives specific, observable disconfirmers — sell-through vs sell-in data, channel-weeks threshold, DSO band ~mid-40s with allowance ~5% coverage, guidance off the restated base subsequently met, clean remediation sign-off — not vague 'better execution'"}
+      ],
+      "pass_points": 7
+    },
+    "hints": [
+      {"concept_id": "thesis_writing", "text": "Rating first, then drivers, then evidence, then the falsifier. A PM reads the first line and the last paragraph; make both survive alone."},
+      {"concept_id": "red_flag_synthesis", "text": "The restatement is history — the market knows. Your edge is the FY2026 arithmetic: what does a full channel, a terminated promotion, and a 32% larger cost base do to next year's income statement?"},
+      {"concept_id": "accruals_quality", "text": "One number survived seven weeks untouched: CFO of 38.4. Build the earnings-power estimate on it."}
+    ],
+    "explanation": "A thesis a PM will act on has four load-bearing parts. The rating commits — 'avoid, short if borrowable' survives a thirty-second read where 'concerns remain' does not. The drivers must be forward-looking: the fraud is priced; the channel overhang is the earning-season surprise still ahead, because ~$61M of product at cost must sell through before distributors reorder, against an SG&A base grown 32% for demand that was partly fictional. The evidence must be cited, and the strongest citation is the number that never moved: CFO of 38.4 through both versions of reality, which both convicted the filed earnings (CFO/NI 1.19 vs 1.63) and now values the real ones (restated CFO/NI 2.33 — cash-rich earnings, but small). And the falsifier must be observable — sell-through data, a DSO band, coverage ratios, guidance off the restated base — because a thesis without a tripwire is a mood. That is the whole seven weeks in one page: read what they filed, catch what they didn't, price the damage, and state in advance what evidence would make you wrong."
+  }
+]
