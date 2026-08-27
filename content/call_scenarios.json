@@ -1,0 +1,48 @@
+[
+  {
+    "id": "sable_call",
+    "company_id": "sable_peak",
+    "cfo_name": "Dana Whitlock",
+    "cfo_persona": "A polished, numbers-fluent CFO who never states a falsehood but answers the question she wishes had been asked: she pivots to growth headlines, reframes DSO as 'investment in distributor partnerships,' and only concedes specifics when a question pins her to a particular number, term, or Q4 arrangement.",
+    "fact_sheet": {
+      "revenue_fy2024": 900.0,
+      "revenue_fy2025": 1152.0,
+      "revenue_growth_fy2025_pct": 28.0,
+      "net_income_fy2024": 24.0,
+      "net_income_fy2025": 32.4,
+      "net_income_growth_fy2025_pct": 35.0,
+      "cfo_fy2024": 39.0,
+      "cfo_fy2025": 38.4,
+      "receivables_fy2024": 111.0,
+      "receivables_fy2025": 200.0,
+      "dso_fy2024_days": 45.0,
+      "dso_fy2025_days": 63.4,
+      "allowance_doubtful_fy2024": 5.5,
+      "allowance_doubtful_fy2025": 4.4,
+      "inventory_fy2024": 75.0,
+      "inventory_fy2025": 47.0,
+      "payables_fy2024": 56.0,
+      "payables_fy2025": 93.0,
+      "revolver_drawn_fy2025": 20.0,
+      "dividends_paid_fy2025": 10.0,
+      "gross_margin_fy2025_pct": 24.0,
+      "op_note": "The op_* entries below are invented operational color for the scenario, not derived from the financial statements.",
+      "op_new_distributor_agreements_q4": 2,
+      "op_q4_program": "A 'Winter Launch' incentive program offered top distributors extended 90-day payment terms (vs. the standard 30) plus limited return rights on orders placed in Q4.",
+      "op_capacity": "A third distribution center in the Southeast opened in October 2025, cited by management as enabling the record Q4 shipment volumes."
+    },
+    "hidden_issues": [
+      {
+        "id": "channel_stuffing",
+        "summary": "Q4 revenue was pulled forward by stuffing the distributor channel: the 'Winter Launch' program offered 90-day payment terms (vs. standard 30) and limited return rights, inducing distributors to take far more product than end-market demand supports. This drove receivables from $111M to $200M (DSO 45 -> 63 days), drained inventory from $75M to $47M, and borrows revenue from FY2026 — the channel is full and collections are uncertain.",
+        "reveal_threshold": "Surfaced by a question that specifically probes Q4 terms or shipment mechanics: extended payment terms / dating, return or price-protection rights, sell-in versus sell-through or distributor inventory levels, the share of Q4 revenue shipped under promotional terms, or why receivables/DSO grew far faster than revenue. Generic questions about 'growth' or 'working capital trends' get deflected to the new distributor agreements and the Southeast distribution center."
+      },
+      {
+        "id": "reserve_release",
+        "summary": "The allowance for doubtful accounts was cut from $5.5M to $4.4M (-20%) in the same year receivables grew 80% and shifted toward distributors on extended terms — coverage fell from ~5.0% of receivables to ~2.2%. The reduction lowered bad-debt expense and released reserves into earnings, contributing a meaningful slice of the FY2025 net income beat despite rising credit risk.",
+        "reveal_threshold": "Surfaced by a question that targets the allowance or credit assumptions directly: why the allowance declined while receivables soared, the coverage ratio (allowance as a % of receivables), bad-debt expense assumptions for the new 90-day-term receivables, or aging of the year-end receivables book. Questions that only mention receivables growth without touching the reserve get an answer about 'excellent historical collections experience'."
+      }
+    ],
+    "max_questions": 5
+  }
+]

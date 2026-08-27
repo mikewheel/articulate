@@ -1,0 +1,475 @@
+[
+  {
+    "id": "l2_sudoku_010",
+    "mode": "sudoku",
+    "item_type": "sudoku",
+    "level_id": "L2",
+    "ordinal": 10,
+    "concept_ids": ["re_rollforward"],
+    "difficulty": 1,
+    "grader": "grid",
+    "payload": {
+      "intro": "Meridian Tools, FY2024. The income statement stops just short of the bottom line, and the retained earnings schedule is missing its close. Fill both blanks using only the identities listed.",
+      "company_id": "meridian_tools",
+      "statements": [
+        {"name": "Income Statement extract (FY2024, $M)",
+         "rows": [
+           {"key": "pretax_income", "label": "Pretax income", "value": 100.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "income_tax", "label": "Income tax expense", "value": 25.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "net_income", "label": "Net income", "value": null, "blank": true, "indent": 0, "subtotal": true}
+         ]},
+        {"name": "Retained Earnings roll-forward (FY2024, $M)",
+         "rows": [
+           {"key": "opening_re", "label": "Retained earnings, beginning of year", "value": 416.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "dividends_declared", "label": "Less: dividends declared", "value": 33.0, "blank": false, "indent": 1, "subtotal": false},
+           {"key": "closing_re", "label": "Retained earnings, end of year", "value": null, "blank": true, "indent": 0, "subtotal": true}
+         ]}
+      ],
+      "identities": [
+        "Net income = Pretax income − Income tax",
+        "Closing RE = Opening RE + Net income − Dividends"
+      ]
+    },
+    "answer_key": {"cells": {"net_income": 75.0, "closing_re": 458.0}, "tolerance_abs": 0.5},
+    "hints": [
+      {"concept_id": "re_rollforward", "text": "The income statement's bottom line does not vanish — it flows into one specific balance sheet account."}
+    ],
+    "explanation": "Net income = 100.0 − 25.0 = 75.0. Closing RE = 416.0 + 75.0 − 33.0 = 458.0. This roll-forward is the hinge between the income statement and the balance sheet: earnings accumulate in retained earnings, and dividends drain them. An investor reading a rising RE balance is reading the history of profits kept in the business."
+  },
+  {
+    "id": "l2_sudoku_020",
+    "mode": "sudoku",
+    "item_type": "sudoku",
+    "level_id": "L2",
+    "ordinal": 20,
+    "concept_ids": ["re_rollforward", "noncash_charges"],
+    "difficulty": 2,
+    "grader": "grid",
+    "payload": {
+      "intro": "Meridian Tools, FY2025. Three subtotals have been blanked out of the income statement. Rebuild them top to bottom.",
+      "company_id": "meridian_tools",
+      "statements": [
+        {"name": "Income Statement (FY2025, $M)",
+         "rows": [
+           {"key": "revenue", "label": "Revenue", "value": 1123.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "cost_of_revenue", "label": "Cost of revenue", "value": 672.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "gross_profit", "label": "Gross profit", "value": null, "blank": true, "indent": 0, "subtotal": true},
+           {"key": "sga", "label": "Selling, general & administrative", "value": 230.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "rnd", "label": "Research & development", "value": 34.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "da", "label": "Depreciation & amortization", "value": 65.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "operating_income", "label": "Operating income", "value": null, "blank": true, "indent": 0, "subtotal": true},
+           {"key": "interest_expense", "label": "Interest expense", "value": 10.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "pretax_income", "label": "Pretax income", "value": 112.0, "blank": false, "indent": 0, "subtotal": true},
+           {"key": "income_tax", "label": "Income tax expense", "value": 28.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "net_income", "label": "Net income", "value": null, "blank": true, "indent": 0, "subtotal": true}
+         ]}
+      ],
+      "identities": [
+        "Gross profit = Revenue − Cost of revenue",
+        "Operating income = Gross profit − SG&A − R&D − D&A",
+        "Pretax income = Operating income − Interest expense",
+        "Net income = Pretax income − Income tax"
+      ]
+    },
+    "answer_key": {"cells": {"gross_profit": 451.0, "operating_income": 122.0, "net_income": 84.0}, "tolerance_abs": 0.5},
+    "hints": [
+      {"concept_id": "re_rollforward", "text": "Work the waterfall in order: each subtotal is the one above it minus the expenses between them."}
+    ],
+    "explanation": "Gross profit = 1123.0 − 672.0 = 451.0; operating income = 451.0 − 230.0 − 34.0 − 65.0 = 122.0 (check: pretax 112.0 + interest 10.0 = 122.0); net income = 112.0 − 28.0 = 84.0. The income statement is a waterfall — each margin level answers a different question: pricing power (gross), cost discipline (operating), and what is left for owners (net)."
+  },
+  {
+    "id": "l2_sudoku_030",
+    "mode": "sudoku",
+    "item_type": "sudoku",
+    "level_id": "L2",
+    "ordinal": 30,
+    "concept_ids": ["ppe_rollforward", "noncash_charges"],
+    "difficulty": 2,
+    "grader": "grid",
+    "payload": {
+      "intro": "Meridian Tools invests steadily in its plants. Roll PP&E forward two years in a row; note that FY2025 opens where FY2024 closes. No disposals or impairments in either year.",
+      "company_id": "meridian_tools",
+      "statements": [
+        {"name": "PP&E roll-forward (net, FY2024–FY2025, $M)",
+         "rows": [
+           {"key": "fy24_opening_ppe", "label": "FY2024 opening PP&E, net", "value": 532.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "fy24_capex", "label": "FY2024 capital expenditures", "value": 75.6, "blank": false, "indent": 1, "subtotal": false},
+           {"key": "fy24_depreciation", "label": "FY2024 depreciation", "value": 63.0, "blank": false, "indent": 1, "subtotal": false},
+           {"key": "fy24_closing_ppe", "label": "FY2024 closing PP&E, net", "value": null, "blank": true, "indent": 0, "subtotal": true},
+           {"key": "fy25_capex", "label": "FY2025 capital expenditures", "value": 78.0, "blank": false, "indent": 1, "subtotal": false},
+           {"key": "fy25_depreciation", "label": "FY2025 depreciation", "value": 65.0, "blank": false, "indent": 1, "subtotal": false},
+           {"key": "fy25_closing_ppe", "label": "FY2025 closing PP&E, net", "value": null, "blank": true, "indent": 0, "subtotal": true}
+         ]}
+      ],
+      "identities": [
+        "Closing PP&E = Opening PP&E + Capex − Depreciation (no disposals)",
+        "Next year's opening PP&E = this year's closing PP&E"
+      ]
+    },
+    "answer_key": {"cells": {"fy24_closing_ppe": 544.6, "fy25_closing_ppe": 557.6}, "tolerance_abs": 0.5},
+    "hints": [
+      {"concept_id": "ppe_rollforward", "text": "PP&E is a bathtub: capex pours in, depreciation drains out. Chain the two years — one year's closing level is the next year's opening level."}
+    ],
+    "explanation": "FY2024 closing = 532.0 + 75.6 − 63.0 = 544.6; FY2025 closing = 544.6 + 78.0 − 65.0 = 557.6. Capex running at about 1.2× depreciation means the asset base is growing modestly — a company reinvesting slightly ahead of wear-and-tear. When capex falls below depreciation for years, the company is quietly liquidating itself."
+  },
+  {
+    "id": "l2_sudoku_040",
+    "mode": "sudoku",
+    "item_type": "sudoku",
+    "level_id": "L2",
+    "ordinal": 40,
+    "concept_ids": ["equity_rollforward", "re_rollforward"],
+    "difficulty": 2,
+    "grader": "grid",
+    "payload": {
+      "intro": "Meridian Tools, FY2024. Reconcile total equity from open to close. The only movement in common stock & APIC is share-based compensation; no shares were issued or repurchased for cash.",
+      "company_id": "meridian_tools",
+      "statements": [
+        {"name": "Statement of changes in equity (FY2024, $M)",
+         "rows": [
+           {"key": "opening_apic", "label": "Common stock & APIC, beginning", "value": 145.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "sbc_grants", "label": "Share-based compensation", "value": 12.0, "blank": false, "indent": 1, "subtotal": false},
+           {"key": "closing_apic", "label": "Common stock & APIC, ending", "value": null, "blank": true, "indent": 0, "subtotal": true},
+           {"key": "opening_re_fy24", "label": "Retained earnings, beginning", "value": 416.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "ni_fy24", "label": "Net income", "value": 75.0, "blank": false, "indent": 1, "subtotal": false},
+           {"key": "div_fy24", "label": "Less: dividends declared", "value": 33.0, "blank": false, "indent": 1, "subtotal": false},
+           {"key": "closing_re_fy24", "label": "Retained earnings, ending", "value": null, "blank": true, "indent": 0, "subtotal": true},
+           {"key": "closing_total_equity", "label": "Total equity, ending", "value": null, "blank": true, "indent": 0, "subtotal": true}
+         ]}
+      ],
+      "identities": [
+        "Closing APIC = Opening APIC + SBC (no issuance or buybacks)",
+        "Closing RE = Opening RE + Net income − Dividends",
+        "Total equity = Common stock & APIC + Retained earnings"
+      ]
+    },
+    "answer_key": {"cells": {"closing_apic": 157.0, "closing_re_fy24": 458.0, "closing_total_equity": 615.0}, "tolerance_abs": 0.5},
+    "hints": [
+      {"concept_id": "equity_rollforward", "text": "Equity has two engines: paid-in capital (moved by issuance, buybacks, SBC) and retained earnings (moved by income and dividends). Roll each forward separately, then add."}
+    ],
+    "explanation": "APIC: 145.0 + 12.0 = 157.0. RE: 416.0 + 75.0 − 33.0 = 458.0. Total equity: 157.0 + 458.0 = 615.0. Notice that share-based compensation grows equity even though no cash changed hands — the company paid employees in ownership. That is why SBC is added back in CFO and why diluted share count matters."
+  },
+  {
+    "id": "l2_sudoku_050",
+    "mode": "sudoku",
+    "item_type": "sudoku",
+    "level_id": "L2",
+    "ordinal": 50,
+    "concept_ids": ["cash_reconciliation", "cfs_structure"],
+    "difficulty": 2,
+    "grader": "grid",
+    "payload": {
+      "intro": "Meridian Tools, FY2024. The three cash flow sections are given. Tie the statement out to the balance sheet's cash line.",
+      "company_id": "meridian_tools",
+      "statements": [
+        {"name": "Cash Flow Statement summary (FY2024, $M)",
+         "rows": [
+           {"key": "cfo", "label": "Cash from operating activities", "value": 141.0, "blank": false, "indent": 0, "subtotal": true},
+           {"key": "cfi", "label": "Cash from investing activities", "value": -75.6, "blank": false, "indent": 0, "subtotal": true},
+           {"key": "cff", "label": "Cash from financing activities", "value": -48.0, "blank": false, "indent": 0, "subtotal": true},
+           {"key": "fx_effect", "label": "Effect of exchange rates on cash", "value": 0.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "net_change_cash", "label": "Net change in cash", "value": null, "blank": true, "indent": 0, "subtotal": true},
+           {"key": "opening_cash", "label": "Cash, beginning of year", "value": 112.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "closing_cash", "label": "Cash, end of year", "value": null, "blank": true, "indent": 0, "subtotal": true}
+         ]}
+      ],
+      "identities": [
+        "Net change in cash = CFO + CFI + CFF + FX effect",
+        "Closing cash = Opening cash + Net change in cash"
+      ]
+    },
+    "answer_key": {"cells": {"net_change_cash": 17.4, "closing_cash": 129.4}, "tolerance_abs": 0.5},
+    "hints": [
+      {"concept_id": "cash_reconciliation", "text": "The cash flow statement's three sections must sum to exactly the movement in one balance sheet line. Which line?"}
+    ],
+    "explanation": "Net change = 141.0 − 75.6 − 48.0 + 0.0 = 17.4; closing cash = 112.0 + 17.4 = 129.4, which is exactly the cash line on the FY2024 balance sheet. This tie-out is the cheapest integrity check in all of financial statement analysis: if it fails, something in the statements is wrong."
+  },
+  {
+    "id": "l2_sudoku_060",
+    "mode": "sudoku",
+    "item_type": "sudoku",
+    "level_id": "L2",
+    "ordinal": 60,
+    "concept_ids": ["working_capital_bridges", "indirect_cfo"],
+    "difficulty": 3,
+    "grader": "grid",
+    "payload": {
+      "intro": "Meridian Tools, FY2025. The operating section starts from net income, but the working-capital lines are blank. Derive each one from the balance sheet extract below, then complete CFO. Remember the direction: an asset going UP consumes cash; a liability going UP releases it.",
+      "company_id": "meridian_tools",
+      "statements": [
+        {"name": "Cash flow from operations, indirect method (FY2025, $M)",
+         "rows": [
+           {"key": "ni_start", "label": "Net income", "value": 84.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "da_addback", "label": "Depreciation & amortization", "value": 65.0, "blank": false, "indent": 1, "subtotal": false},
+           {"key": "sbc_addback", "label": "Share-based compensation", "value": 12.0, "blank": false, "indent": 1, "subtotal": false},
+           {"key": "chg_receivables", "label": "Change in receivables", "value": null, "blank": true, "indent": 1, "subtotal": false},
+           {"key": "chg_inventory", "label": "Change in inventory", "value": null, "blank": true, "indent": 1, "subtotal": false},
+           {"key": "chg_payables", "label": "Change in accounts payable", "value": null, "blank": true, "indent": 1, "subtotal": false},
+           {"key": "chg_accrued", "label": "Change in accrued liabilities", "value": null, "blank": true, "indent": 1, "subtotal": false},
+           {"key": "cfo_total", "label": "Cash from operating activities", "value": null, "blank": true, "indent": 0, "subtotal": true}
+         ]},
+        {"name": "Balance sheet extract ($M)",
+         "rows": [
+           {"key": "ar_fy24", "label": "Receivables, FY2024", "value": 160.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "ar_fy25", "label": "Receivables, FY2025", "value": 170.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "inv_fy24", "label": "Inventory, FY2024", "value": 168.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "inv_fy25", "label": "Inventory, FY2025", "value": 176.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "ap_fy24", "label": "Accounts payable, FY2024", "value": 79.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "ap_fy25", "label": "Accounts payable, FY2025", "value": 83.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "acc_fy24", "label": "Accrued liabilities, FY2024", "value": 63.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "acc_fy25", "label": "Accrued liabilities, FY2025", "value": 66.0, "blank": false, "indent": 0, "subtotal": false}
+         ]}
+      ],
+      "identities": [
+        "Cash impact of an operating asset = −(closing − opening)",
+        "Cash impact of an operating liability = +(closing − opening)",
+        "CFO = Net income + D&A + SBC + sum of working-capital changes"
+      ]
+    },
+    "answer_key": {"cells": {"chg_receivables": -10.0, "chg_inventory": -8.0, "chg_payables": 4.0, "chg_accrued": 3.0, "cfo_total": 150.0}, "tolerance_abs": 0.5},
+    "hints": [
+      {"concept_id": "working_capital_bridges", "text": "For each line, take the balance sheet delta and flip the sign if it is an asset: cash tied up in receivables or inventory is cash you do not have."}
+    ],
+    "explanation": "Receivables 160→170 consumes 10.0 of cash (−10.0); inventory 168→176 consumes 8.0 (−8.0); payables 79→83 releases 4.0; accrued 63→66 releases 3.0. CFO = 84.0 + 65.0 + 12.0 − 10.0 − 8.0 + 4.0 + 3.0 = 150.0. The working-capital bridge is where accrual earnings are converted into (or withheld from) cash — and it is where most earnings-quality problems first show up."
+  },
+  {
+    "id": "l2_sudoku_070",
+    "mode": "sudoku",
+    "item_type": "sudoku",
+    "level_id": "L2",
+    "ordinal": 70,
+    "concept_ids": ["indirect_cfo", "cash_reconciliation", "working_capital_bridges", "ppe_rollforward"],
+    "difficulty": 5,
+    "grader": "grid",
+    "payload": {
+      "intro": "The capstone. Meridian Tools lost its FY2025 cash flow statement; you have the FY2025 income statement and the FY2024 and FY2025 balance sheets. Rebuild the entire cash flow statement. Facts you may rely on: no shares were issued or repurchased for cash (the only movement in common stock & APIC is share-based compensation, which sits inside SG&A); no asset disposals or impairments; FX effect is zero. Every blank is pinned down by an identity — if you are stuck, you are missing an identity, not information.",
+      "company_id": "meridian_tools",
+      "statements": [
+        {"name": "Income Statement (FY2025, $M)",
+         "rows": [
+           {"key": "is_revenue", "label": "Revenue", "value": 1123.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "is_cogs", "label": "Cost of revenue", "value": 672.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "is_gross_profit", "label": "Gross profit", "value": 451.0, "blank": false, "indent": 0, "subtotal": true},
+           {"key": "is_sga", "label": "SG&A (includes share-based compensation)", "value": 230.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "is_rnd", "label": "Research & development", "value": 34.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "is_da", "label": "Depreciation & amortization", "value": 65.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "is_operating_income", "label": "Operating income", "value": 122.0, "blank": false, "indent": 0, "subtotal": true},
+           {"key": "is_interest", "label": "Interest expense", "value": 10.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "is_pretax", "label": "Pretax income", "value": 112.0, "blank": false, "indent": 0, "subtotal": true},
+           {"key": "is_tax", "label": "Income tax expense", "value": 28.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "is_net_income", "label": "Net income", "value": 84.0, "blank": false, "indent": 0, "subtotal": true}
+         ]},
+        {"name": "Balance Sheet, FY2024 ($M)",
+         "rows": [
+           {"key": "bs24_cash", "label": "Cash", "value": 129.4, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs24_ar", "label": "Receivables", "value": 160.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs24_inv", "label": "Inventory", "value": 168.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs24_ppe", "label": "PP&E, net", "value": 544.6, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs24_total_assets", "label": "Total assets", "value": 1002.0, "blank": false, "indent": 0, "subtotal": true},
+           {"key": "bs24_ap", "label": "Accounts payable", "value": 79.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs24_accrued", "label": "Accrued liabilities", "value": 63.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs24_debt_current", "label": "Current portion of debt", "value": 15.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs24_debt_noncurrent", "label": "Long-term debt", "value": 230.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs24_apic", "label": "Common stock & APIC", "value": 157.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs24_re", "label": "Retained earnings", "value": 458.0, "blank": false, "indent": 0, "subtotal": false}
+         ]},
+        {"name": "Balance Sheet, FY2025 ($M)",
+         "rows": [
+           {"key": "bs25_cash", "label": "Cash", "value": 150.4, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs25_ar", "label": "Receivables", "value": 170.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs25_inv", "label": "Inventory", "value": 176.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs25_ppe", "label": "PP&E, net", "value": 557.6, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs25_total_assets", "label": "Total assets", "value": 1054.0, "blank": false, "indent": 0, "subtotal": true},
+           {"key": "bs25_ap", "label": "Accounts payable", "value": 83.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs25_accrued", "label": "Accrued liabilities", "value": 66.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs25_debt_current", "label": "Current portion of debt", "value": 15.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs25_debt_noncurrent", "label": "Long-term debt", "value": 215.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs25_apic", "label": "Common stock & APIC", "value": 169.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "bs25_re", "label": "Retained earnings", "value": 506.0, "blank": false, "indent": 0, "subtotal": false}
+         ]},
+        {"name": "Cash Flow Statement (FY2025, $M) — rebuild it",
+         "rows": [
+           {"key": "cfs_ni", "label": "Net income", "value": 84.0, "blank": false, "indent": 0, "subtotal": false},
+           {"key": "cfs_da", "label": "Depreciation & amortization", "value": null, "blank": true, "indent": 1, "subtotal": false},
+           {"key": "cfs_sbc", "label": "Share-based compensation", "value": null, "blank": true, "indent": 1, "subtotal": false},
+           {"key": "cfs_chg_ar", "label": "Change in receivables", "value": null, "blank": true, "indent": 1, "subtotal": false},
+           {"key": "cfs_chg_inv", "label": "Change in inventory", "value": null, "blank": true, "indent": 1, "subtotal": false},
+           {"key": "cfs_chg_ap_acc", "label": "Change in payables & accrued liabilities", "value": null, "blank": true, "indent": 1, "subtotal": false},
+           {"key": "cfs_cfo", "label": "Cash from operating activities", "value": null, "blank": true, "indent": 0, "subtotal": true},
+           {"key": "cfs_capex", "label": "Capital expenditures (total investing)", "value": null, "blank": true, "indent": 0, "subtotal": true},
+           {"key": "cfs_debt_repaid", "label": "Repayment of long-term debt", "value": null, "blank": true, "indent": 1, "subtotal": false},
+           {"key": "cfs_dividends", "label": "Dividends paid", "value": null, "blank": true, "indent": 1, "subtotal": false},
+           {"key": "cfs_cff", "label": "Cash from financing activities", "value": -51.0, "blank": false, "indent": 0, "subtotal": true},
+           {"key": "cfs_net_change", "label": "Net change in cash", "value": null, "blank": true, "indent": 0, "subtotal": true}
+         ]}
+      ],
+      "identities": [
+        "D&A addback = D&A on the income statement",
+        "SBC addback = change in common stock & APIC (no issuance or buybacks)",
+        "Cash impact of an operating asset = −(closing − opening); of an operating liability = +(closing − opening)",
+        "CFO = Net income + non-cash addbacks + working-capital changes",
+        "Capex = (Closing PP&E − Opening PP&E) + Depreciation (no disposals); an outflow, so negative on the CFS",
+        "Debt repayment = closing total debt − opening total debt (when negative)",
+        "Dividends = Opening RE + Net income − Closing RE",
+        "Net change in cash = CFO + CFI + CFF = Closing cash − Opening cash"
+      ]
+    },
+    "answer_key": {"cells": {"cfs_da": 65.0, "cfs_sbc": 12.0, "cfs_chg_ar": -10.0, "cfs_chg_inv": -8.0, "cfs_chg_ap_acc": 7.0, "cfs_cfo": 150.0, "cfs_capex": -78.0, "cfs_debt_repaid": -15.0, "cfs_dividends": -36.0, "cfs_net_change": 21.0}, "tolerance_abs": 0.5},
+    "hints": [
+      {"concept_id": "indirect_cfo", "text": "Start from net income and undo every accrual: add back what reduced income without using cash, then charge for cash tied up in working capital."},
+      {"concept_id": "ppe_rollforward", "text": "Capex is hiding in the PP&E roll-forward: the asset base grew even though depreciation shrank it."},
+      {"concept_id": "re_rollforward", "text": "Dividends are hiding in the retained earnings roll-forward: earnings that never arrived in RE left as a distribution."}
+      ],
+    "explanation": "D&A 65.0 comes straight off the income statement; SBC 12.0 is the APIC delta (169.0 − 157.0); receivables −10.0 and inventory −8.0 consume cash; payables +4.0 and accrued +3.0 release 7.0; CFO = 84 + 65 + 12 − 10 − 8 + 7 = 150.0. Capex = (557.6 − 544.6) + 65.0 = 78.0, shown as −78.0. Debt fell from 245.0 to 230.0 total, so repayment −15.0; dividends = 458.0 + 84.0 − 506.0 = 36.0, shown as −36.0 (check: −15 − 36 = −51 = CFF). Net change = 150 − 78 − 51 = 21.0 = 150.4 − 129.4. You have just derived a cash flow statement from the other two statements — the single skill that proves the three statements are one system."
+  },
+  {
+    "id": "l2_translate_080",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L2",
+    "ordinal": 80,
+    "concept_ids": ["cfo_ni_gap", "noncash_charges"],
+    "difficulty": 2,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Meridian Tools' FY2025 net income was $84M, but cash from operations was $150M — almost 1.8× earnings. Explain to a portfolio manager, in plain language, where the extra $66M of cash came from and what the gap says about the quality of Meridian's earnings.",
+      "context": "From the FY2025 cash flow statement: net income 84.0; depreciation & amortization 65.0; share-based compensation 12.0; working-capital changes −11.0 net (receivables −10.0, inventory −8.0, payables +4.0, accrued +3.0); CFO 150.0. All $M.",
+      "response_guidance": "2-4 sentences. Name the specific reconciling items and end with the investor takeaway."
+    },
+    "answer_key": {
+      "model_answer": "The gap is mostly non-cash charges: $65M of depreciation and $12M of share-based compensation reduced net income but consumed no cash this year, while growth tied up only a modest $11M in working capital. So CFO of $150M exceeds net income of $84M for benign, mechanical reasons. That is a mark of high earnings quality — every dollar of reported profit is backed by more than a dollar of operating cash — though depreciation is not free money: it foreshadows real capex, which at $78M runs above D&A.",
+      "rubric": [
+        {"id": "noncash", "points": 1, "description": "Identifies the non-cash addbacks (D&A ~$65M and/or SBC ~$12M) as the main source of the gap"},
+        {"id": "wc", "points": 1, "description": "Notes the working-capital effect is small (~$11M drag), i.e. growth is not soaking up the cash"},
+        {"id": "so_what", "points": 2, "description": "Draws the earnings-quality conclusion: CFO > NI for mechanical/benign reasons means earnings are cash-backed (bonus insight: D&A addback is not free cash because capex recurs)"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "cfo_ni_gap", "text": "Walk the indirect-method bridge: what reduced income without touching cash, and what did growth do to working capital?"}
+    ],
+    "explanation": "CFO exceeds NI here because depreciation and SBC are expenses that consume no cash in the period, and working capital barely moved. When CFO reliably exceeds NI for reasons like these, earnings are 'cash-backed' — the opposite pattern (NI growing while CFO stalls) is the classic early warning you will meet in Level 5."
+  },
+  {
+    "id": "l2_translate_090",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L2",
+    "ordinal": 90,
+    "concept_ids": ["noncash_charges", "ppe_rollforward"],
+    "difficulty": 2,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "A new colleague reads Meridian's FY2025 cash flow statement and asks: 'Why is depreciation of $65M added back in the operating section? Isn't that just pretending an expense didn't happen?' Set them straight — explain why the addback is legitimate, and also what it does NOT mean.",
+      "context": "Meridian FY2025: depreciation & amortization 65.0 on the income statement and added back in CFO; capital expenditures 78.0 (cash out, investing section). All $M.",
+      "response_guidance": "2-4 sentences. Cover both the mechanics and the common misreading."
+    },
+    "answer_key": {
+      "model_answer": "Depreciation is a real expense but not a current-year cash outflow: the cash left years ago when the equipment was bought, and the income statement is just spreading that old cost over the asset's life. The indirect method starts from net income, so the $65M must be added back to get to actual cash movement — nothing is being 'pretended away.' What it does not mean is that Meridian is $65M richer than income suggests: the machines wear out and must be replaced, and the replacement cost shows up as capex — $78M this year, more than depreciation — in the investing section.",
+      "rubric": [
+        {"id": "mechanics", "points": 1, "description": "Explains that depreciation allocates a past cash outflow, so it reduces income without using cash this period, hence the addback"},
+        {"id": "not_free", "points": 1, "description": "States what it does NOT mean: the addback is not free cash / does not make depreciation a fake expense"},
+        {"id": "capex_link", "points": 1, "description": "Links to the recurring cash reality: replacement shows up as capex (~$78M, above D&A) in investing"}
+      ],
+      "pass_points": 2
+    },
+    "hints": [
+      {"concept_id": "noncash_charges", "text": "Ask when the cash actually left the building — and where the cost of replacing worn-out assets shows up on this year's statement."}
+    ],
+    "explanation": "The addback exists because the indirect method starts from an accrual number. The cash cost of fixed assets is real, but it lives in the investing section as capex, not in CFO. Analysts who treat 'EBITDA' as cash forget exactly this: Meridian's capex of $78M exceeds its $65M of D&A."
+  },
+  {
+    "id": "l2_translate_100",
+    "mode": "drill",
+    "item_type": "translate",
+    "level_id": "L2",
+    "ordinal": 100,
+    "concept_ids": ["working_capital_bridges", "cfo_ni_gap"],
+    "difficulty": 3,
+    "grader": "llm_rubric",
+    "payload": {
+      "prompt": "Meridian's receivables rose from $160M to $170M in FY2025 while revenue grew from $1,060M to $1,123M. Explain what that receivables increase did to Meridian's operating cash flow, why it is (or isn't) a concern here, and what pattern in these same two lines WOULD make you worry.",
+      "context": "FY2024→FY2025: revenue 1060.0 → 1123.0 (+5.9%); receivables 160.0 → 170.0 (+6.3%); the change appears as −10.0 in FY2025 CFO. All $M.",
+      "response_guidance": "2-4 sentences. State the cash effect, the benign reading, and the red-flag version."
+    },
+    "answer_key": {
+      "model_answer": "The $10M rise in receivables is revenue booked but not yet collected, so it is subtracted in CFO — it consumed $10M of operating cash. Here it is benign: receivables grew 6.3% against revenue growth of 5.9%, so collections are keeping pace with sales and the increase is just the working capital cost of a bigger business. The worry pattern is divergence: receivables growing far faster than revenue (DSO stretching) means the company is booking sales it cannot yet collect — often a sign of loosened credit terms, pulled-forward sales, or worse.",
+      "rubric": [
+        {"id": "cash_effect", "points": 1, "description": "States the mechanism: rising receivables = revenue not yet collected, subtracted in CFO (~$10M cash consumed)"},
+        {"id": "benign", "points": 1, "description": "Judges it benign because receivables growth (~6%) tracks revenue growth (~6%)"},
+        {"id": "red_flag", "points": 2, "description": "Describes the red-flag pattern: receivables growing much faster than revenue / DSO expanding, implying uncollected or low-quality sales"}
+      ],
+      "pass_points": 3
+    },
+    "hints": [
+      {"concept_id": "working_capital_bridges", "text": "Compare the growth rates of the two lines. A working-capital line is only alarming relative to the activity that drives it."}
+    ],
+    "explanation": "Working-capital changes are only meaningful against the driver line: receivables against revenue, inventory against COGS. Meridian's ~6% receivables growth on ~6% revenue growth is the healthy base case — remember this benchmark, because Level 5 shows you a company where the two lines come apart by 50 points."
+  },
+  {
+    "id": "l2_journal_110",
+    "mode": "drill",
+    "item_type": "journal",
+    "level_id": "L2",
+    "ordinal": 110,
+    "concept_ids": ["ppe_rollforward", "noncash_charges", "cash_reconciliation"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "In FY2025 Meridian Tools pays $78M cash for new production equipment. What is the immediate effect across the three statements?",
+      "context": "Assume the equipment is placed in service at year-end, so no depreciation has been recorded on it yet.",
+      "choices": [
+        "Income statement: $78M expense reduces net income. Balance sheet: cash down $78M. Cash flow statement: $78M operating outflow.",
+        "Income statement: no immediate effect. Balance sheet: PP&E up $78M, cash down $78M — total assets unchanged. Cash flow statement: $78M investing outflow. Depreciation will hit the income statement over the asset's life.",
+        "Income statement: no effect ever, because capex is a balance-sheet-only item. Balance sheet: PP&E up $78M, cash down $78M. Cash flow statement: no entry, since total assets did not change.",
+        "Income statement: no immediate effect. Balance sheet: PP&E up $78M and a $78M liability is recorded. Cash flow statement: $78M financing outflow."
+      ]
+    },
+    "answer_key": {
+      "correct_index": 1,
+      "why_wrong": [
+        "Capitalizing means the cost does NOT hit the income statement now — it becomes an asset, expensed gradually as depreciation. And a purchase of equipment is an investing outflow, not operating.",
+        null,
+        "The income statement is affected — just later, through depreciation. And the cash flow statement records every cash movement regardless of whether total assets changed: this is a $78M investing outflow.",
+        "The purchase was for cash, so no liability arises; and buying equipment is investing, not financing. Financing is where the money comes from (debt, equity), investing is what it is spent on."
+      ]
+    },
+    "hints": [
+      {"concept_id": "ppe_rollforward", "text": "One asset was swapped for another. When does the income statement find out about it?"}
+    ],
+    "explanation": "Paying cash for equipment is an asset swap: cash becomes PP&E, total assets unchanged, no expense yet. The income statement learns about the purchase slowly, through depreciation, while the cash flow statement reports it immediately and in full as an investing outflow. This timing difference — cash now, expense later — is exactly why the three statements must be read together."
+  },
+  {
+    "id": "l2_journal_120",
+    "mode": "drill",
+    "item_type": "journal",
+    "level_id": "L2",
+    "ordinal": 120,
+    "concept_ids": ["re_rollforward", "equity_rollforward"],
+    "difficulty": 2,
+    "grader": "choice",
+    "payload": {
+      "prompt": "Meridian Tools declares and pays a $36M cash dividend in FY2025. What is the effect across the three statements?",
+      "context": null,
+      "choices": [
+        "Income statement: $36M 'dividend expense' reduces net income. Balance sheet: cash down $36M. Cash flow statement: $36M operating outflow.",
+        "Income statement: no effect. Balance sheet: retained earnings down $36M, cash down $36M — the equation stays balanced. Cash flow statement: $36M financing outflow.",
+        "Income statement: no effect. Balance sheet: no effect, because the dividend is paid out of current-year profit before it reaches the balance sheet. Cash flow statement: $36M financing outflow.",
+        "Income statement: no effect. Balance sheet: common stock & APIC down $36M, cash down $36M. Cash flow statement: $36M investing outflow."
+      ]
+    },
+    "answer_key": {
+      "correct_index": 1,
+      "why_wrong": [
+        "Dividends are a distribution of profit to owners, not a cost of earning it — there is no such thing as dividend expense, and the payment is a financing outflow.",
+        null,
+        "Profit always reaches the balance sheet: net income flows into retained earnings, and the dividend then reduces retained earnings. In Meridian's FY2025 RE roll-forward: 458.0 + 84.0 − 36.0 = 506.0.",
+        "Dividends come out of retained earnings, not paid-in capital (that account moves with issuance, buybacks, and SBC). And returning cash to owners is financing, not investing."
+      ]
+    },
+    "hints": [
+      {"concept_id": "re_rollforward", "text": "A dividend is the owners taking accumulated profit off the table. Which equity account holds accumulated profit, and which CFS section handles transactions with capital providers?"}
+    ],
+    "explanation": "Dividends never touch the income statement: they are a distribution of earnings, not an expense incurred to generate them. The whole event lives in the RE roll-forward (458.0 + 84.0 − 36.0 = 506.0 for Meridian's FY2025) and in the financing section of the cash flow statement. If you ever see a company where dividends exceed net income for years, the RE roll-forward is where the erosion shows."
+  }
+]
